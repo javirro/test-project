@@ -1,20 +1,9 @@
-import { IconProps } from "@/types";
+import { IconProps } from '@/types'
 
-const VolumeButtonIcon: React.FC<IconProps> = ({
-  width = "24",
-  height = "24",
-  color = "#fff",
-  ...props
-}) => {
+const VolumeButtonIcon: React.FC<IconProps> = ({ width = '100%', height = '100%', color = '#707579', ...props }) => {
   return (
     <div {...props}>
-      <svg
-        width={width}
-        height={height}
-        viewBox={`0 0 ${width} ${height}`}
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg width={width} height={height} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M12.593 23.1633L12.582 23.1653L12.511 23.2003L12.491 23.2043L12.477 23.2003L12.406 23.1653C12.3953 23.162 12.3873 23.1637 12.382 23.1703L12.378 23.1803L12.361 23.6083L12.366 23.6283L12.376 23.6413L12.48 23.7153L12.495 23.7193L12.507 23.7153L12.611 23.6413L12.623 23.6253L12.627 23.6083L12.61 23.1813C12.6073 23.1707 12.6017 23.1647 12.593 23.1633ZM12.858 23.0503L12.845 23.0523L12.66 23.1453L12.65 23.1553L12.647 23.1663L12.665 23.5963L12.67 23.6083L12.678 23.6153L12.879 23.7083C12.8917 23.7117 12.9013 23.709 12.908 23.7003L12.912 23.6863L12.878 23.0723C12.8747 23.0603 12.868 23.053 12.858 23.0503ZM12.143 23.0523C12.1386 23.0497 12.1333 23.0488 12.1283 23.0499C12.1233 23.051 12.1188 23.054 12.116 23.0583L12.11 23.0723L12.076 23.6863C12.0767 23.6983 12.0823 23.7063 12.093 23.7103L12.108 23.7083L12.309 23.6153L12.319 23.6073L12.323 23.5963L12.34 23.1663L12.337 23.1543L12.327 23.1443L12.143 23.0523Z"
           fill={color}
@@ -25,7 +14,7 @@ const VolumeButtonIcon: React.FC<IconProps> = ({
         />
       </svg>
     </div>
-  );
-};
+  )
+}
 
-export default VolumeButtonIcon;
+export default VolumeButtonIcon
