@@ -1,6 +1,24 @@
 :root {
+  --font-family-inter: 'Inter', Arial, Helvetica, sans-serif;
   --background: #ffffff;
   --foreground: #171717;
+  --size27: calc(27 * 100vw / 414);
+  --size28: calc(28 * 100vw / 414);
+  --size30: calc(30 * 100vw / 414);
+  --size32: calc(32 * 100vw / 414);
+  --size34: calc(34 * 100vw / 414);
+  --size36: calc(36 * 100vw / 414);
+  --size38: calc(38 * 100vw / 414);
+  --size40: calc(40 * 100vw / 414);
+  --size42: calc(42 * 100vw / 414);
+  --size44: calc(44 * 100vw / 414);
+  --size48: calc(48 * 100vw / 414);
+  --size50: calc(50 * 100vw / 414);
+  --size52: calc(52 * 100vw / 414);
+  --size54: calc(54 * 100vw / 414);
+  --size56: calc(56 * 100vw / 414);
+  --size58: calc(58 * 100vw / 414);
+  --size60: calc(60 * 100vw / 414);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,7 +37,7 @@ body {
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family-inter);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

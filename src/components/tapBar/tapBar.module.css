@@ -4,6 +4,7 @@
   align-items: center;
   padding: 10px;
   padding-bottom: 40px;
+  padding-top: 40px;
   background-color: white;
   border-top: 1px solid #e0e0e0;
   position: fixed;
@@ -11,6 +12,8 @@
   width: 100%;
   max-width: 600px;
   margin: 0 auto;
+  font-family: var(--font-family-inter);
+  z-index: 1;
 }
 
 .iconWrapper {
@@ -59,4 +62,26 @@
   width: 10px;
   height: 10px;
   border-radius: 100%;
+}
+
+.tapBarUserControl {
+  display: flex;
+  align-items: center;
+  margin-bottom: 200px;
+  justify-content: space-around;
+  width: 100%;
+  z-index: 10;
+  max-width: 90%;
+}
+
+.mainSelector {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  margin: -90px;
+  font-family: var(--font-family-inter);
 }
