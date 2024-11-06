@@ -1,7 +1,7 @@
 'use client'
 
 import styles from './page.module.css'
-import TapBar from '@/components/tapBar/TapBar'
+import TapBar from '@/components/tapBar/tapBar'
 
 export default function Home() {
   return (
