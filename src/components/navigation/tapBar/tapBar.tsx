@@ -6,12 +6,12 @@ import HomeButtonIcon from '@/images/tapBar/components/homeButton'
 import WalletButtonIcon from '@/images/tapBar/components/walletButton'
 import styles from './tapBar.module.css'
 import { SetStateAction, useState } from 'react'
-import TapBarButton from '../buttons/tapBarButton/TapBarButton'
+import TapBarButton from '@/components/buttons/tapBarButton/TapBarButton'
 import VolumeButtonIcon from '@/images/tapBar/components/volumeButton'
 import StatisticsButtonIcon from '@/images/tapBar/components/statisticsButton'
 import PauseButtonIcon from '@/images/tapBar/components/pauseButton'
-import LikeButton from '../buttons/likeButton/LikeButton'
-import DislikeButton from '../buttons/dislikeButton/DislikeButton'
+import LikeButton from '@/components/buttons/likeButton/LikeButton'
+import DislikeButton from '@/components/buttons/dislikeButton/DislikeButton'
 
 function TapBar() {
   const [activeIndex, setActiveIndex] = useState(1)

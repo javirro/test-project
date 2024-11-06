@@ -2,6 +2,13 @@
   --font-family-inter: 'Inter', Arial, Helvetica, sans-serif;
   --background: #ffffff;
   --foreground: #171717;
+  --size1: calc(1 * 100vw / 414);
+  --size4: calc(4 * 100vw / 414);
+  --size8: calc(8 * 100vw / 414);
+  --size10: calc(10 * 100vw / 414);
+  --size12: calc(12 * 100vw / 414);
+  --size14: calc(14 * 100vw / 414);
+  --size16: calc(16 * 100vw / 414);
   --size27: calc(27 * 100vw / 414);
   --size28: calc(28 * 100vw / 414);
   --size30: calc(30 * 100vw / 414);
@@ -23,7 +30,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #d6d6d6;
     --foreground: #ededed;
   }
 }
@@ -57,4 +64,11 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+@font-face {
+  font-family: 'Borna';
+  src: url('/fonts/borna-medium-webfont.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
 }
