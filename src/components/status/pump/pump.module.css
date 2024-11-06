@@ -1,0 +1,19 @@
+.segmentedCustom {
+  position: relative;
+  display: flex;
+  padding: 10px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+  box-shadow: 2px 3px 0px 1px #000;
+  border-radius: 10px;
+  border: 2px solid #000;
+  color: #494e05cc;
+  background-color: #fff;
+}
