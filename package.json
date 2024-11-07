@@ -6,7 +6,8 @@
     "dev": "PORT=4000 next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev-windows": "set PORT=4000 && next dev"
   },
   "dependencies": {
     "next": "15.0.2",
