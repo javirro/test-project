@@ -1,11 +1,12 @@
-import ProjectPublicNavBar from './navBars/ProjectPublicNavBar'
+'use client'
+
+import { usePathname } from 'next/navigation'
+import ProfileNavBar from './navBars/ProfileNavBar'
 
 function NavBarWrapper() {
-  return (
-    <nav style={{ width: '100%' }}>
-      <ProjectPublicNavBar />
-    </nav>
-  )
+  const pathname = usePathname()
+
+  return <nav style={{ width: '100%' }}>{pathname === '/create-project' && <ProfileNavBar />}</nav>
 }
 
 export default NavBarWrapper

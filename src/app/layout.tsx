@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import TapBar from '@/components/tapBar/TapBar'
+import TapBar from '@/components/navigation/tapBar/tapBar'
+import NavBarWrapper from '@/components/navigation/navBar/NavBarWrapper'
 import styles from './page.module.css'
 import './globals.css'
 
@@ -28,6 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${styles.page}`}>
+        <NavBarWrapper />
         {children}
         <TapBar />
       </body>
