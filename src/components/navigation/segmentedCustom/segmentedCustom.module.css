@@ -1,0 +1,60 @@
+.segmentedCustom {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+  width: 254px;
+  box-shadow: 2px 3px 0px 1px rgba(0, 0, 0, 1);
+  border-radius: var(--size8);
+}
+
+.buttonActive {
+  background-color: #f7c84f;
+  border: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #000000;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+}
+
+.buttonInactive {
+  background-color: #ffffff;
+  border: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #707579;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+}
+
+.buttonLeft {
+  border-top-left-radius: var(--size8);
+  border-bottom-left-radius: var(--size8);
+  border: 2px solid var(--Custom-black, #000);
+  border-right-width: 1px;
+  width: 100%;
+}
+
+.buttonRight {
+  border-top-right-radius: var(--size8);
+  border-bottom-right-radius: var(--size8);
+  border: 2px solid var(--Custom-black, #000);
+  border-left-width: 1px;
+}

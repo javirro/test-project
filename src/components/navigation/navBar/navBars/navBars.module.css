@@ -1,0 +1,112 @@
+.profileNavBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 35px 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.profileNavBar > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.text {
+  color: #000;
+  font-family: Borna, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.profileNavBarBack {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 5px 16px;
+  background-color: #fff;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profileNavBarNameSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profileNavBarButtonsSection {
+  display: flex;
+  gap: 24px;
+}
+
+.projectPrivateNavBarEditButton {
+  display: flex;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  background-color: transparent;
+  border: 1px solid #000;
+  border-radius: 20px;
+  color: #494e05cc;
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+}
+
+.projectPrivateNavBarMain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 35px 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  background-color: #fff;
+}
+
+.projectPrivateNavBarMain > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.projectPublicNavBarMain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  padding: 14px 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  background-color: #fff;
+}
+
+.projectPublicNavBarMain > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
