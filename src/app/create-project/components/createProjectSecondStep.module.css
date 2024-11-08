@@ -1,0 +1,16 @@
+.uploadSection {
+  display: flex;
+  width: 206px;
+  padding-top: var(--size60);
+  padding-bottom: var(--size60);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex: 1 0 0;
+  background-color: #efeff4;
+  border-style: dashed;
+  border-width: 2px;
+  border-color: #707579;
+  border-image-slice: 1;
+}

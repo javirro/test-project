@@ -1,0 +1,68 @@
+.text {
+  overflow: hidden;
+  color: var(--Custom-secondary_hint_color, #a2acb0);
+  text-overflow: ellipsis;
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+  width: 100%;
+}
+
+.imageDiv {
+  color: #997312;
+  background-color: #f7c84f26;
+  display: flex;
+  width: 96px;
+  height: 96px;
+  padding: 0px 19px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+}
+
+.uploadImageButton {
+  display: flex;
+  height: 38px;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border-radius: 20px;
+  border: 1px solid var(--Custom-outline, #131313);
+  color: var(--Custom-plain_foreground, rgba(73, 78, 5, 0.8));
+  background-color: transparent;
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+}
+
+.customInput {
+  --tgui--input_border_color: #000;
+}
+
+.charCounter {
+  color: var(--Custom-secondary_hint_color, #a2acb0);
+  font-family: Borna;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: right;
+  width: 100%;
+  margin-top: 4px;
+}
+
+.customInputPadding {
+  --tgui--input_padding: 12px 10px;
+}
+
+.projectImagePreview {
+  width: 96px;
+  height: 96px;
+  border-radius: 100%;
+  object-fit: cover;
+}
