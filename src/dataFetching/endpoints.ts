@@ -17,3 +17,8 @@ export const projectEndpoints = {
 export const priceEndpoints = {
   getSolanaPrice: `${BASE_URL}/solana`, //GET
 }
+
+export const transactionsEndpoints = {
+  getTransactionsByUserAddress: (address: string) => `${BASE_URL}/transactions/${address}`, //GET
+  buySellTokens: `${BASE_URL}/transactions/buy-sell`, //POST
+}
