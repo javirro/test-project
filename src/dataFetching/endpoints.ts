@@ -5,10 +5,10 @@ export const BASE_URL = `${BACKEND_URL}/api`
 export const projectEndpoints = {
   create: `${BASE_URL}/projects/create`, //POST
   getProjects: `${BASE_URL}/projects`, //GET
-  getProjectById: (id: string) => `${BASE_URL}/projects/${id}`, //GET
-  getProjectLikesById: (id: string) => `${BASE_URL}/project-likes/${id}`, //GET
-  getProjectCommentsAmountById: (id: string) => `${BASE_URL}/project-comments-amount/${id}`, //GET
-  getProjectCommentsById: (id: string) => `${BASE_URL}/project/comments/${id}`, //GET
+  getProjectByTokenAddress: (tokenAddress: string) => `${BASE_URL}/projects/${tokenAddress}`, //GET
+  getProjectLikesByTokenAddress: (tokenAddress: string) => `${BASE_URL}/project-likes/${tokenAddress}`, //GET
+  getProjectCommentsAmountByTokenAddress: (tokenAddress: string) => `${BASE_URL}/project-comments-amount/${tokenAddress}`, //GET
+  getProjectCommentsByTokenAddress: (tokenAddress: string) => `${BASE_URL}/project/comments/${tokenAddress}`, //GET
   manageProjectLikes: `${BASE_URL}/projects/manage-like`, //POST
   addCommentToProject: `${BASE_URL}/projects/add-comment`, //POST
   deleteCommentFromProject: `${BASE_URL}/projects/comments`, // DELETE
