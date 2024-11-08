@@ -3,13 +3,26 @@
 import { useState } from 'react'
 import CreateProjectFirstStep from './components/CreateProjectFirstStep'
 import CreateProjectSecondStep from './components/CreateProjectSecondStep'
+import { useCreateProjectStore } from '../store/createProjectStore'
 import style from './page.module.css'
+import Toast from '@/components/status/Toast'
 
 function Page() {
+  const { projectName, tokenSymbol, projectDescription, projectImage } = useCreateProjectStore()
+
   const [step, setStep] = useState(0)
+  const [toastMessage, setToastMessage] = useState<string | null>(null)
 
   const getBackgroundColor = (index: number) => {
     return index <= step ? '#997312' : '#F4F4F7)'
+  }
+
+  const handleNextClick = () => {
+    if (!projectName || !tokenSymbol || !projectDescription) {
+      setToastMessage('Por favor, completa todos los campos antes de continuar.')
+      return
+    }
+    setStep(step + 1)
   }
 
   return (
@@ -22,10 +35,11 @@ function Page() {
       {step === 0 && <CreateProjectFirstStep />}
       {step === 1 && <CreateProjectSecondStep />}
       <div className={style.nextButtonDiv}>
-        <button className={style.nextButton} onClick={() => setStep(step + 1)}>
-          Next
+        <button className={style.nextButton} onClick={() => handleNextClick()}>
+          {step === 0 ? 'Next' : 'Publish now'}
         </button>
       </div>
+      {toastMessage && <Toast text={toastMessage} />}
     </section>
   )
 }
