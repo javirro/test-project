@@ -14,7 +14,7 @@ function Page() {
   const [toastMessage, setToastMessage] = useState<string | null>(null)
 
   const getBackgroundColor = (index: number) => {
-    return index <= step ? '#997312' : '#F4F4F7)'
+    return index <= step ? '#997312' : '#F4F4F7'
   }
 
   const handleNextClick = () => {
@@ -24,7 +24,12 @@ function Page() {
     }
     setStep(step + 1)
   }
+  const handlePublish = async () => {}
 
+  const handleNextPublish = async () => {
+    if (step === 1) handleNextClick()
+    else if (step === 2) await handlePublish()
+  }
   return (
     <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
       <div className={style.stepViewer}>
@@ -32,10 +37,10 @@ function Page() {
           <div key={index} style={{ backgroundColor: getBackgroundColor(index) }}></div>
         ))}
       </div>
-      {step === 0 && <CreateProjectFirstStep setToastMessage = {setToastMessage}/>}
+      {step === 0 && <CreateProjectFirstStep setToastMessage={setToastMessage} />}
       {step === 1 && <CreateProjectSecondStep />}
       <div className={style.nextButtonDiv}>
-        <button className={style.nextButton} onClick={() => handleNextClick()}>
+        <button className={style.nextButton} onClick={() => handleNextPublish()}>
           {step === 0 ? 'Next' : 'Publish now'}
         </button>
       </div>
