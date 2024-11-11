@@ -8,7 +8,7 @@ import style from './page.module.css'
 import Toast from '@/components/status/Toast'
 
 function Page() {
-  const { projectName, tokenSymbol, projectDescription, projectImage } = useCreateProjectStore()
+  const { projectName, tokenSymbol, projectDescription } = useCreateProjectStore()
 
   const [step, setStep] = useState(0)
   const [toastMessage, setToastMessage] = useState<string | null>(null)
@@ -32,7 +32,7 @@ function Page() {
           <div key={index} style={{ backgroundColor: getBackgroundColor(index) }}></div>
         ))}
       </div>
-      {step === 0 && <CreateProjectFirstStep />}
+      {step === 0 && <CreateProjectFirstStep setToastMessage = {setToastMessage}/>}
       {step === 1 && <CreateProjectSecondStep />}
       <div className={style.nextButtonDiv}>
         <button className={style.nextButton} onClick={() => handleNextClick()}>

@@ -1,10 +1,10 @@
 import { useState, useEffect, ChangeEvent } from 'react'
 import { AppRoot, Input, Tappable, Textarea } from '@telegram-apps/telegram-ui'
+import { useCreateProjectStore } from '@/app/store/createProjectStore'
 import style from './CreateProjectFirstStep.module.css'
 import '@telegram-apps/telegram-ui/dist/styles.css'
-import { useCreateProjectStore } from '@/app/store/createProjectStore'
 
-function CreateProjectFirstStep() {
+function CreateProjectFirstStep({ setToastMessage }: { setToastMessage: (message: string) => void }) {
   const { projectName, setProjectName, tokenSymbol, setTokenSymbol, projectDescription, setProjectDescription, projectImage, setProjectImage } =
     useCreateProjectStore()
 
@@ -15,7 +15,12 @@ function CreateProjectFirstStep() {
   }, [])
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const MAX_FILE_SIZE = 1 * 512 * 1024 // 512 KB
     const file = event.target.files?.[0]
+    if (file && file.size > MAX_FILE_SIZE) {
+      setToastMessage('Image Size must be lower than 500 KB.')
+      return
+    }
     if (file) {
       const reader = new FileReader()
       reader.onload = () => {
