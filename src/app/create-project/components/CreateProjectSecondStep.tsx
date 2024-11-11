@@ -8,7 +8,7 @@ import { Multiselect } from '@telegram-apps/telegram-ui'
 import { MultiselectOption } from '@telegram-apps/telegram-ui/dist/components/Form/Multiselect/types'
 
 function CreateProjectSecondStep() {
-  const { setProjectVideo, totalSupply, setTotalSupply, tags, setTags, allowComments, setAllowComments } = useCreateProjectStore()
+  const { setVideoOriginal, setProjectVideo, totalSupply, setTotalSupply, tags, setTags, allowComments, setAllowComments } = useCreateProjectStore()
   const [isClient, setIsClient] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [successMessage, setSuccessMessage] = useState<string>('')
@@ -31,6 +31,7 @@ function CreateProjectSecondStep() {
   const handleVideoUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0]
     if (file) {
+      setVideoOriginal(file)
       const videoElement = document.createElement('video')
       videoElement.preload = 'metadata'
 

@@ -6,9 +6,10 @@ import CreateProjectSecondStep from './components/CreateProjectSecondStep'
 import { useCreateProjectStore } from '../store/createProjectStore'
 import style from './page.module.css'
 import Toast from '@/components/status/Toast'
+import { uploadVideoToCloudfare } from '@/dataFetching/cloudfare/uploadVideo'
 
 function Page() {
-  const { projectName, tokenSymbol, projectDescription } = useCreateProjectStore()
+  const { projectName, tokenSymbol, projectDescription, videoOriginal } = useCreateProjectStore()
 
   const [step, setStep] = useState(0)
   const [toastMessage, setToastMessage] = useState<string | null>(null)
@@ -27,8 +28,8 @@ function Page() {
   const handlePublish = async () => {}
 
   const handleNextPublish = async () => {
-    if (step === 1) handleNextClick()
-    else if (step === 2) await handlePublish()
+    if (step === 0) handleNextClick()
+    else if (step === 1) await handlePublish()
   }
   return (
     <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
@@ -39,11 +40,21 @@ function Page() {
       </div>
       {step === 0 && <CreateProjectFirstStep setToastMessage={setToastMessage} />}
       {step === 1 && <CreateProjectSecondStep />}
-      <div className={style.nextButtonDiv}>
-        <button className={style.nextButton} onClick={() => handleNextPublish()}>
-          {step === 0 ? 'Next' : 'Publish now'}
-        </button>
-      </div>
+
+      {step === 0 && (
+        <div className={style.nextButtonDiv}>
+          <button className={style.nextButton} onClick={() => handleNextPublish()}>
+            Next
+          </button>
+        </div>
+      )}
+      {step === 1 && (
+        <form className={style.nextButtonDiv} >
+          <button className={style.nextButton} onClick={() => uploadVideoToCloudfare(videoOriginal as File)}>
+            Publish now
+          </button>
+        </form>
+      )}
       {toastMessage && <Toast text={toastMessage} />}
     </section>
   )

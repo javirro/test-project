@@ -9,6 +9,8 @@ export interface createProject {
   setProjectDescription: (projectDescription: string) => void
   projectImage: string
   setProjectImage: (projectImage: string) => void
+  videoOriginal: File | null
+  setVideoOriginal: (videoOriginal: File) => void
   projectVideo: string
   setProjectVideo: (projectVideo: string) => void
   totalSupply: number | null
@@ -28,6 +30,8 @@ export const useCreateProjectStore = create<createProject>((set) => ({
   setProjectDescription: (projectDescription: string) => set({ projectDescription }),
   projectImage: '',
   setProjectImage: (projectImage: string) => set({ projectImage }),
+  videoOriginal: null,
+  setVideoOriginal: (videoOriginal: File) => set({ videoOriginal }),
   projectVideo: '',
   setProjectVideo: (projectVideo: string) => set({ projectVideo }),
   totalSupply: 0,
