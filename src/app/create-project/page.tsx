@@ -6,7 +6,7 @@ import CreateProjectSecondStep from './components/CreateProjectSecondStep'
 import { useCreateProjectStore } from '../store/createProjectStore'
 import style from './page.module.css'
 import Toast from '@/components/status/Toast'
-import { uploadVideoToCloudfare } from '@/dataFetching/cloudfare/uploadVideo'
+import { uploadVideoBasicUploadMethod } from '@/dataFetching/cloudfare/uploadVideo'
 
 function Page() {
   const { projectName, tokenSymbol, projectDescription, videoOriginal } = useCreateProjectStore()
@@ -50,7 +50,7 @@ function Page() {
       )}
       {step === 1 && (
         <form className={style.nextButtonDiv} >
-          <button className={style.nextButton} onClick={() => uploadVideoToCloudfare(videoOriginal as File)}>
+          <button className={style.nextButton} onClick={() => uploadVideoBasicUploadMethod(videoOriginal as File)}>
             Publish now
           </button>
         </form>
