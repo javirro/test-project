@@ -66,20 +66,11 @@ function Page() {
       {step === 0 && <CreateProjectFirstStep setToastMessage={setToastMessage} />}
       {step === 1 && <CreateProjectSecondStep />}
 
-      {step === 0 && (
-        <div className={style.nextButtonDiv}>
-          <button className={style.nextButton} onClick={() => handleNextPublish()}>
-            Next
-          </button>
-        </div>
-      )}
-      {step === 1 && (
-        <div className={style.nextButtonDiv}>
-          <button className={style.nextButton} onClick={() => handlePublish()} disabled={isPending}>
-            Publish now
-          </button>
-        </div>
-      )}
+      <div className={style.nextButtonDiv}>
+        <button className={style.nextButton} onClick={() => handleNextPublish()} disabled={isPending}>
+          {step === 0 ? 'Next' : 'Publish now'}
+        </button>
+      </div>
       {toastMessage && <Toast text={toastMessage} />}
     </section>
   )
