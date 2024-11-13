@@ -1,0 +1,112 @@
+.main {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: var(--height-main);
+  padding-bottom: 15px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+  border-radius: 0px 0px 16px 16px;
+  background-color: #00000018;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border-radius: 0px 0px 16px 16px;
+  object-fit: cover;
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0px 0px 16px 16px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 82.53%, #000 120.26%), linear-gradient(180deg, rgba(0, 0, 0, 0) 54.91%, #000 94.42%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
+  pointer-events: none;
+}
+
+.frame {
+  position: absolute;
+  z-index: 500;
+  bottom: var(--size72);
+  left: var(--size20);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 8px;
+  flex: 1 0 0;
+}
+
+.avatarContainer {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.mainText {
+  color: #fcfcfc;
+  font-family: Borna;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+}
+
+.marketCapText {
+  color: #efebeb;
+  font-family: Borna;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.priceText {
+  color: #fcfcfc;
+  text-align: right;
+  font-family: Borna;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px;
+  letter-spacing: 0.25px;
+}
+
+.likeContainer {
+  position: absolute;
+  z-index: 500;
+  bottom: var(--size135);
+  right: var(--size20);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.yes {
+  position: absolute;
+  z-index: 500;
+  top: 130px;
+  left: var(--size20);
+}
+
+.no {
+  position: absolute;
+  z-index: 500;
+  top: 130px;
+  right: var(--size20);
+}

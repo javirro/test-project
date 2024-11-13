@@ -1,0 +1,56 @@
+.nameText {
+  color: #707579;
+  text-align: right;
+
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+}
+
+.rankPosition {
+  display: flex;
+  padding: 1px 8px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 34px;
+  border: 1px solid var(--Custom-divider, rgba(0, 0, 0, 0.15));
+  color: #000000;
+}
+
+.priceText {
+  color: #000000;
+
+  font-family: Borna;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.actionButtons {
+  display: flex;
+  padding: 12px;
+  width: 50px;
+  height: 50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 73px;
+  border: 2px solid var(--Custom-divider, rgba(0, 0, 0, 0.15));
+}
+
+.buttonsText {
+  text-align: center;
+  color: var(--Native-section_header_text_color, #707579);
+
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+}

@@ -1,0 +1,34 @@
+.button {
+  background-color: transparent;
+  border: none;
+  color: #a2acb0;
+  color: var(--Custom-secondary_hint_color, #a2acb0);
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+}
+
+.buttonSelected {
+  background-color: transparent;
+  border: none;
+  color: #997312;
+  border-bottom: 3px solid #f7c84f;
+  border-radius: 4px 4px 1px 1px;
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+}
+
+.nav {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  padding-bottom: 16px;
+}

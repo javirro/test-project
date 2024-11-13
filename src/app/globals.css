@@ -9,6 +9,8 @@
   --size12: calc(12 * 100vw / 414);
   --size14: calc(14 * 100vw / 414);
   --size16: calc(16 * 100vw / 414);
+  --size18: calc(18 * 100vw / 414);
+  --size20: calc(20 * 100vw / 414);
   --size27: calc(27 * 100vw / 414);
   --size28: calc(28 * 100vw / 414);
   --size30: calc(30 * 100vw / 414);
@@ -26,6 +28,11 @@
   --size56: calc(56 * 100vw / 414);
   --size58: calc(58 * 100vw / 414);
   --size60: calc(60 * 100vw / 414);
+  --size64: calc(64 * 100vw / 414);
+  --size68: calc(68 * 100vw / 414);
+  --size72: calc(72 * 100vw / 414);
+  --size135: calc(135 * 100vw / 414);
+  --height-main: calc(780 * 100vw / 414);
 }
 
 @media (prefers-color-scheme: dark) {
