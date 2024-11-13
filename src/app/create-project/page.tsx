@@ -43,6 +43,7 @@ function Page() {
           allowComments,
           creatorAddress,
           image: projectImage,
+          nsfw: false,
         }
         await createProject(data)
       } catch (error) {
