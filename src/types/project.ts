@@ -1,7 +1,7 @@
 export type Project = {
   id: number
   bondingCurveAddress: string
-  tokenAddress: string
+  tokenMintAddress: string
   tokenName: string
   tokenSymbol: string
   totalSupply: number
@@ -15,14 +15,19 @@ export type Project = {
   marketCap: string
   likes?: number
   comments?: number
+  website?: string
+  twitter?: string
+  telegram?: string
+  discord?: string
+  nsfw: boolean
 }
 
-export type ProjectForm = Omit<Project, 'id' | 'creationDate' | 'marketCap' | 'likes' | 'comments'| 'tokenAddress' | 'totalSupply' | 'bondingCurveAddress'>
+export type ProjectForm = Omit<Project, 'id' | 'creationDate' | 'marketCap' | 'likes' | 'comments'| 'tokenMintAddress' | 'totalSupply' | 'bondingCurveAddress'>
 
 
 export type ProjectComments = {
   commentId: number
-  tokenAddress: string
+  tokenMintAddress: string
   userAddress: string
   username: string
   avatar: string

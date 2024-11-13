@@ -1,11 +1,13 @@
 import { useState, useEffect, ChangeEvent, useRef } from 'react'
 import { AppRoot, Input, Tappable, Switch } from '@telegram-apps/telegram-ui'
-import style from './CreateProjectSecondStep.module.css'
-import '@telegram-apps/telegram-ui/dist/styles.css'
 import { useCreateProjectStore } from '@/app/store/createProjectStore'
 import CommentsButtonIcon from '@/images/buttons/components/commentsButton'
 import { Multiselect } from '@telegram-apps/telegram-ui'
 import { MultiselectOption } from '@telegram-apps/telegram-ui/dist/components/Form/Multiselect/types'
+
+import style from './CreateProjectSecondStep.module.css'
+import '@telegram-apps/telegram-ui/dist/styles.css'
+
 
 function CreateProjectSecondStep() {
   const { setVideoOriginal, setProjectVideo, totalSupply, setTotalSupply, tags, setTags, allowComments, setAllowComments } = useCreateProjectStore()
