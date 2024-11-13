@@ -23,7 +23,7 @@ function Page() {
   }
 
   const handleNextClick = () => {
-    if (!projectName || !tokenSymbol || !projectDescription) {
+    if (!projectName || !tokenSymbol || !projectDescription || !projectImage) {
       setToastMessage('Por favor, completa todos los campos antes de continuar.')
       return
     }
@@ -57,7 +57,7 @@ function Page() {
     else if (step === 1) await handlePublish()
   }
   return (
-    <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%' }}>
+    <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px' }}>
       <div className={style.stepViewer}>
         {[0, 1, 2].map((_, index) => (
           <div key={index} style={{ backgroundColor: getBackgroundColor(index) }}></div>

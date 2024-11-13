@@ -37,7 +37,9 @@ function CreateProjectFirstStep({ setToastMessage }: { setToastMessage: (message
   return (
     <AppRoot style={{ width: '100%' }} appearance="light">
       <form style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16 }}>
-        <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16 }}>
+        <section
+          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16, padding: '12px 12px 12px 12px' }}
+        >
           <p className={style.text}>Icono del proyecto</p>
           <div style={{ display: 'flex', gap: 16, flexDirection: 'column', alignItems: 'center' }}>
             <div className={style.imageDiv}>{projectImage ? <img src={projectImage} alt="Project Icon" className={style.projectImagePreview} /> : 'TG'}</div>

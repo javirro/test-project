@@ -1,0 +1,98 @@
+.main {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.main > p {
+  color: #707579;
+
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+}
+
+.infoSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.userInfoSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+
+.img {
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+}
+
+.name {
+  color: #000000;
+
+  font-family: Borna;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.userName {
+  color: #707579;
+
+  font-family: Borna;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.viewProfileButton {
+  display: flex;
+  min-width: 34px;
+  padding: 8px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border-radius: 20px;
+  border: 1px solid var(--Custom-outline, #131313);
+
+  color: var(--Custom-plain_foreground, rgba(73, 78, 5, 0.8));
+  text-align: center;
+
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+  background-color: transparent;
+}
+
+.createdOn {
+  color: hint_color;
+  text-align: center;
+  width: 100%;
+
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+}

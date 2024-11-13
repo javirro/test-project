@@ -12,14 +12,21 @@ import StatisticsButtonIcon from '@/images/tapBar/components/statisticsButton'
 import PauseButtonIcon from '@/images/tapBar/components/pauseButton'
 import LikeButton from '@/components/buttons/likeButton/LikeButton'
 import DislikeButton from '@/components/buttons/dislikeButton/DislikeButton'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 
 function TapBar() {
   const [activeIndex, setActiveIndex] = useState(1)
   const pathname = usePathname()
+  const router = useRouter()
 
   const handleButtonClick = (index: SetStateAction<number>) => {
     setActiveIndex(index)
+  }
+
+  const handleOnPressButton = (index: number) => {
+    if (index === 0) {
+      router.push('/create-project')
+    }
   }
 
   return (
@@ -43,7 +50,7 @@ function TapBar() {
               <span className={styles.iconLabel}>{activeIndex === 1 ? <div className={styles.buttonSelected}></div> : 'Explore'}</span>
             </div>
             <div className={styles.addButtonWrapper}>
-              <AddButton onPress={() => console.log('add button pressed')} size={35} />
+              <AddButton onPress={() => handleOnPressButton(0)} size={35} />
             </div>
             <div className={styles.iconWrapper} onClick={() => handleButtonClick(2)}>
               <WalletButtonIcon color={activeIndex === 2 ? '#DAB223' : '#707579'} />
