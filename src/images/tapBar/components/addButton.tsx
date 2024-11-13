@@ -1,16 +1,13 @@
 import { IconProps } from '@/types'
 
-const AddButtonIcon: React.FC<IconProps> = ({ width = '18', height = '18', color = '#fff', ...props }) => {
+const AddButtonIcon: React.FC<IconProps> = ({ width = '25', height = '25', color = '#fff', ...props }) => {
   return (
     <div {...props}>
-      <svg
-        width={width}
-        height={height}
-        viewBox="0 0 24 24"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M22.1666 15.1667H15.1666V22.1667H12.8333V15.1667H5.83331V12.8334H12.8333V5.83337H15.1666V12.8334H22.1666V15.1667Z" fill={color} />
+      <svg width={width} height={height} viewBox="0 0 23 21" fill={color} xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M12 4c.55 0 1 .45 1 1v6h6c.55 0 1 .45 1 1s-.45 1-1 1h-6v6c0 .55-.45 1-1 1s-1-.45-1-1v-6H5c-.55 0-1-.45-1-1s.45-1 1-1h6V5c0-.55.45-1 1-1z"
+          fill={color}
+        />
       </svg>
     </div>
   )

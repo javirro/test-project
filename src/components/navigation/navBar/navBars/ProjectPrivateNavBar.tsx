@@ -1,5 +1,4 @@
 import ArrowLeftButtonIcon from '@/images/navBar/components/arrowLeft'
-import ConfigButtonIcon from '@/images/navBar/components/configButton'
 import EditButtonIcon from '@/images/navBar/components/editButton'
 import style from './navBars.module.css'
 

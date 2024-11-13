@@ -1,0 +1,19 @@
+.main {
+  display: flex;
+  padding: 16px 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}
+
+.main > p {
+  color: #707579;
+
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+}

@@ -1,0 +1,11 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.avatar {
+  border-radius: 100px;
+  background-color: beige;
+  height: 50px;
+  width: 50px;
+}

@@ -1,3 +1,5 @@
+'use server'
+
 import { ProjectForm } from '@/types/project'
 import { projectEndpoints } from '../endpoints'
 
