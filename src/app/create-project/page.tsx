@@ -14,7 +14,7 @@ function Page() {
   const creatorAddress = '0x1234567890123456789012345678901234567890'
   const { projectName, tokenSymbol, projectDescription, videoOriginal, tags, allowComments, projectImage } = useCreateProjectStore()
 
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(0)
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
 
