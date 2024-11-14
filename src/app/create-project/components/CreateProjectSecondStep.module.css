@@ -14,3 +14,28 @@
   border-color: #707579;
   border-image-slice: 1;
 }
+
+.socialMediaSection {
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+}
+
+.collapse {
+  max-height: 0;
+}
+
+.expand {
+  max-height: 500px;
+}
+
+.showMoreOptionsButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: borna;
+}
