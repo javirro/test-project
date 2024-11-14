@@ -1,19 +1,36 @@
 import { useState, useEffect, ChangeEvent, useRef } from 'react'
-import { AppRoot, Input, Tappable, Switch } from '@telegram-apps/telegram-ui'
+import { AppRoot, Input, Tappable, Switch, Button } from '@telegram-apps/telegram-ui'
 import { useCreateProjectStore } from '@/app/store/createProjectStore'
 import CommentsButtonIcon from '@/images/buttons/components/commentsButton'
 import { Multiselect } from '@telegram-apps/telegram-ui'
+import ArrowDownButtonIcon from '@/images/status/components/arrowDown'
+import ArrowUpButtonIcon from '@/images/status/components/arrowUp'
 import { MultiselectOption } from '@telegram-apps/telegram-ui/dist/components/Form/Multiselect/types'
 
 import style from './CreateProjectSecondStep.module.css'
 import '@telegram-apps/telegram-ui/dist/styles.css'
 
-
 function CreateProjectSecondStep() {
-  const { setVideoOriginal, setProjectVideo, totalSupply, setTotalSupply, tags, setTags, allowComments, setAllowComments } = useCreateProjectStore()
+  const {
+    setVideoOriginal,
+    setProjectVideo,
+    tags,
+    setTags,
+    allowComments,
+    setAllowComments,
+    discord,
+    setDiscord,
+    twitter,
+    setTwitter,
+    website,
+    setWebsite,
+    telegram,
+    setTelegram,
+  } = useCreateProjectStore()
   const [isClient, setIsClient] = useState<boolean>(false)
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [successMessage, setSuccessMessage] = useState<string>('')
+  const [showMoreOptions, setShowMoreOptions] = useState<boolean>(false)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
 
@@ -68,19 +85,6 @@ function CreateProjectSecondStep() {
     fileInputRef.current?.click()
   }
 
-  const handleTotalSupplyChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-
-    if (value === '') {
-      setTotalSupply(null)
-    } else {
-      const numberValue = Number(value)
-      if (!isNaN(numberValue)) {
-        setTotalSupply(numberValue)
-      }
-    }
-  }
-
   if (!isClient) return null
 
   return (
@@ -94,26 +98,7 @@ function CreateProjectSecondStep() {
           {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
           {successMessage && <p style={{ color: 'green', textAlign: 'center' }}>{successMessage}</p>}
         </section>
-
         <section style={{ width: '100%' }}>
-          <Input
-            className={`${style.inputStyle} ${style.customInputPadding}`}
-            status="focused"
-            type="number"
-            header="Price & token"
-            placeholder="PEPE"
-            value={totalSupply !== null ? totalSupply : ''}
-            onChange={handleTotalSupplyChange}
-            after={
-              <Tappable Component="div" style={{ display: 'flex' }} onClick={() => setTotalSupply(null)}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </Tappable>
-            }
-          />
-
           <Multiselect options={predefinedTags} value={tags.map((tag) => ({ label: tag, value: tag }))} onChange={handleTagChange} placeholder="Add tags..." />
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', gap: '16px', padding: '20px 22px 16px 22px' }}>
@@ -123,6 +108,78 @@ function CreateProjectSecondStep() {
             </div>
             <Switch checked={allowComments} onChange={() => setAllowComments(!allowComments)} />
           </div>
+        </section>
+        <section style={{ width: '100%', marginLeft: '50px' }}>
+          <button className={style.showMoreOptionsButton} type="button" onClick={() => setShowMoreOptions(!showMoreOptions)}>
+            {showMoreOptions ? 'Show less options' : 'Show more options'}
+            {showMoreOptions ? <ArrowUpButtonIcon width="15" height="15" color="#000" /> : <ArrowDownButtonIcon width="15" height="15" color="#000" />}
+          </button>
+        </section>
+        <section className={`${style.socialMediaSection} ${showMoreOptions ? style.expand : style.collapse}`} style={{ width: '100%', marginBottom: '140px' }}>
+          <Input
+            className={`${style.inputStyle} ${style.customInputPadding}`}
+            status="focused"
+            header="Discord"
+            placeholder="PEPE"
+            value={discord}
+            onChange={(e) => setDiscord(e.target.value)}
+            after={
+              <Tappable Component="div" style={{ display: 'flex' }} onClick={() => setDiscord('')}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Tappable>
+            }
+          />
+          <Input
+            className={`${style.inputStyle} ${style.customInputPadding}`}
+            status="focused"
+            header="Twitter"
+            placeholder="PEPE"
+            value={twitter}
+            onChange={(e) => setTwitter(e.target.value)}
+            after={
+              <Tappable Component="div" style={{ display: 'flex' }} onClick={() => setTwitter('')}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Tappable>
+            }
+          />
+          <Input
+            className={`${style.inputStyle} ${style.customInputPadding}`}
+            status="focused"
+            header="Telegram"
+            placeholder="PEPE"
+            value={telegram}
+            onChange={(e) => setTelegram(e.target.value)}
+            after={
+              <Tappable Component="div" style={{ display: 'flex' }} onClick={() => setTelegram('')}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Tappable>
+            }
+          />
+          <Input
+            className={`${style.inputStyle} ${style.customInputPadding}`}
+            status="focused"
+            header="Website"
+            placeholder="PEPE"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            after={
+              <Tappable Component="div" style={{ display: 'flex' }} onClick={() => setWebsite('')}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Tappable>
+            }
+          />
         </section>
       </form>
     </AppRoot>
