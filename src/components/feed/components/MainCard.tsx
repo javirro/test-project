@@ -72,7 +72,8 @@ function MainCard() {
         <CommentsButtonIcon width="30" height="30" color="#FFFFFF" />
         <HeartButtonIcon width="30" height="30" color="#FFFFFF" />
       </section>
-      <img src="/project.png" alt="Main Card" className={style.img} />
+
+      <video src="/mockProject.mp4" autoPlay loop muted className={style.video}></video>
 
       {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
       {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
