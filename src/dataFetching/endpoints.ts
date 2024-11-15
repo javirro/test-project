@@ -16,6 +16,7 @@ export const projectEndpoints = {
 
 export const priceEndpoints = {
   getSolanaPrice: `${BASE_URL}/solana`, //GET
+  getSolanaAndTokenPriceByMintAddress: (mintAddress: string) => `${BASE_URL}/price-preview/${mintAddress}`, //GET
 }
 
 export const transactionsEndpoints = {
