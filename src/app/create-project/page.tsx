@@ -15,7 +15,7 @@ function Page() {
   const { projectName, tokenSymbol, projectDescription, videoOriginal, tags, allowComments, projectImage, discord, telegram, twitter, website, nsfw } =
     useCreateProjectStore()
 
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(0)
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
 

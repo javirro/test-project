@@ -9,6 +9,9 @@ function CommentsContainer() {
         <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
         <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
         <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
+        <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
+        <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
+        <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
       </div>
     </section>
   )
