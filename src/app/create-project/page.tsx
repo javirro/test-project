@@ -12,7 +12,8 @@ import { createProject } from '@/dataFetching/projects/createProject'
 
 function Page() {
   const creatorAddress = '0x1234567890123456789012345678901234567890'
-  const { projectName, tokenSymbol, projectDescription, videoOriginal, tags, allowComments, projectImage } = useCreateProjectStore()
+  const { projectName, tokenSymbol, projectDescription, videoOriginal, tags, allowComments, projectImage, discord, telegram, twitter, website, nsfw } =
+    useCreateProjectStore()
 
   const [step, setStep] = useState(1)
   const [toastMessage, setToastMessage] = useState<string | null>(null)
@@ -43,7 +44,11 @@ function Page() {
           allowComments,
           creatorAddress,
           image: projectImage,
-          nsfw: false,
+          nsfw,
+          discord,
+          twitter,
+          website,
+          telegram,
         }
         await createProject(data)
       } catch (error) {

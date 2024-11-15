@@ -1,5 +1,5 @@
 import { useState, useEffect, ChangeEvent, useRef } from 'react'
-import { AppRoot, Input, Tappable, Switch, Button } from '@telegram-apps/telegram-ui'
+import { AppRoot, Input, Tappable, Switch } from '@telegram-apps/telegram-ui'
 import { useCreateProjectStore } from '@/app/store/createProjectStore'
 import CommentsButtonIcon from '@/images/buttons/components/commentsButton'
 import { Multiselect } from '@telegram-apps/telegram-ui'
