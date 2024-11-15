@@ -32,7 +32,7 @@
   --size68: calc(68 * 100vw / 414);
   --size72: calc(72 * 100vw / 414);
   --size135: calc(135 * 100vw / 414);
-  --height-main: calc(780 * 100vw / 414);
+  --height-main: calc(680 * 100vw / 414);
 }
 
 @media (prefers-color-scheme: dark) {

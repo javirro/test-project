@@ -13,20 +13,18 @@ export interface createProject {
   setVideoOriginal: (videoOriginal: File) => void
   projectVideo: string
   setProjectVideo: (projectVideo: string) => void
-  totalSupply: number | null
-  setTotalSupply: (totalSupply: number | null) => void
   tags: string[]
   setTags: (tags: string[]) => void
   allowComments: boolean
   setAllowComments: (allowComments: boolean) => void
-  discord?: string
-  setDiscord?: (discord: string) => void
-  twitter?: string
-  setTwitter?: (twitter: string) => void
-  website?: string
-  setWebsite?: (website: string) => void
-  telegram?: string
-  setTelegram?: (telegram: string) => void
+  discord: string
+  setDiscord: (discord: string) => void
+  twitter: string
+  setTwitter: (twitter: string) => void
+  website: string
+  setWebsite: (website: string) => void
+  telegram: string
+  setTelegram: (telegram: string) => void
   nsfw: boolean
   setNsfw: (nsfw: boolean) => void
 }
@@ -44,8 +42,6 @@ export const useCreateProjectStore = create<createProject>((set) => ({
   setVideoOriginal: (videoOriginal: File) => set({ videoOriginal }),
   projectVideo: '',
   setProjectVideo: (projectVideo: string) => set({ projectVideo }),
-  totalSupply: 0,
-  setTotalSupply: (totalSupply: number | null) => set({ totalSupply }),
   tags: [],
   setTags: (tags: string[]) => set({ tags }),
   allowComments: false,
