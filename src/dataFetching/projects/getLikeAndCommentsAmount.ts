@@ -1,3 +1,4 @@
+import { ProjectComments } from '@/types/project'
 import { projectEndpoints } from '../endpoints'
 
 export const getLikeAmount = async (tokenAddress: string): Promise<number> => {
@@ -18,4 +19,15 @@ export const getCommentsAmount = async (tokenAddress: string): Promise<number> =
   }
   const data = await response.json()
   return data.commentsAmount
+}
+
+
+export const getComments = async (tokenAddress: string): Promise<ProjectComments[]> => {
+  const url = projectEndpoints.getProjectCommentsByTokenAddress(tokenAddress)
+  const response = await fetch(url)
+  if (!response.ok) {
+    throw new Error('Error getting comments')
+  }
+  const data = await response.json()
+  return data.comments
 }

@@ -1,20 +1,19 @@
-import { getCommentsAmount } from '@/dataFetching/projects/getLikeAndCommentsAmount'
+import { getComments, getCommentsAmount } from '@/dataFetching/projects/getLikeAndCommentsAmount'
 import style from './commentsContainer.module.css'
 import Comment from './components/Comment'
 import { Suspense } from 'react'
+import { ProjectComments } from '@/types/project'
 
 async function CommentsContainer({ tokenAddress }: { tokenAddress: string }) {
   const totalComments: number = await getCommentsAmount(tokenAddress)
+  const comments: ProjectComments[] = await getComments(tokenAddress)
   return (
     <section className={style.main}>
       <p>Comentarios ({totalComments})</p>
       <div className={style.commentsDiv}>
-        <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
-        <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
-        <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
-        <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
-        <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
-        <Comment username="@username" comment="Insert witty comment here!" timePosted="6 hours ago" />
+        {comments.map((comment, index) => (
+          <Comment key={index} commentInfo={comment} />
+        ))}
       </div>
     </section>
   )
