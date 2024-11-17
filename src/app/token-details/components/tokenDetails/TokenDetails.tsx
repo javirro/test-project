@@ -1,10 +1,10 @@
 import ProjectAvatar from '@/components/avatars/ProjectAvatar'
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
 import StarButtonIcon from '@/images/buttons/components/starButton'
-import HeartButtonIcon from '@/images/buttons/components/heartButton'
 import style from './tokenDetails.module.css'
+import Likes from './Likes'
 
-function TokenDetails() {
+function TokenDetails({ tokenAddress }: { tokenAddress: string }) {
   return (
     <div style={{ display: 'flex', gap: '8px', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingTop: '16px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -21,12 +21,7 @@ function TokenDetails() {
         </div>
       </div>
       <div style={{ display: 'flex', gap: '16px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center', gap: '4px', justifyContent: 'center' }}>
-          <div className={style.actionButtons}>
-            <HeartButtonIcon width="24" height="25" color="#707579" />
-          </div>
-          <p className={style.buttonsText}>12.4k </p>
-        </div>
+        <Likes tokenAddress={tokenAddress} />
         <div style={{ display: 'flex', flexDirection: 'column', alignContent: 'center', gap: '4px', justifyContent: 'center' }}>
           <div className={style.actionButtons}>
             <StarButtonIcon width="24" height="25" color="#707579" />

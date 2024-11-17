@@ -12,7 +12,7 @@ async function page({ params }: { params: { tokenAddress: string } }) {
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
-      <TokenDetails />
+      <TokenDetails tokenAddress={tokenAddress} />
       <MarketInfoContainer />
       <TagsContainer />
       <CommentsContainer tokenAddress={tokenAddress}/>
