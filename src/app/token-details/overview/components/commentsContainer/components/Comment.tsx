@@ -7,6 +7,7 @@ interface CommentProps {
 }
 
 function Comment({ username, comment, timePosted }: CommentProps) {
+  
   return (
     <div className={style.main}>
       <img
