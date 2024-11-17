@@ -9,6 +9,7 @@ import Toast from '@/components/status/Toast'
 import { uploadVideoBasicUploadMethod } from '@/dataFetching/cloudfare/uploadVideo'
 import { ProjectForm } from '@/types/project'
 import { createProject } from '@/dataFetching/projects/createProject'
+import { testUploadVideo } from '@/dataFetching/projects/testUploadVideo'
 
 function Page() {
   const creatorAddress = '0x1234567890123456789012345678901234567890'
@@ -32,25 +33,26 @@ function Page() {
   }
   const handlePublish = async () => {
     startTransition(async () => {
-      await uploadVideoBasicUploadMethod(videoOriginal as File)
+      // await uploadVideoBasicUploadMethod(videoOriginal as File)
 
       try {
-        const data: ProjectForm = {
-          description: projectDescription,
-          tokenName: projectName,
-          tokenSymbol: tokenSymbol,
-          video: 'https://cloudflare.com',
-          tags,
-          allowComments,
-          creatorAddress,
-          image: projectImage,
-          nsfw,
-          discord,
-          twitter,
-          website,
-          telegram,
-        }
-        await createProject(data)
+        // const data: ProjectForm = {
+        //   description: projectDescription,
+        //   tokenName: projectName,
+        //   tokenSymbol: tokenSymbol,
+        //   video: 'https://cloudflare.com',
+        //   tags,
+        //   allowComments,
+        //   creatorAddress,
+        //   image: projectImage,
+        //   nsfw,
+        //   discord,
+        //   twitter,
+        //   website,
+        //   telegram,
+        // }
+        // await createProject(data)
+        await testUploadVideo(videoOriginal as File)
       } catch (error) {
         console.error('Error creating project', error)
         setToastMessage('Error al publicar el proyecto')
