@@ -1,6 +1,6 @@
 import TokenDetailsNavBar from '@/components/navigation/tokenDetailsNavBar/TokenDetailsNavBar'
-import CommentsContainer from '../overview/components/commentsContainer/CommentsContainer'
 import style from './page.module.css'
+import CommentsContainer from '../components/commentsContainer/CommentsContainer'
 
 function page() {
   return (

@@ -1,7 +1,8 @@
 import TokenDetailsNavBar from '@/components/navigation/tokenDetailsNavBar/TokenDetailsNavBar'
 import About from './components/about/About'
-import CreatedBy from '../overview/components/createdBy/CreatedBy'
+
 import style from './page.module.css'
+import CreatedBy from '../components/createdBy/CreatedBy'
 
 function page() {
   return (
