@@ -1,12 +1,14 @@
 import TokenDetailsNavBar from '@/components/navigation/tokenDetailsNavBar/TokenDetailsNavBar'
+import About from './components/about/About'
 import style from './page.module.css'
-import CommentsContainer from '../components/commentsContainer/CommentsContainer'
+import CreatedBy from '../../components/createdBy/CreatedBy'
 
 function page() {
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
-      <CommentsContainer />
+      <About />
+      <CreatedBy />
     </section>
   )
 }
