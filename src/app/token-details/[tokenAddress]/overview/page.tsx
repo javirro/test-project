@@ -7,14 +7,15 @@ import TagsContainer from '../../components/tagsContainer/TagsContainer'
 import TokenDetails from '../../components/tokenDetails/TokenDetails'
 
 
-function page() {
+async function page({ params }: { params: { tokenAddress: string } }) {
+  const tokenAddress = await params.tokenAddress
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
       <TokenDetails />
       <MarketInfoContainer />
       <TagsContainer />
-      <CommentsContainer />
+      <CommentsContainer tokenAddress={tokenAddress}/>
       <CreatedBy />
     </section>
   )

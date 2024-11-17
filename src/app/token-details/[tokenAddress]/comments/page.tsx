@@ -4,11 +4,10 @@ import CommentsContainer from '../../components/commentsContainer/CommentsContai
 
 async function page({ params }: { params: { tokenAddress: string } }) {
   const tokenAddress = await params.tokenAddress
-  console.log("Comments token address", tokenAddress)
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
-      <CommentsContainer />
+      <CommentsContainer tokenAddress={tokenAddress}/>
     </section>
   )
 }

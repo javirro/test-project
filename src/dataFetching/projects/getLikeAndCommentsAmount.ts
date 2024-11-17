@@ -11,11 +11,11 @@ export const getLikeAmount = async (tokenAddress: string): Promise<number> => {
 }
 
 export const getCommentsAmount = async (tokenAddress: string): Promise<number> => {
-  const url = projectEndpoints.getProjectCommentsByTokenAddress(tokenAddress)
+  const url = projectEndpoints.getProjectCommentsAmountByTokenAddress(tokenAddress)
   const response = await fetch(url)
   if (!response.ok) {
     throw new Error('Error getting comments amount')
   }
-  const { commentsAmount } = await response.json()
-  return commentsAmount
+  const data = await response.json()
+  return data.commentsAmount
 }
