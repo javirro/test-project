@@ -8,9 +8,11 @@ import ProjectAvatar from '@/components/avatars/ProjectAvatar'
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
 import CommentsButtonIcon from '@/images/buttons/components/commentsButton'
 import HeartButtonIcon from '@/images/buttons/components/heartButton'
+import { useRouter } from 'next/navigation'
 
 function MainCard() {
   const [likeStatus, setLikeStatus] = useState<string | null>(null)
+  const router = useRouter()
 
   const [{ x, rotate, scale }, api] = useSpring(() => ({
     x: 0,
@@ -55,9 +57,13 @@ function MainCard() {
     }
   )
 
+  const onHandleClick = () => {
+    router.push('/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL')
+  }
+
   return (
     <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
-      <section className={style.frame}>
+      <section onClick={onHandleClick} className={style.frame}>
         <div className={style.avatarContainer}>
           <ProjectAvatar badget={true} />
           <div>
@@ -75,7 +81,7 @@ function MainCard() {
         <HeartButtonIcon width="30" height="30" color="#FFFFFF" />
       </section>
 
-      <video src="/mockProject.mp4" autoPlay loop muted className={style.video}></video>
+      <video src="/mockProject2.mp4" autoPlay loop muted className={style.video}></video>
 
       {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
       {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
