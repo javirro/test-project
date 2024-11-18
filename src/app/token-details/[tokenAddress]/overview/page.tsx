@@ -10,22 +10,24 @@ import { getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
 
 async function page({ params }: { params: { tokenAddress: string } }) {
   const tokenAddress = await params.tokenAddress
-  return <Overview tokenAddress={tokenAddress} />
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Overview tokenAddress={tokenAddress} />
+    </Suspense>
+  )
 }
 
 const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
   const projectInfo = await getProjectByTokenAddress(tokenAddress)
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <section className={style.main}>
-        <TokenDetailsNavBar />
-        <TokenDetails project={projectInfo} />
-        <MarketInfoContainer project={projectInfo} />
-        <TagsContainer tags={projectInfo.tags} />
-        <CommentsContainer tokenAddress={tokenAddress} />
-        <CreatedBy />
-      </section>
-    </Suspense>
+    <section className={style.main}>
+      <TokenDetailsNavBar />
+      <TokenDetails project={projectInfo} />
+      <MarketInfoContainer project={projectInfo} />
+      <TagsContainer tags={projectInfo.tags} />
+      <CommentsContainer tokenAddress={tokenAddress} />
+      <CreatedBy />
+    </section>
   )
 }
 
