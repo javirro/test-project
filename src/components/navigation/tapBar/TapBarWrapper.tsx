@@ -12,8 +12,8 @@ function TapBarWrapper() {
   return (
     <div className={style.mainSelector}>
       {pathname === '/' && <TapBar />}
-      {(pathname === '/token-details/overview' || pathname === '/token-details/about') && <TapBarTokenActions />}
-      {pathname === '/token-details/comments' && <TapBarChat />}
+      {pathname.startsWith('/token-details') && !pathname.endsWith('/comments') && <TapBarTokenActions />}
+      {pathname.endsWith('/comments') && <TapBarChat />}
     </div>
   )
 }
