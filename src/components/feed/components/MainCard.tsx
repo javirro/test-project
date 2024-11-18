@@ -58,7 +58,7 @@ function MainCard() {
   )
 
   const onHandleClick = () => {
-    router.push('/token-details/overview')
+    router.push('/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL')
   }
 
   return (
