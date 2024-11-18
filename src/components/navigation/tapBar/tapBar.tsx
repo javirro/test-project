@@ -15,7 +15,7 @@ import DislikeButton from '@/components/buttons/dislikeButton/DislikeButton'
 import { usePathname, useRouter } from 'next/navigation'
 
 function TapBar() {
-  const [activeIndex, setActiveIndex] = useState(1)
+  const [activeIndex, setActiveIndex] = useState(0)
   const pathname = usePathname()
   const router = useRouter()
 

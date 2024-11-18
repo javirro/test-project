@@ -32,6 +32,9 @@
   --size64: calc(64 * 100vw / 414);
   --size68: calc(68 * 100vw / 414);
   --size72: calc(72 * 100vw / 414);
+  --size90: calc(90 * 100vw / 414);
+  --size96: calc(96 * 100vw / 414);
+  --size110: calc(110 * 100vw / 414);
   --size135: calc(135 * 100vw / 414);
   --height-main: calc(680 * 100vw / 414);
 }
