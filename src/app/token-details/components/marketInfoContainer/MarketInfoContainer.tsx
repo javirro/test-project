@@ -1,6 +1,9 @@
+import { TOTAL_SUPPLY_TEXT } from '@/contracts/lamportSolConverter'
 import style from './marketInfoContainer.module.css'
+import { Project } from '@/types/project'
 
-function MarketInfoContainer() {
+function MarketInfoContainer({ project }: { project: Project }) {
+  const { description } = project
   return (
     <section className={style.main}>
       <div className={style.secondary}>
@@ -14,15 +17,13 @@ function MarketInfoContainer() {
             <p className={style.textQuantityInfo}>Volume (24h)</p>
           </div>
           <div>
-            <p className={style.textQuantity}>15.25 B</p>
+            <p className={style.textQuantity}>{TOTAL_SUPPLY_TEXT}</p>
             <p className={style.textQuantityInfo}>Total supply</p>
           </div>
         </div>
         <div className={style.secondContainer}>
           <p className={style.about}>About</p>
-          <p className={style.description}>
-            ShibaSwap gives users the ability to DIG (provide liquidity), BURY ...ShibaSwap gives users the ability to DIG (provide liquidity), BURY ...
-          </p>
+          <p className={style.description}>{description}</p>
         </div>
       </div>
     </section>

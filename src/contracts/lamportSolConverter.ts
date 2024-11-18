@@ -1,5 +1,7 @@
 import { LAMPORTS_PER_SOL } from '@solana/web3.js'
 
+export const TOTAL_SUPPLY = 1000000000 // 1 billion
+export const TOTAL_SUPPLY_TEXT = '1.00B'
 // Lamport is the smallest unit of SOL. 1 SOL = 10^9 lamports
 // In Solana network tokens have between 0 and 9 decimal places
 
