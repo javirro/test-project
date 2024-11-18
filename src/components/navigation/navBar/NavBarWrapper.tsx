@@ -16,7 +16,7 @@ function NavBarWrapper() {
   return (
     <nav style={{ width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '1000' }}>
       {pathname === '/create-project' && <ProfileNavBar onBackClick={handleBackClick} />}
-      {(pathname === '/token-details/overview' || pathname === '/token-details/comments' || pathname === '/token-details/about') && <ProjectPublicNavBar />}
+      {pathname.startsWith('/token-details') && <ProjectPublicNavBar onBackClick={handleBackClick} />}
       {pathname === '/' && <SegmentedCustom />}
     </nav>
   )
