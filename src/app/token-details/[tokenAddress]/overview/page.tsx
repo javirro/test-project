@@ -8,8 +8,14 @@ import TokenDetails from '../../components/tokenDetails/TokenDetails'
 import { Suspense } from 'react'
 import { getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
 
-async function page({ params }: { params: { tokenAddress: string } }) {
-  const tokenAddress = await params.tokenAddress
+interface PageProps {
+  params: Promise<{ tokenAddress: string }>
+}
+
+async function page({ params }: PageProps) {
+  const resolvedParams = await params
+  const tokenAddress = resolvedParams.tokenAddress
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Overview tokenAddress={tokenAddress} />
