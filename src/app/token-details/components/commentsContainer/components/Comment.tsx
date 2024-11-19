@@ -1,12 +1,13 @@
+import { ProjectComments } from '@/types/project'
 import style from './comment.module.css'
 
 interface CommentProps {
-  username: string
-  comment: string
-  timePosted: string
+  commentInfo: ProjectComments
 }
 
-function Comment({ username, comment, timePosted }: CommentProps) {
+function Comment({ commentInfo }: CommentProps) {
+  const { username, comment, creationDate } = commentInfo
+  const timePosted = new Date(creationDate).toLocaleString()
   return (
     <div className={style.main}>
       <img
