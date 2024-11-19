@@ -1,15 +1,10 @@
 import style from './about.module.css'
 
-function About() {
+function About({ description }: { description: string }) {
   return (
     <section className={style.main}>
       <p className={style.about}>About</p>
-      <p className={style.text}>
-        ShibaSwap gives users the ability to DIG (provide liquidity), BURY ...ShibaSwap gives users the ability to DIG (provide liquidity), BURY. ShibaSwap
-        gives users the ability to DIG (provide liquidity), BURY ...ShibaSwap giv ShibaSwap gives users the ability to DIG (provide liquidity), BURY
-        ...ShibaSwap gives users the ability to DIG (provide liquidity), BURY. ShibaSwap gives users the ability to DIG (provide liquidity), BURY ...ShibaSwap
-        giv
-      </p>
+      <p className={style.text}>{description}</p>
     </section>
   )
 }

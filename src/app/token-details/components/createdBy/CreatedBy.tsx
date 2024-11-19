@@ -1,6 +1,14 @@
 import style from './createdBy.module.css'
 
-function CreatedBy() {
+interface CreatedByProps {
+  createdOn: number
+  creatorAddress: string
+}
+
+function CreatedBy({ createdOn, creatorAddress }: CreatedByProps) {
+  const msCreatedOn = createdOn * 1000
+  const createdDate = new Date(msCreatedOn).toLocaleDateString()
+  console.log('Creator address', creatorAddress)
   return (
     <section className={style.main}>
       <p>Created</p>
@@ -12,7 +20,7 @@ function CreatedBy() {
         </div>
         <button className={style.viewProfileButton}>View profile</button>
       </div>
-      <p className={style.createdOn}>Created on 12/05/2024</p>
+      <p className={style.createdOn}>Created on {createdDate}</p>
     </section>
   )
 }
