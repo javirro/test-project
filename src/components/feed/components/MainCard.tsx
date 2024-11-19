@@ -8,11 +8,10 @@ import ProjectAvatar from '@/components/avatars/ProjectAvatar'
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
 import CommentsButtonIcon from '@/images/buttons/components/commentsButton'
 import HeartButtonIcon from '@/images/buttons/components/heartButton'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 function MainCard() {
   const [likeStatus, setLikeStatus] = useState<string | null>(null)
-  const router = useRouter()
 
   const [{ x, rotate, scale }, api] = useSpring(() => ({
     x: 0,
@@ -57,13 +56,9 @@ function MainCard() {
     }
   )
 
-  const onHandleClick = () => {
-    router.push('/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL/overview')
-  }
-
   return (
     <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
-      <section onClick={onHandleClick} className={style.frame}>
+      <Link href={'/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL/overview'} className={style.frame}>
         <div className={style.avatarContainer}>
           <ProjectAvatar badget={true} />
           <div>
@@ -75,7 +70,7 @@ function MainCard() {
           <p className={style.priceText}>$0.07851</p>
           <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
         </div>
-      </section>
+      </Link>
       <section className={style.likeContainer}>
         <CommentsButtonIcon width="30" height="30" color="#FFFFFF" />
         <HeartButtonIcon width="30" height="30" color="#FFFFFF" />

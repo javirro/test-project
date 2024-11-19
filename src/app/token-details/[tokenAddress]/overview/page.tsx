@@ -15,7 +15,7 @@ interface PageProps {
 async function page({ params }: PageProps) {
   const resolvedParams = await params
   const tokenAddress = resolvedParams.tokenAddress
-
+  console.log("Overview page -> tokenAddress", tokenAddress)
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Overview tokenAddress={tokenAddress} />
@@ -25,6 +25,7 @@ async function page({ params }: PageProps) {
 
 const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
   const projectInfo = await getProjectByTokenAddress(tokenAddress)
+  console.log("Overview -> projectInfo", projectInfo)
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
