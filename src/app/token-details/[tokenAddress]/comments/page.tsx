@@ -2,12 +2,18 @@ import TokenDetailsNavBar from '@/components/navigation/tokenDetailsNavBar/Token
 import style from './page.module.css'
 import CommentsContainer from '../../components/commentsContainer/CommentsContainer'
 
-async function page({ params }: { params: { tokenAddress: string } }) {
-  const tokenAddress = await params.tokenAddress
+interface PageProps {
+  params: Promise<{ tokenAddress: string }>
+}
+
+async function page({ params }: PageProps) {
+  const resolvedParams = await params
+  const tokenAddress = resolvedParams.tokenAddress
+
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
-      <CommentsContainer tokenAddress={tokenAddress}/>
+      <CommentsContainer tokenAddress={tokenAddress} />
     </section>
   )
 }
