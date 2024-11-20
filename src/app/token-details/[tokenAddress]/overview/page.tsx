@@ -11,7 +11,7 @@ import { Suspense } from 'react'
 interface PageProps {
   params: Promise<{ tokenAddress: string }>
 }
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 
 async function page({ params }: PageProps) {
   const { tokenAddress } = await params
