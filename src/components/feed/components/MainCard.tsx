@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useSpring, animated, config } from '@react-spring/web'
+// import { useSpring, animated, config } from '@react-spring/web'
 // import { useDrag } from '@use-gesture/react'
 import style from './mainCard.module.css'
 import ProjectAvatar from '@/components/avatars/ProjectAvatar'
@@ -9,18 +9,20 @@ import PerformancePercentage from '@/components/status/performance/PerformancePe
 import CommentsButtonIcon from '@/images/buttons/components/commentsButton'
 import HeartButtonIcon from '@/images/buttons/components/heartButton'
 import Link from 'next/link'
+import { animated } from '@react-spring/web'
 
 function MainCard() {
   const [likeStatus, setLikeStatus] = useState<string | null>(null)
 
-  const [{ x, rotate, scale }, api] = useSpring(() => ({
-    x: 0,
-    rotate: 0,
-    scale: 1,
-    config: config.stiff,
-  }))
+  // const [{ x, rotate, scale }, api] = useSpring(() => ({
+  //   x: 0,
+  //   rotate: 0,
+  //   scale: 1,
+  //   config: config.stiff,
+  // }))
 
-  console.log(x, rotate, scale, api, setLikeStatus)
+  console.log('MainCard -> likeStatus', setLikeStatus)
+ // console.log(x, rotate, scale, api, setLikeStatus)
   // const bind = useDrag(
   //   ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
   //     if (typeof window === 'undefined') return
