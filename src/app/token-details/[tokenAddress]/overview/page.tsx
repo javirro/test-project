@@ -11,7 +11,14 @@ import { Suspense } from 'react'
 interface PageProps {
   params: Promise<{ tokenAddress: string }>
 }
-// export const dynamic = 'force-dynamic'
+
+export async function generateStaticParams() {
+  const addresses = ['jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL', 'jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL']
+
+  return addresses.map((ad) => ({
+    tokenAddress: ad,
+  }))
+}
 
 async function page({ params }: PageProps) {
   const { tokenAddress } = await params
