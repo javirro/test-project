@@ -9,13 +9,12 @@ import { Suspense } from 'react'
 import { getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
 
 interface PageProps {
-  params: { tokenAddress: string }
+  params: Promise<{ tokenAddress: string }>
 }
-
 export const dynamic = 'force-dynamic'
 
 async function page({ params }: PageProps) {
-  const { tokenAddress } = params
+  const { tokenAddress } = await params
 
   console.log('Overview page -> tokenAddress', tokenAddress)
   return (
