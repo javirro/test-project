@@ -22,6 +22,8 @@ function MainCard() {
 
   const bind = useDrag(
     ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
+      if (typeof window === 'undefined') return
+      if (typeof window.PointerEvent === 'undefined') return
       const pointerType = (event as PointerEvent).pointerType || ('ontouchstart' in window ? 'touch' : 'mouse')
 
       if (pointerType === 'mouse' && 'ontouchstart' in window) return
