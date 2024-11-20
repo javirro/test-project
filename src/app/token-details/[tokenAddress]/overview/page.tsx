@@ -12,6 +12,7 @@ interface PageProps {
   params: Promise<{ tokenAddress: string }>
 }
 
+
 async function page({ params }: PageProps) {
   const resolvedParams = await params
   const tokenAddress = resolvedParams.tokenAddress
