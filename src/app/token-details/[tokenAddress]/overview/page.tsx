@@ -9,12 +9,14 @@ import { Suspense } from 'react'
 import { getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
 
 interface PageProps {
-  params: Promise<{ tokenAddress: string }>
+  params: { tokenAddress: string }
 }
 
+export const dynamic = 'force-dynamic'
+
 async function page({ params }: PageProps) {
-  const resolvedParams = await params
-  const tokenAddress = resolvedParams.tokenAddress
+  const { tokenAddress } = params
+
   console.log('Overview page -> tokenAddress', tokenAddress)
   return (
     <Suspense fallback={<div>Loading...</div>}>
