@@ -1,16 +1,14 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  webpack(webpackConfig) {
-    return {
-      ...webpackConfig,
-      optimization: {
-        minimize: false,
+  async rewrites() {
+    return [
+      {
+        source: '/token-details/:tokenAddress/overview',
+        destination: '/token-details/[tokenAddress]/overview',
       },
-    }
+    ];
   },
-  reactStrictMode: true,
-  swcMinify: true,
 }
 
 export default nextConfig
