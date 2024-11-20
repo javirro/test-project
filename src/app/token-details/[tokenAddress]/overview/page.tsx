@@ -6,7 +6,7 @@ import style from './page.module.css'
 // import TagsContainer from '../../components/tagsContainer/TagsContainer'
 // import TokenDetails from '../../components/tokenDetails/TokenDetails'
 import { Suspense } from 'react'
-import { getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
+// import { getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
 
 interface PageProps {
   params: Promise<{ tokenAddress: string }>
@@ -25,9 +25,10 @@ async function page({ params }: PageProps) {
 }
 
 const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
-  const projectInfo = await getProjectByTokenAddress(tokenAddress)
-  const { tags, creationDate, creatorAddress } = projectInfo
-  console.log('Overview -> projectInfo', projectInfo, creationDate, creatorAddress, tags)
+  // const projectInfo = await getProjectByTokenAddress(tokenAddress)
+  // const { tags, creationDate, creatorAddress } = projectInfo
+  // console.log('Overview -> projectInfo', projectInfo, creationDate, creatorAddress, tags)
+  console.log('Overview -> tokenAddress', tokenAddress)
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
