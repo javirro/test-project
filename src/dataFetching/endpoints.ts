@@ -3,14 +3,15 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL
 export const BASE_URL = `${BACKEND_URL}/api`
 
 export const projectEndpoints = {
-  create: `${BASE_URL}/projects/create`, //POST
+
   getProjects: `${BASE_URL}/projects`, //GET
   getProjectByTokenAddress: (tokenAddress: string) => `${BASE_URL}/projects/${tokenAddress}`, //GET
-  getProjectLikesByTokenAddress: (tokenAddress: string) => `${BASE_URL}/project-likes/${tokenAddress}`, //GET
-  getProjectCommentsAmountByTokenAddress: (tokenAddress: string) => `${BASE_URL}/project-comments-amount/${tokenAddress}`, //GET
+  getProjectLikesByTokenAddress: (tokenAddress: string) => `${BASE_URL}/projects/amount/likes/${tokenAddress}`, //GET
+  getProjectCommentsAmountByTokenAddress: (tokenAddress: string) => `${BASE_URL}/projects/amount/comments/${tokenAddress}`, //GET
   getProjectCommentsByTokenAddress: (tokenAddress: string) => `${BASE_URL}/project/comments/${tokenAddress}`, //GET
-  manageProjectLikes: `${BASE_URL}/projects/manage-like`, //POST
-  addCommentToProject: `${BASE_URL}/projects/add-comment`, //POST
+  create: `${BASE_URL}/projects/create`, //POST
+  manageProjectLikes: `${BASE_URL}/projects/likes`, //POST
+  addCommentToProject: `${BASE_URL}/projects/comments`, //POST
   deleteCommentFromProject: `${BASE_URL}/projects/comments`, // DELETE
 }
 
@@ -22,4 +23,13 @@ export const priceEndpoints = {
 export const transactionsEndpoints = {
   getTransactionsByUserAddress: (address: string) => `${BASE_URL}/transactions/${address}`, //GET
   buySellTokens: `${BASE_URL}/transactions/buy-sell`, //POST
+}
+
+export const userEndpoints = {
+  getUserAddressByUsername: (username: string) => `${BASE_URL}/users/address/${username}`, //GET
+  getUserProjectsWatchlistByUsername: (username: string) => `${BASE_URL}/users/watchlist/${username}`, //GET
+  getUserSolanaBuyAmountByUsername: (username: string) => `${BASE_URL}/users//solana/buyamount/${username}`, //GET
+  manageUserWatchlist: `${BASE_URL}/users/watchlist`, //POST
+  createUser: `${BASE_URL}/users/create`, //POST
+  updateSolanaBuyAmount: `${BASE_URL}/users/solana/buyamount`, //PUT
 }
