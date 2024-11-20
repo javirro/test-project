@@ -7,7 +7,9 @@ interface CommentProps {
 
 function Comment({ commentInfo }: CommentProps) {
   const { username, comment, creationDate } = commentInfo
-  const timePosted = new Date(creationDate).toLocaleString()
+  const timePosted = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'UTC',
+  }).format(new Date(creationDate * 1000))
   return (
     <div className={style.main}>
       <img
