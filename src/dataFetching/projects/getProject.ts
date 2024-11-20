@@ -9,10 +9,16 @@ export const getProjectByTokenAddress = async (tokenAddress: string): Promise<Pr
       'Content-Type': 'application/json',
     },
   }
-  const response = await fetch(url, options)
-  if (!response.ok) {
-    throw new Error('Error getting project')
+
+  try {
+    const response = await fetch(url, options)
+    if (!response.ok) {
+      throw new Error(`Error getting project: ${response.statusText}`)
+    }
+    const { project } = await response.json()
+    return project
+  } catch (error) {
+    console.error('Error fetching project by token address:', error)
+    throw error
   }
-  const { project } = await response.json()
-  return project
 }
