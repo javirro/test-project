@@ -1,68 +1,65 @@
 'use client'
 
 import { useState } from 'react'
-// import { useSpring, animated, config } from '@react-spring/web'
-// import { useDrag } from '@use-gesture/react'
 import style from './mainCard.module.css'
 import ProjectAvatar from '@/components/avatars/ProjectAvatar'
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
 import CommentsButtonIcon from '@/images/buttons/components/commentsButton'
 import HeartButtonIcon from '@/images/buttons/components/heartButton'
 import Link from 'next/link'
-import { animated } from '@react-spring/web'
+import { animated, config, useSpring } from '@react-spring/web'
+import { useDrag } from '@use-gesture/react'
 
 function MainCard() {
   const [likeStatus, setLikeStatus] = useState<string | null>(null)
 
-  // const [{ x, rotate, scale }, api] = useSpring(() => ({
-  //   x: 0,
-  //   rotate: 0,
-  //   scale: 1,
-  //   config: config.stiff,
-  // }))
+  const [{ x, rotate, scale }, api] = useSpring(() => ({
+    x: 0,
+    rotate: 0,
+    scale: 1,
+    config: config.stiff,
+  }))
 
-  console.log('MainCard -> likeStatus', setLikeStatus)
- // console.log(x, rotate, scale, api, setLikeStatus)
-  // const bind = useDrag(
-  //   ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
-  //     if (typeof window === 'undefined') return
-  //     if (typeof window.PointerEvent === 'undefined') return
-  //     const pointerType = (event as PointerEvent).pointerType || ('ontouchstart' in window ? 'touch' : 'mouse')
+  const bind = useDrag(
+    ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
+      if (typeof window === 'undefined') return
+      if (typeof window.PointerEvent === 'undefined') return
+      const pointerType = (event as PointerEvent).pointerType || ('ontouchstart' in window ? 'touch' : 'mouse')
 
-  //     if (pointerType === 'mouse' && 'ontouchstart' in window) return
+      if (pointerType === 'mouse' && 'ontouchstart' in window) return
 
-  //     const trigger = vx > 0.2 || Math.abs(mx) > 100
+      const trigger = vx > 0.2 || Math.abs(mx) > 100
 
-  //     setLikeStatus(mx > 0 ? 'yes' : mx < 0 ? 'no' : null)
+      setLikeStatus(mx > 0 ? 'yes' : mx < 0 ? 'no' : null)
 
-  //     api.start({
-  //       x: down ? mx : 0,
-  //       rotate: down ? mx / 10 : 0,
-  //       scale: down ? 0.95 : 1,
-  //     })
+      api.start({
+        x: down ? mx : 0,
+        rotate: down ? mx / 10 : 0,
+        scale: down ? 0.95 : 1,
+      })
 
-  //     if (!down && trigger) {
-  //       api.start({
-  //         x: xDir > 0 ? 500 : -500,
-  //         rotate: xDir > 0 ? 15 : -15,
-  //       })
-  //     } else if (!down && !trigger) {
-  //       api.start({
-  //         x: 0,
-  //         rotate: 0,
-  //         scale: 1,
-  //       })
-  //       setLikeStatus(null)
-  //     }
-  //   },
-  //   {
-  //     threshold: 10,
-  //     pointer: { touch: true },
-  //   }
-  // )
- // '/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL/overview'
+      if (!down && trigger) {
+        api.start({
+          x: xDir > 0 ? 500 : -500,
+          rotate: xDir > 0 ? 15 : -15,
+        })
+      } else if (!down && !trigger) {
+        api.start({
+          x: 0,
+          rotate: 0,
+          scale: 1,
+        })
+        setLikeStatus(null)
+      }
+    },
+    {
+      threshold: 10,
+      pointer: { touch: true },
+    }
+  )
+
   return (
-    <animated.section className={style.main}  style={{ x: 0, scale: 1, rotate: 0 }}>
+    <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
       <Link href={'/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL/overview'} className={style.frame}>
         <div className={style.avatarContainer}>
           <ProjectAvatar badget={true} />
