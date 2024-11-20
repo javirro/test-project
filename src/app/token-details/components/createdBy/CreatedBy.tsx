@@ -7,7 +7,9 @@ interface CreatedByProps {
 
 function CreatedBy({ createdOn, creatorAddress }: CreatedByProps) {
   const msCreatedOn = createdOn * 1000
-  const createdDate = new Date(msCreatedOn).toLocaleDateString()
+  const createdDate = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'UTC',
+  }).format(new Date(msCreatedOn))
   console.log('Creator address', creatorAddress)
   return (
     <section className={style.main}>
