@@ -12,6 +12,8 @@ interface PageProps {
   params: Promise<{ tokenAddress: string }>
 }
 
+export const revalidate = 100 // 100seconds
+
 export async function generateStaticParams() {
   const addresses = ['jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL', 'jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL']
 
