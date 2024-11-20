@@ -59,7 +59,7 @@ function MainCard() {
   )
 
   return (
-    <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
+    <animated.section className={style.main} {...bind()} style={{ x: 0, scale: 1, rotate: 0 }}>
       <Link href={'/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL/overview'} className={style.frame}>
         <div className={style.avatarContainer}>
           <ProjectAvatar badget={true} />
@@ -82,7 +82,7 @@ function MainCard() {
 
       {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
       {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
-
+      {likeStatus === null && <img src="/no.svg" alt="No" className={`${style.no} ${style.hidden}`} />}
       <div className={style.shadow}></div>
     </animated.section>
   )
