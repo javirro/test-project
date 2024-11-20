@@ -60,10 +60,10 @@ function MainCard() {
   //     pointer: { touch: true },
   //   }
   // )
-
+ // '/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL/overview'
   return (
     <animated.section className={style.main}  style={{ x: 0, scale: 1, rotate: 0 }}>
-      <Link href={'/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL/overview'} className={style.frame}>
+      <Link href={'/token-details'} className={style.frame}>
         <div className={style.avatarContainer}>
           <ProjectAvatar badget={true} />
           <div>
