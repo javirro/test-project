@@ -30,12 +30,12 @@ export const getProjectByTokenAddress = async (tokenAddress: string): Promise<Pr
   try {
     const response = await fetch(url, options)
     if (!response.ok) {
-      throw new Error(`Error getting project: ${response.statusText}`)
+      throw new Error(`Error getting project with mintAddress ${tokenAddress}: ${response.statusText}`)
     }
     const { project } = await response.json()
     return project
   } catch (error) {
-    console.error('Error fetching project by token address:', error)
+    console.error(`Error getting project with mintAddress ${tokenAddress}`, error)
     throw error
   }
 }
