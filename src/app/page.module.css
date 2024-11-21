@@ -11,4 +11,5 @@
   align-items: center;
   justify-items: center;
   font-family: var(--font-geist-sans);
+  width: 100%;
 }
