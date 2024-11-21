@@ -2,11 +2,20 @@ import TokenDetailsNavBar from '@/components/navigation/tokenDetailsNavBar/Token
 import About from './components/about/About'
 import style from './page.module.css'
 import CreatedBy from '../../components/createdBy/CreatedBy'
-import { getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
+import { getAllProjectAddresses, getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
 import { Suspense } from 'react'
 
 interface PageProps {
   params: Promise<{ tokenAddress: string }>
+}
+
+export const revalidate = 100 // 100seconds
+
+export async function generateStaticParams() {
+  const addresses = await getAllProjectAddresses()
+  return addresses.map((ad) => ({
+    tokenAddress: ad,
+  }))
 }
 
 async function page({ params }: PageProps) {
