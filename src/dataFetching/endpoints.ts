@@ -3,7 +3,7 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL
 export const BASE_URL = `${BACKEND_URL}/api`
 
 export const projectEndpoints = {
-
+  getAllAddresses: `${BASE_URL}/projects/all/addresses`, //GET
   getProjects: `${BASE_URL}/projects`, //GET
   getProjectByTokenAddress: (tokenAddress: string) => `${BASE_URL}/projects/${tokenAddress}`, //GET
   getProjectLikesByTokenAddress: (tokenAddress: string) => `${BASE_URL}/projects/amount/likes/${tokenAddress}`, //GET

@@ -6,7 +6,7 @@ import CreatedBy from '../../components/createdBy/CreatedBy'
 import TagsContainer from '../../components/tagsContainer/TagsContainer'
 import TokenDetails from '../../components/tokenDetails/TokenDetails'
 import { Suspense } from 'react'
-import { getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
+import { getAllProjectAddresses, getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
 
 interface PageProps {
   params: Promise<{ tokenAddress: string }>
@@ -15,8 +15,7 @@ interface PageProps {
 export const revalidate = 100 // 100seconds
 
 export async function generateStaticParams() {
-  const addresses = ['jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL', 'jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL']
-
+  const addresses = await getAllProjectAddresses()
   return addresses.map((ad) => ({
     tokenAddress: ad,
   }))
@@ -25,7 +24,6 @@ export async function generateStaticParams() {
 async function page({ params }: PageProps) {
   const { tokenAddress } = await params
 
-  console.log('Overview page -> tokenAddress', tokenAddress)
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Overview tokenAddress={tokenAddress} />
@@ -36,8 +34,6 @@ async function page({ params }: PageProps) {
 const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
   const projectInfo = await getProjectByTokenAddress(tokenAddress)
   const { tags, creationDate, creatorAddress } = projectInfo
-  console.log('Overview -> projectInfo', projectInfo, creationDate, creatorAddress, tags)
-  console.log('Overview -> tokenAddress', tokenAddress)
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
