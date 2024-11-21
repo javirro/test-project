@@ -11,7 +11,6 @@ import { animated, config, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
 import { Stream } from '@cloudflare/stream-react'
 
-
 function MainCard() {
   const [likeStatus, setLikeStatus] = useState<string | null>(null)
 
@@ -79,18 +78,11 @@ function MainCard() {
         <CommentsButtonIcon width="30" height="30" color="#FFFFFF" />
         <HeartButtonIcon width="30" height="30" color="#FFFFFF" />
       </section>
-      <div className={style.video}>
-        <Stream
-          src="6213ef05596a4d2197eb8d964ab3740a"
-          autoplay
-          loop
-          muted
-          controls={false}
-          height="100%"
-          width="100%"
-        />
+      <div className={style.videoContainer}>
+        <Stream src="6213ef05596a4d2197eb8d964ab3740a" autoplay loop muted controls={false} height="100%" width="100%" />
+        <div className={style.dragOverlay} {...bind()}></div>
       </div>
-    
+
       {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
       {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
       {/* {likeStatus === null && <img src="/no.svg" alt="No" className={`${style.no} ${style.hidden}`} />} */}
