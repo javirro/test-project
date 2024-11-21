@@ -9,6 +9,7 @@ import HeartButtonIcon from '@/images/buttons/components/heartButton'
 import Link from 'next/link'
 import { animated, config, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
+import { Stream } from '@cloudflare/stream-react'
 
 function MainCard() {
   const [likeStatus, setLikeStatus] = useState<string | null>(null)
@@ -77,12 +78,13 @@ function MainCard() {
         <CommentsButtonIcon width="30" height="30" color="#FFFFFF" />
         <HeartButtonIcon width="30" height="30" color="#FFFFFF" />
       </section>
-
-      <video src="/mockProject2.mp4" autoPlay loop muted className={style.video}></video>
+      <div className={style.video}>
+        <Stream src="2320b673d03ea1388cdaa783e73fef8d" autoplay loop muted controls={false} height="100%" width="100%" />
+      </div>
 
       {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
       {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
-      {/* {likeStatus === null && <img src="/no.svg" alt="No" className={`${style.no} ${style.hidden}`} />} */}
+      {likeStatus === null && <img src="/no.svg" alt="No" className={`${style.no} ${style.hidden}`} />}
       <div className={style.shadow}></div>
     </animated.section>
   )
