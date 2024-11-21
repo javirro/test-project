@@ -82,7 +82,7 @@ function MainCard() {
 
       {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
       {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
-      {likeStatus === null && <img src="/no.svg" alt="No" className={`${style.no} ${style.hidden}`} />}
+      {/* {likeStatus === null && <img src="/no.svg" alt="No" className={`${style.no} ${style.hidden}`} />} */}
       <div className={style.shadow}></div>
     </animated.section>
   )
