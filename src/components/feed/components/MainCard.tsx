@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import style from './mainCard.module.css'
 import ProjectAvatar from '@/components/avatars/ProjectAvatar'
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
@@ -10,10 +10,15 @@ import Link from 'next/link'
 import { animated, config, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
 import { Stream } from '@cloudflare/stream-react'
+import { Project } from '@/types/project'
 
-function MainCard() {
+interface MainCardProps {
+  project: Project
+  setIndexShowProject: Dispatch<SetStateAction<number>>
+  totalProjects: number
+}
+function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps) {
   const [likeStatus, setLikeStatus] = useState<string | null>(null)
-
   const [{ x, rotate, scale }, api] = useSpring(() => ({
     x: 0,
     rotate: 0,
@@ -28,10 +33,19 @@ function MainCard() {
       const pointerType = (event as PointerEvent).pointerType || ('ontouchstart' in window ? 'touch' : 'mouse')
 
       if (pointerType === 'mouse' && 'ontouchstart' in window) return
-
       const trigger = vx > 0.2 || Math.abs(mx) > 100
 
       setLikeStatus(mx > 0 ? 'yes' : mx < 0 ? 'no' : null)
+
+      if( trigger && mx > 100) {
+        setIndexShowProject((prev: number) => {
+          return prev + 1 < totalProjects ? prev + 1 : 0
+        })
+      } else if (trigger && mx < -100) {
+        setIndexShowProject((prev: number) => {
+          return prev - 1 >= 0 ? prev - 1 : totalProjects - 1
+        })
+      }
 
       api.start({
         x: down ? mx : 0,
@@ -65,7 +79,7 @@ function MainCard() {
         <div className={style.avatarContainer}>
           <ProjectAvatar badget={true} />
           <div>
-            <p className={style.mainText}>Pepe</p>
+            <p className={style.mainText}>{project?.tokenName}</p>
             <p className={style.marketCapText}>Market Cap: 23.5k</p>
           </div>
         </div>
@@ -79,7 +93,7 @@ function MainCard() {
         <HeartButtonIcon width="30" height="30" color="#FFFFFF" />
       </section>
       <div className={style.videoContainer}>
-        <Stream src="6213ef05596a4d2197eb8d964ab3740a" autoplay loop muted controls={false} height="100%" width="100%" />
+        <Stream src={project.video} autoplay loop muted controls={false} height="100%" width="100%" />
         <div className={style.dragOverlay} {...bind()}></div>
       </div>
 
