@@ -10,6 +10,7 @@
     "dev-windows": "set PORT=4000 && next dev"
   },
   "dependencies": {
+    "@cloudflare/stream-react": "^1.9.1",
     "@react-spring/web": "^9.7.5",
     "@solana/spl-token": "^0.4.9",
     "@solana/web3.js": "^1.95.4",
