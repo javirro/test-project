@@ -18,7 +18,7 @@ interface MainCardProps {
   totalProjects: number
 }
 function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps) {
-  const [likeStatus, setLikeStatus] = useState<string | null>(null)
+  const [likeStatus, setLikeStatus] = useState<'yes' | 'no' | null>(null)
   const [{ x, rotate, scale }, api] = useSpring(() => ({
     x: 0,
     rotate: 0,
@@ -37,7 +37,7 @@ function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps
 
       setLikeStatus(mx > 0 ? 'yes' : mx < 0 ? 'no' : null)
 
-      if( trigger && mx > 100) {
+      if (trigger && mx > 100) {
         setIndexShowProject((prev: number) => {
           return prev + 1 < totalProjects ? prev + 1 : 0
         })
@@ -75,7 +75,7 @@ function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps
 
   return (
     <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
-      <Link href={'/token-details/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL/overview'} className={style.frame}>
+      <Link href={`/token-details/${project.tokenMintAddress}/overview`} className={style.frame}>
         <div className={style.avatarContainer}>
           <ProjectAvatar badget={true} />
           <div>
@@ -99,7 +99,7 @@ function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps
 
       {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
       {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
-      {/* {likeStatus === null && <img src="/no.svg" alt="No" className={`${style.no} ${style.hidden}`} />} */}
+
       <div className={style.shadow}></div>
     </animated.section>
   )
