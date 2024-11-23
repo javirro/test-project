@@ -14,6 +14,7 @@
     "@react-spring/web": "^9.7.5",
     "@solana/spl-token": "^0.4.9",
     "@solana/web3.js": "^1.95.4",
+    "@tanstack/react-query": "^5.61.0",
     "@telegram-apps/sdk-react": "^2.0.9",
     "@telegram-apps/telegram-ui": "^2.1.8",
     "@use-gesture/react": "^10.3.1",
