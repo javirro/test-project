@@ -4,6 +4,7 @@ import TapBarWrapper from '@/components/navigation/tapBar/TapBarWrapper'
 import NavBarWrapper from '@/components/navigation/navBar/NavBarWrapper'
 import styles from './page.module.css'
 import './globals.css'
+import TelegramAuth from '@/components/Telegram/TelegramConnection'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -29,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} ${styles.page}`}>
+        <TelegramAuth />
         <NavBarWrapper />
         {children}
         <TapBarWrapper />
