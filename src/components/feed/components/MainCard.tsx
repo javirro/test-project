@@ -4,13 +4,12 @@ import { Dispatch, SetStateAction, useState } from 'react'
 import style from './mainCard.module.css'
 import ProjectAvatar from '@/components/avatars/ProjectAvatar'
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
-import CommentsButtonIcon from '@/images/buttons/components/commentsButton'
-import HeartButtonIcon from '@/images/buttons/components/heartButton'
 import Link from 'next/link'
 import { animated, config, useSpring } from '@react-spring/web'
 import { useDrag } from '@use-gesture/react'
 import { Stream } from '@cloudflare/stream-react'
 import { Project } from '@/types/project'
+import LikeCommentButtons from './LikeCommentButtons/LikeCommentButtons'
 
 interface MainCardProps {
   project: Project
@@ -88,10 +87,7 @@ function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps
           <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
         </div>
       </Link>
-      <section className={style.likeContainer}>
-        <CommentsButtonIcon width="30" height="30" color="#FFFFFF" />
-        <HeartButtonIcon width="30" height="30" color="#FFFFFF" />
-      </section>
+      <LikeCommentButtons tokenMintAddress={project.tokenMintAddress}/>
       <div className={style.videoContainer}>
         <Stream src={project.video} autoplay loop muted controls={false} height="100%" width="100%" />
         <div className={style.dragOverlay} {...bind()}></div>
