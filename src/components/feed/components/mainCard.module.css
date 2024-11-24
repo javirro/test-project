@@ -87,16 +87,7 @@
   letter-spacing: 0.25px;
 }
 
-.likeContainer {
-  position: absolute;
-  z-index: 500;
-  bottom: var(--size96);
-  right: var(--size20);
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 16px;
-}
+
 
 .yes {
   position: absolute;

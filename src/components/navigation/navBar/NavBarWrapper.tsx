@@ -8,6 +8,7 @@ import SegmentedCustom from '../segmentedCustom/SegmentedCustom'
 function NavBarWrapper() {
   const pathname = usePathname()
   const router = useRouter()
+ 
 
   const handleBackClick = () => {
     router.push('/')

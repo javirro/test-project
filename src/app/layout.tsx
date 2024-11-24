@@ -3,8 +3,9 @@ import localFont from 'next/font/local'
 import TapBarWrapper from '@/components/navigation/tapBar/TapBarWrapper'
 import NavBarWrapper from '@/components/navigation/navBar/NavBarWrapper'
 import styles from './page.module.css'
+import Script from 'next/script'
+
 import './globals.css'
-import TelegramAuth from '@/components/Telegram/TelegramConnection'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -29,8 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          src="https://telegram.org/js/telegram-web-app.js"
+          strategy="beforeInteractive" // Load it before the main app runs
+        />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} ${styles.page}`}>
-        <TelegramAuth />
         <NavBarWrapper />
         {children}
         <TapBarWrapper />
