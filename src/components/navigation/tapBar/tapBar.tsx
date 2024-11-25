@@ -36,13 +36,15 @@ function TapBar() {
     <>
       {pathname === '/create-project' ? null : (
         <main className={styles.mainSelector}>
-          <div className={styles.tapBarUserControl}>
-            <TapBarButton Icon={VolumeButtonIcon} />
-            <DislikeButton />
-            <TapBarButton Icon={PauseButtonIcon} />
-            <LikeButton />
-            <TapBarButton Icon={StatisticsButtonIcon} />
-          </div>
+          {pathname.startsWith('/wallet') ? null : (
+            <div className={styles.tapBarUserControl}>
+              <TapBarButton Icon={VolumeButtonIcon} />
+              <DislikeButton />
+              <TapBarButton Icon={PauseButtonIcon} />
+              <LikeButton />
+              <TapBarButton Icon={StatisticsButtonIcon} />
+            </div>
+          )}
           <div className={styles.tapBar}>
             <div className={styles.iconWrapper} onClick={() => handleButtonClick(0)}>
               <HomeButtonIcon color={activeIndex === 0 ? '#DAB223' : '#707579'} />
