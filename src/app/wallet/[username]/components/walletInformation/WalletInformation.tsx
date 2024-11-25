@@ -29,6 +29,9 @@ function WalletInformation({ amount, gains, username }: WalletInformationProps) 
     } else if (button === 'activity') {
       router.push(`/wallet/${username}/activity`)
       setActionNavBarMessage('Recent activity')
+    } else if (button === 'send') {
+      router.push(`/wallet/${username}/send`)
+      setActionNavBarMessage('Select a token')
     }
   }
 
