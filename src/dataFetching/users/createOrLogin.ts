@@ -2,7 +2,7 @@ import { TelegramUser } from '@/types/user'
 import { userEndpoints } from '../endpoints'
 
 export const createOrLogin = async (telegramUser: TelegramUser) => {
-  const { id, first_name, last_name, username, language_code, photo_url } = telegramUser
+  const { id, username, language_code, photo_url } = telegramUser
   const url = userEndpoints.createUser
   const options = {
     method: 'POST',
@@ -11,8 +11,6 @@ export const createOrLogin = async (telegramUser: TelegramUser) => {
     },
     body: JSON.stringify({
       telegramId: id,
-      firstName: first_name,
-      lastName: last_name,
       username,
       languageCode: language_code,
       photoUrl: photo_url,
