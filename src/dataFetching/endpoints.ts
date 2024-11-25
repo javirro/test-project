@@ -29,7 +29,6 @@ export const userEndpoints = {
   getUserAddressByUsername: (username: string) => `${BASE_URL}/users/address/${username}`, //GET
   getUserProjectsWatchlistByUsername: (username: string) => `${BASE_URL}/users/watchlist/${username}`, //GET
   getUserSolanaBuyAmountByUsername: (username: string) => `${BASE_URL}/users//solana/buyamount/${username}`, //GET
-  manageUserWatchlist: `${BASE_URL}/users/watchlist`, //POST
-  createUser: `${BASE_URL}/users/create`, //POST
+  createUser: `${BASE_URL}/users/login-create`, //POST
   updateSolanaBuyAmount: `${BASE_URL}/users/solana/buyamount`, //PUT
 }

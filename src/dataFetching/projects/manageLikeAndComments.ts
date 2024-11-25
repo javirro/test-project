@@ -1,5 +1,6 @@
 import { projectEndpoints } from '../endpoints'
 
+// Add like is the same that add to watchlist
 export const manageLike = async (tokenAddress: string, userAddress: string): Promise<boolean> => {
   const url = projectEndpoints.manageProjectLikes
   const options = {

@@ -1,6 +1,23 @@
 import { Project } from '@/types/project'
 import { projectEndpoints } from '../endpoints'
 
+export const getProjects = async (): Promise<Project[]> => {
+  const url = projectEndpoints.getProjects
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  const response = await fetch(url, options)
+  if (!response.ok) {
+    throw new Error(`Error getting projects: ${response.statusText}`)
+  }
+  const { projects } = await response.json()
+  return projects
+}
+
 export const getAllProjectAddresses = async (): Promise<string[]> => {
   const url = projectEndpoints.getAllAddresses
   const options = {
