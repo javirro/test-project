@@ -1,0 +1,88 @@
+.main {
+  display: flex;
+  padding: 36px 16px 24px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+  border-radius: 0px 0px 24px 24px;
+  border-right: 3px solid #000000;
+  border-bottom: 3px solid #000000;
+  border-left: 3px solid #000000;
+  background: #ffffff;
+}
+
+.balanceSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 28px 16px 24px 16px;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 16px;
+  border: 3px solid #000;
+  background: var(--primary-bg, #fdfbf2);
+
+  box-shadow: 2px 3px 0px 1px #000;
+}
+
+.amount {
+  color: #000000;
+  text-align: center;
+  font-family: Borna;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px;
+  letter-spacing: 0.25px;
+  text-align: center;
+  width: 100%;
+}
+
+.gains {
+  color: var(--Custom-tertiary_code_highlight, #3a9f20);
+
+  font-family: Borna;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+}
+
+.buttonsSection {
+  display: flex;
+  padding: 0px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.buttonDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.button {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 73px;
+  border: 2px solid var(--Custom-divider, rgba(0, 0, 0, 0.15));
+  background: #ffffff;
+}
+
+.activeButton {
+  background-color: #f7c84f;
+  transition: background-color 0.3s ease;
+  border: 2px solid var(--button-icon-bg, #fffae8);
+}

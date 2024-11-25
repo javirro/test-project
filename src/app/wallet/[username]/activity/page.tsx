@@ -1,6 +1,5 @@
-import WalletInformation from './components/walletInformation/WalletInformation'
-import Asset from './components/Asset/Asset'
-import styles from './walletPage.module.css'
+import style from './page.module.css'
+import Asset from '../components/Asset/Asset'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -40,18 +39,19 @@ const assets = [
 export async function generateStaticParams(): Promise<{ username: string }[]> {
   return []
 }
-const Wallet = async ({ params }: PageProps) => {
+
+async function page({ params }: PageProps) {
   const { username } = await params
+
   return (
-    <section className={styles.wallet}>
-      <WalletInformation amount={4980} gains={251} username={username} />
-      <div className={styles.myAssetsDiv}>
-        <p className={styles.myAssetsText}>My assets (04)</p>
-        <Asset asset={assets} />
-      </div>
-      Walelt section: {username}
+    <section className={style.main}>
+      <p className={style.text}>Today</p>
+      <Asset asset={assets} />
+      <p className={style.text}>Nov 1, 2024</p>
+      <Asset asset={assets} />
+      Activity section: {username}
     </section>
   )
 }
 
-export default Wallet
+export default page
