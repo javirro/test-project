@@ -4,6 +4,7 @@ import { usePathname, useRouter } from 'next/navigation'
 import ProfileNavBar from './navBars/ProfileNavBar'
 import ProjectPublicNavBar from './navBars/ProjectPublicNavBar'
 import SegmentedCustom from '../segmentedCustom/SegmentedCustom'
+import ActionNavBar from './navBars/ActionNavBar'
 
 function NavBarWrapper() {
   const pathname = usePathname()
@@ -18,6 +19,7 @@ function NavBarWrapper() {
       {pathname === '/create-project' && <ProfileNavBar onBackClick={handleBackClick} />}
       {pathname.startsWith('/token-details') && <ProjectPublicNavBar onBackClick={handleBackClick} />}
       {pathname === '/' && <SegmentedCustom />}
+      {pathname.endsWith('/receive') || (pathname.endsWith('/activity') && <ActionNavBar />)}
     </nav>
   )
 }

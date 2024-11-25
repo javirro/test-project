@@ -1,10 +1,31 @@
 .wallet {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 100%;
   background-color: #f5f5f5;
   color: black;
   width: 100%;
+  background: linear-gradient(189deg, #e0c52d 2.12%, #ffed89 97.88%);
+}
+
+.myAssetsDiv {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  margin-bottom: 10vh;
+}
+
+.myAssetsText {
+  color: #000000;
+  font-family: Borna;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  align-self: stretch;
 }
