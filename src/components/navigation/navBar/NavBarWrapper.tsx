@@ -19,9 +19,10 @@ function NavBarWrapper() {
       {pathname === '/create-project' && <ProfileNavBar onBackClick={handleBackClick} />}
       {pathname.startsWith('/token-details') && <ProjectPublicNavBar onBackClick={handleBackClick} />}
       {pathname === '/' && <SegmentedCustom />}
-      {pathname.endsWith('/receive') || pathname.endsWith('/activity') || pathname.endsWith('/send') || pathname.endsWith('/send/address') ? (
-        <ActionNavBar />
-      ) : null}
+      {pathname.endsWith('/receive') ||
+        pathname.endsWith('/activity') ||
+        pathname.endsWith('/send') ||
+        (pathname.endsWith('/send/address') && <ActionNavBar />)}
     </nav>
   )
 }
