@@ -12,7 +12,7 @@ function TapBarWrapper() {
 
   return (
     <div className={style.mainSelector}>
-      {pathname === '/' || (pathname.startsWith('/wallet') && !pathname.endsWith('/receive') && !pathname.endsWith('/send') && <DynamicTapbarNoSSR />)}
+      {(pathname === '/' || (pathname.startsWith('/wallet') && !pathname.endsWith('/receive') && !pathname.endsWith('/send'))) && <DynamicTapbarNoSSR />}
       {pathname.startsWith('/token-details') && !pathname.endsWith('/comments') && <TapBarTokenActions />}
       {pathname.endsWith('/comments') && <TapBarChat />}
       {pathname.startsWith('/wallet') && pathname.endsWith('/receive') && <TapBarWallet />}
