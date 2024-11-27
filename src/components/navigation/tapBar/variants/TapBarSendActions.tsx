@@ -2,13 +2,12 @@
 
 import style from './tapBarTokenActions.module.css'
 import QrButtonIcon from '@/images/buttons/components/qrButton'
-import { useRouter } from 'next/navigation'
+import { useUserStore } from '@/app/store/userStore'
 import Link from 'next/link'
+import { useEffect } from 'react'
 
 function TapBarSendActions() {
-  const router = useRouter()
-
-  const handleClick = () => {}
+  const { user } = useUserStore()
 
   return (
     <div className={style.main}>
@@ -16,7 +15,9 @@ function TapBarSendActions() {
         <button className={style.sellButton}>
           <QrButtonIcon width="24" height="24" color="#707579" />
         </button>
-        <button className={style.buyButton}>Next</button>
+        <Link href={`/wallet/${user?.username}/send/amount`} className={style.buyButton}>
+          Next
+        </Link>
       </div>
     </div>
   )
