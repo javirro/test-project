@@ -30,8 +30,8 @@ function Asset({ asset, isHandleClick, username }: Asset) {
 
   return (
     <>
-      {asset.map((asset) => (
-        <div onClick={() => isHandleClick && handleClick(asset.currency)} className={style.assetContainer} key={asset.currency}>
+      {asset.map((asset, index) => (
+        <div onClick={() => isHandleClick && handleClick(asset.currency)} className={style.assetContainer} key={`${asset.currency}-${index}`}>
           <img className={style.image} src={getTokenImg(asset.network.toLowerCase())} alt="" />
           <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
             <p className={style.currency}>{asset.currency}</p>
