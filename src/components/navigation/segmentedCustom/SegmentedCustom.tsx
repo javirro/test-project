@@ -3,9 +3,10 @@ import ArrowDownNormalButtonIcon from '@/images/buttons/components/arrowDownButt
 import style from './segmentedCustom.module.css'
 import ArrowLeftButtonIcon from '@/images/navBar/components/arrowLeft'
 import { useGetUserSolanaBuyAmount } from '@/hooks/useGetUserData'
+import ForYouWatchListTabs from './ForYouWatchListTabs/ForYouWatchListTabs'
 
 function SegmentedCustom() {
-  const [activeIndex, setActiveIndex] = useState<number>(0)
+
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
   const [selectedAmount, setSelectedAmount] = useState<number | 'custom'>(1)
   const [customAmount, setCustomAmount] = useState<string>('')
@@ -15,7 +16,6 @@ function SegmentedCustom() {
   const currentY = useRef<number>(0)
   const { solanaAmount } = useGetUserSolanaBuyAmount()
   console.log(solanaAmount)
-  const handleButtonClick = (index: number) => setActiveIndex(index)
 
   const toggleDropdown = () => {
     if (!showDropdown) {
@@ -52,14 +52,7 @@ function SegmentedCustom() {
 
   return (
     <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', marginTop: 'var(--size27)' }}>
-      <div className={style.segmentedCustom}>
-        <button onClick={() => handleButtonClick(0)} className={`${activeIndex === 0 ? style.buttonActive : style.buttonInactive} ${style.buttonLeft}`}>
-          For you
-        </button>
-        <button onClick={() => handleButtonClick(1)} className={`${activeIndex === 1 ? style.buttonActive : style.buttonInactive} ${style.buttonRight}`}>
-          Watchlist
-        </button>
-      </div>
+      <ForYouWatchListTabs />
       <div className={style.setAmountDiv} onClick={toggleDropdown}>
         <p>Set amount: {displayAmount} SOL</p>
         <ArrowDownNormalButtonIcon width="24" height="24" color="#fff" />
