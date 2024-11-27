@@ -2,6 +2,7 @@ import { useState, useRef, ChangeEvent, TouchEvent } from 'react'
 import ArrowDownNormalButtonIcon from '@/images/buttons/components/arrowDownButton'
 import style from './segmentedCustom.module.css'
 import ArrowLeftButtonIcon from '@/images/navBar/components/arrowLeft'
+import { useGetUserSolanaBuyAmount } from '@/hooks/useGetUserData'
 
 function SegmentedCustom() {
   const [activeIndex, setActiveIndex] = useState<number>(0)
@@ -12,7 +13,8 @@ function SegmentedCustom() {
   const dropdownRef = useRef<HTMLDivElement | null>(null)
   const startY = useRef<number>(0)
   const currentY = useRef<number>(0)
-
+  const { solanaAmount } = useGetUserSolanaBuyAmount()
+  console.log(solanaAmount)
   const handleButtonClick = (index: number) => setActiveIndex(index)
 
   const toggleDropdown = () => {
