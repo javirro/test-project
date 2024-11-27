@@ -24,6 +24,15 @@ function TapBar() {
 
   const handleButtonClick = (index: SetStateAction<number>) => {
     setActiveIndex(index)
+    if (index === 0) {
+      router.push('/')
+    } else if (index === 1) {
+      router.push('/explore')
+    } else if (index === 2) {
+      router.push(`/wallet/${user?.username}`)
+    } else if (index === 3) {
+      router.push('/profile')
+    }
   }
 
   const handleOnPressButton = (index: number) => {
