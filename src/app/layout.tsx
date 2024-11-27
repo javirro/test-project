@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import TapBarWrapper from '@/components/navigation/tapBar/TapBarWrapper'
-import NavBarWrapper from '@/components/navigation/navBar/NavBarWrapper'
 import styles from './page.module.css'
 import Script from 'next/script'
+import TapBarWrapper from '@/components/navigation/tapBar/TapBarWrapper'
+import NavBarWrapper from '@/components/navigation/navBar/NavBarWrapper'
 
 import './globals.css'
+
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',

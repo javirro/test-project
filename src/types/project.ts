@@ -28,9 +28,8 @@ export type ProjectForm = Omit<Project, 'id' | 'creationDate' | 'marketCap' | 'l
 export type ProjectComments = {
   commentId: number
   tokenMintAddress: string
-  userAddress: string
   username: string
-  avatar: string
+  userImage: string
   comment: string
   creationDate: number
 }

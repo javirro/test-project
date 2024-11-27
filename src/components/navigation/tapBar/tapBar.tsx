@@ -13,16 +13,26 @@ import PauseButtonIcon from '@/images/tapBar/components/pauseButton'
 import LikeButton from '@/components/buttons/likeButton/LikeButton'
 import DislikeButton from '@/components/buttons/dislikeButton/DislikeButton'
 import { usePathname, useRouter } from 'next/navigation'
+import useTelegramUser from '@/hooks/useTelegramUser'
 
 function TapBar() {
   const [activeIndex, setActiveIndex] = useState(0)
   const pathname = usePathname()
   const router = useRouter()
-  // const user = useTelegramUser()
-  // console.log('tapbarUser', user)
+  const user = useTelegramUser()
+  console.log('tapbarUser', user)
 
   const handleButtonClick = (index: SetStateAction<number>) => {
     setActiveIndex(index)
+    if (index === 0) {
+      router.push('/')
+    } else if (index === 1) {
+      router.push('/explore')
+    } else if (index === 2) {
+      router.push(`/wallet/${user?.username}`)
+    } else if (index === 3) {
+      router.push('/profile')
+    }
   }
 
   const handleOnPressButton = (index: number) => {
