@@ -10,9 +10,10 @@ export const useGetUserSolanaBuyAmount = () => {
     data: solanaAmount,
     error,
     isLoading,
+    refetch
   } = useQuery<number>({
     queryKey: ['userSolanaBuyAmount', username, telegramId, token],
     queryFn: async () => await getBuySolanaAmount(username as string, telegramId as number, token),
   })
-  return { solanaAmount, error, isLoading }
+  return { solanaAmount, error, isLoading, refetch }
 }
