@@ -11,6 +11,8 @@ interface PageProps {
 
 export const revalidate = 100 // 100seconds
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
   const addresses = await getAllProjectAddresses()
   return addresses.map((ad) => ({
