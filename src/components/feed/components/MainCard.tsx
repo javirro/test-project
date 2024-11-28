@@ -72,6 +72,7 @@ function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps
     }
   )
 
+  console.log({ totalProjects, project })
   return (
     <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
       <Link href={`/token-details/${project.tokenMintAddress}/overview`} className={style.frame}>
@@ -87,7 +88,7 @@ function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps
           <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
         </div>
       </Link>
-      <LikeCommentButtons tokenMintAddress={project.tokenMintAddress}/>
+      <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
       <div className={style.videoContainer}>
         <Stream src={project.video} autoplay loop muted controls={false} height="100%" width="100%" />
         <div className={style.dragOverlay} {...bind()}></div>

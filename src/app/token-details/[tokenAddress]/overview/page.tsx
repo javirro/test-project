@@ -6,7 +6,7 @@ import CreatedBy from '../../components/createdBy/CreatedBy'
 import TagsContainer from '../../components/tagsContainer/TagsContainer'
 import TokenDetails from '../../components/tokenDetails/TokenDetails'
 import { Suspense } from 'react'
-import { getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
+import { getProjectByTokenAddress, getAllProjectAddresses } from '@/dataFetching/projects/getProject'
 
 interface PageProps {
   params: Promise<{ tokenAddress: string }>
@@ -14,18 +14,17 @@ interface PageProps {
 
 // export const revalidate = 30 // 100seconds
 
-// export const dynamicParams = true
+export const dynamicParams = true
 
-// export async function generateStaticParams() {
-//   const addresses = await getAllProjectAddresses()
-//   return addresses.map((ad) => ({
-//     tokenAddress: ad,
-//   }))
-// }
+export async function generateStaticParams() {
+  const addresses = await getAllProjectAddresses()
+  return addresses.map((ad) => ({
+    tokenAddress: ad,
+  }))
+}
 
 async function page({ params }: PageProps) {
   const { tokenAddress } = await params
-  console.log("tokenAddress", tokenAddress)
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -50,3 +49,5 @@ const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
 }
 
 export default page
+
+
