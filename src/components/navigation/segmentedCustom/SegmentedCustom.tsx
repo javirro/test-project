@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {  useState } from 'react'
 import ArrowDownNormalButtonIcon from '@/images/buttons/components/arrowDownButton'
 import style from './segmentedCustom.module.css'
 import { useGetUserSolanaBuyAmount } from '@/hooks/useGetUserData'
@@ -12,10 +12,10 @@ interface SegmentedCustomProps {
   refetch: () => void
 }
 
-function SegmentedCustom({ solanaAmount, refetch }: SegmentedCustomProps) {
+function SegmentedCustom({ solanaAmount }: SegmentedCustomProps) {
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
-  const [selectedAmount, setSelectedAmount] = useState<number | 'custom' | undefined>(solanaAmount)
-  const [customAmount, setCustomAmount] = useState<string>('')
+  const [selectedAmount, setSelectedAmount] = useState<number | undefined>(solanaAmount)
+  const [inputType, setInputType] = useState<'custom' | 'default'>('default')
   const [isAnimating, setIsAnimating] = useState<'animateIn' | 'animateOut' | ''>('')
   const { user, token } = useUserStore()
 
@@ -29,22 +29,23 @@ function SegmentedCustom({ solanaAmount, refetch }: SegmentedCustomProps) {
     }
   }
 
-  const handleUpdateSolanaAmount = async (amount: number | 'custom') => {
-    if (amount === 'custom') {
-      setSelectedAmount(amount)
-      setCustomAmount('')
-    } else {
-      setSelectedAmount(amount)
-      try {
-        await updateBuySolanaAmount(user?.username as string, user?.telegramId as number, token, amount)
-        refetch()
-      } catch (err) {
-        console.error('Error setting solana amount: ', err)
-      }
+  const handleUpdateSolanaAmount = async (amount: number) => {
+    setSelectedAmount(amount)
+    try {
+      await updateBuySolanaAmount(user?.username as string, user?.telegramId as number, token, amount)
+    } catch (err) {
+      console.error('Error setting solana amount: ', err)
     }
   }
 
-  // const displayAmount = selectedAmount === 'custom' ? customAmount || '0' : selectedAmount
+  const onBlurCustomInput = async () => {
+    try {
+      await updateBuySolanaAmount(user?.username as string, user?.telegramId as number, token, selectedAmount as number)
+    } catch (err) {
+      console.error('Error setting solana amount: ', err)
+    }
+  }
+
 
   return (
     <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', marginTop: 'var(--size27)' }}>
@@ -59,12 +60,13 @@ function SegmentedCustom({ solanaAmount, refetch }: SegmentedCustomProps) {
         <AnimatedSolanaBox
           isAnimating={isAnimating}
           selectedAmount={selectedAmount}
-          customAmount={customAmount}
           setIsAnimating={setIsAnimating}
           setSelectedAmount={setSelectedAmount}
-          setCustomAmount={setCustomAmount}
           setShowDropdown={setShowDropdown}
           handleUpdateSolanaAmount={handleUpdateSolanaAmount}
+          onBlurCustomInput={onBlurCustomInput}
+          inputType={inputType}
+          setInputType={setInputType}
         />
       )}
     </section>
