@@ -8,7 +8,7 @@ export const getBuySolanaAmount = async (username: string, telegramId: number, t
       'Content-Type': 'application/json',
       authorization: `${token}`,
       'telegram-id': `${telegramId}`,
-    },
+    }
   }
   const response = await fetch(url, options)
   if (response.ok) {
@@ -29,7 +29,7 @@ export const updateBuySolanaAmount = async (username: string, telegramId: number
       authorization: `${token}`,
       'telegram-id': `${telegramId}`,
     },
-    body: JSON.stringify({ username, amount: solanaAmount }),
+    body: JSON.stringify({ username, amount: solanaAmount.toString() }),
   }
   const response = await fetch(url, options)
   if (!response.ok) {

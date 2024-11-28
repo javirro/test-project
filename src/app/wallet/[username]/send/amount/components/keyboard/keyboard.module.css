@@ -1,0 +1,29 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap; /* Asegura que los botones se envuelvan en varias filas */
+  width: 100%; /* Para que ocupe todo el ancho disponible */
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(33.33% - 8px); /* Divide el ancho en 3 partes y ajusta el gap */
+  aspect-ratio: 1; /* Hace que los botones sean cuadrados */
+  border-radius: 16px;
+  background: var(--Custom-tertiary_bg_color, #f4f4f7);
+  color: #000000;
+  text-align: center;
+  height: 56px;
+
+  font-family: Borna;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: 0.1px;
+  border: none;
+}
