@@ -1,9 +1,9 @@
 import CopyButtonIcon from '@/images/buttons/components/copyButton'
 import style from './tapBarWallet.module.css'
-import { useUserStore } from '@/app/store/userStore'
+import useUser from '@/hooks/useUser'
 
 function TapBarWallet() {
-  const { user } = useUserStore()
+  const { user } = useUser()
   return (
     <div className={style.main}>
       <div className={style.buttonsDiv}>

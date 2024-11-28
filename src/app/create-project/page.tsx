@@ -9,9 +9,11 @@ import Toast from '@/components/status/Toast'
 import { ProjectForm } from '@/types/project'
 import { createProject } from '@/dataFetching/projects/createProject'
 import base64Utils from '@/utils/base64Utils'
+import useUser from '@/hooks/useUser'
 
 function Page() {
-  const creatorAddress = '0x1234567890123456789012345678901234567890'
+  const { user, token } = useUser()
+  console.log({ user, token })
   const { projectName, tokenSymbol, projectDescription, videoOriginal, tags, allowComments, projectImage, discord, telegram, twitter, website, nsfw } =
     useCreateProjectStore()
 
@@ -32,7 +34,6 @@ function Page() {
   }
   const handlePublish = async () => {
     startTransition(async () => {
-
       try {
         const base64video = await base64Utils.convertVideoToBase64(videoOriginal as File)
         const data: ProjectForm = {
@@ -42,7 +43,7 @@ function Page() {
           video: base64video,
           tags,
           allowComments,
-          creatorAddress,
+          creatorAddress: user?.address as string,
           image: projectImage,
           nsfw,
           discord,
@@ -50,7 +51,8 @@ function Page() {
           website,
           telegram,
         }
-        await createProject(data)
+
+        await createProject(data, token as string)
       } catch (error) {
         console.error('Error creating project', error)
         setToastMessage('Error al publicar el proyecto')

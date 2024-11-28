@@ -4,8 +4,8 @@ import style from './segmentedCustom.module.css'
 import { useGetUserSolanaBuyAmount } from '@/hooks/useGetUserData'
 import ForYouWatchListTabs from './ForYouWatchListTabs/ForYouWatchListTabs'
 import AnimatedSolanaBox from './AnimatedSolanaAmountBox'
-import { useUserStore } from '@/app/store/userStore'
 import { updateBuySolanaAmount } from '@/dataFetching/users/buySolanaAmount'
+import useUser from '@/hooks/useUser'
 
 interface SegmentedCustomProps {
   solanaAmount: number | undefined
@@ -17,7 +17,7 @@ function SegmentedCustom({ solanaAmount }: SegmentedCustomProps) {
   const [selectedAmount, setSelectedAmount] = useState<number | undefined>(solanaAmount)
   const [inputType, setInputType] = useState<'custom' | 'default'>('default')
   const [isAnimating, setIsAnimating] = useState<'animateIn' | 'animateOut' | ''>('')
-  const { user, token } = useUserStore()
+  const { user, token } = useUser()
 
   const toggleDropdown = () => {
     if (!showDropdown) {
