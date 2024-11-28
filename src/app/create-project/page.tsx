@@ -64,6 +64,14 @@ function Page() {
     if (step === 0) handleNextClick()
     else if (step === 1) await handlePublish()
   }
+
+  const disableCondition: boolean = step === 0 ? !projectName || !tokenSymbol || !projectDescription || !projectImage : !videoOriginal || isPending
+  let btnText = 'Next'
+  if (step === 1 && !isPending) {
+    btnText = 'Publish now'
+  } else if (step === 1 && isPending) {
+    btnText = 'Publishing...'
+  }
   return (
     <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px' }}>
       <div className={style.stepViewer}>
@@ -75,8 +83,8 @@ function Page() {
       {step === 1 && <CreateProjectSecondStep />}
 
       <div className={style.nextButtonDiv}>
-        <button className={style.nextButton} onClick={() => handleNextPublish()} disabled={isPending}>
-          {step === 0 ? 'Next' : 'Publish now'}
+        <button className={style.nextButton} onClick={() => handleNextPublish()} disabled={disableCondition}>
+          {btnText}
         </button>
       </div>
       {toastMessage && <Toast text={toastMessage} />}
