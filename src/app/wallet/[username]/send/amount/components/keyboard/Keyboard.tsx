@@ -7,7 +7,9 @@ function Keyboard() {
   return (
     <section className={style.main}>
       {numbers.map((number) => (
-        <button className={style.button}>{number}</button>
+        <button key={number} className={style.button}>
+          {number}
+        </button>
       ))}
       <div style={{ width: '100%', display: 'flex', gap: '12px', justifyContent: 'end' }}>
         <button className={style.button}>0</button>
