@@ -4,10 +4,8 @@ import CommentsButtonIcon from '@/images/buttons/components/commentsButton'
 import HeartButtonIcon from '@/images/buttons/components/heartButton'
 import style from './likeCommentButtons.module.css'
 import { useGetProjectCommentsAmount, useGetProjectLikes } from '@/hooks/useGetProjectLikesComments'
-import { useUserStore } from '@/app/store/userStore'
 
 const LikeCommentButtons = ({ tokenMintAddress }: { tokenMintAddress: string }) => {
-  const { user } = useUserStore()
   const { likes, isLoading: likesLoading } = useGetProjectLikes(tokenMintAddress)
   const { commentsAmount, isLoading: commentsLoading } = useGetProjectCommentsAmount(tokenMintAddress)
 

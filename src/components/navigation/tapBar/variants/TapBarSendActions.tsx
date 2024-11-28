@@ -4,7 +4,6 @@ import style from './tapBarTokenActions.module.css'
 import QrButtonIcon from '@/images/buttons/components/qrButton'
 import { useUserStore } from '@/app/store/userStore'
 import Link from 'next/link'
-import { useEffect } from 'react'
 
 function TapBarSendActions() {
   const { user } = useUserStore()
