@@ -16,13 +16,15 @@ const LikeCommentButtons = ({ tokenMintAddress }: { tokenMintAddress: string }) 
 
   return (
     <section className={style.likeContainer}>
-      <CommentsButtonIcon width="30" height="30" color="#FFFFFF" />
+      <div className={style.badgeContainer}>
+        <CommentsButtonIcon width="30" height="30" color="#FFFFFF" />
+        <span className={style.badge}>{likes}</span>
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', position: 'relative' }}>
-        <div className={style.badgeContainer}>
+        <div>
           <HeartButtonIcon width="30" height="30" color="#FFFFFF" />
-          <span className={style.badge}>26</span>
+          <p>{commentsAmount}k</p>
         </div>
-        <p>12.5k</p>
       </div>
     </section>
   )
