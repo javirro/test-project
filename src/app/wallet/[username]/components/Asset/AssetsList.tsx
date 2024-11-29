@@ -4,6 +4,7 @@ import style from './asset.module.css'
 import { getTokenImg } from '@/images/tokens'
 import { useNavBarStore } from '@/app/store/navBarStore'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 interface AssetProps {
   currency: string
@@ -43,12 +44,17 @@ function AssetsList({ asset, username, solBalance, solPrice }: AssetsListProps) 
 export default AssetsList
 
 const AssetItem = ({ asset, username }: { asset: AssetProps; username: string }) => {
+  const pathname = usePathname()
   const { setActionNavBarMessage } = useNavBarStore()
   const onClick = () => {
     setActionNavBarMessage(`Send ${asset.currency}`)
   }
   return (
-    <Link href={`/wallet/${username}/send/address`} className={style.assetContainer} onClick={onClick}>
+    <Link
+      href={pathname.endsWith('sell') ? `/wallet/${username}/sell/amount` : `/wallet/${username}/send/address`}
+      className={style.assetContainer}
+      onClick={onClick}
+    >
       <img className={style.image} src={getTokenImg(asset.network.toLowerCase())} alt="" />
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <p className={style.currency}>{asset.currency}</p>
