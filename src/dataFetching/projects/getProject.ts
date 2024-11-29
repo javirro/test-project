@@ -3,14 +3,14 @@ import { projectEndpoints } from '../endpoints'
 
 export const getProjects = async (): Promise<Project[]> => {
   const url = projectEndpoints.getProjects
-  const options = {
+
+  const response = await fetch(url, {
+    cache: 'no-cache',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-  }
-
-  const response = await fetch(url, options)
+  })
   if (!response.ok) {
     throw new Error(`Error getting projects: ${response.statusText}`)
   }
@@ -20,14 +20,13 @@ export const getProjects = async (): Promise<Project[]> => {
 
 export const getAllProjectAddresses = async (): Promise<string[]> => {
   const url = projectEndpoints.getAllAddresses
-  const options = {
+  const response = await fetch(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-  }
-
-  const response = await fetch(url, options)
+    cache: 'no-cache',
+  })
   if (!response.ok) {
     throw new Error(`Error getting project addresses: ${response.statusText}`)
   }

@@ -6,13 +6,15 @@ import CreatedBy from '../../components/createdBy/CreatedBy'
 import TagsContainer from '../../components/tagsContainer/TagsContainer'
 import TokenDetails from '../../components/tokenDetails/TokenDetails'
 import { Suspense } from 'react'
-import { getAllProjectAddresses, getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
+import { getProjectByTokenAddress, getAllProjectAddresses } from '@/dataFetching/projects/getProject'
 
 interface PageProps {
   params: Promise<{ tokenAddress: string }>
 }
 
-export const revalidate = 100 // 100seconds
+// export const revalidate = 30 // 100seconds
+
+export const dynamicParams = true
 
 export async function generateStaticParams() {
   const addresses = await getAllProjectAddresses()
@@ -47,3 +49,5 @@ const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
 }
 
 export default page
+
+
