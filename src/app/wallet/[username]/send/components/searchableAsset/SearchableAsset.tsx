@@ -25,7 +25,7 @@ function SearchableAsset({ assets, username }: SearchableAssetProps) {
   return (
     <>
       <SearchBar setSearchQuery={setSearchQuery} />
-      <AssetsList asset={filteredAssets} isHandleClick={true} username={username} />
+      <AssetsList asset={filteredAssets} isHandleClick={true} solBalance={"0"} solPrice={250} username={username as string} />
     </>
   )
 }

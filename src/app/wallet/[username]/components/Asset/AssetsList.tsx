@@ -18,6 +18,7 @@ interface AssetsListProps {
   username: string
   solBalance: string
   solPrice: number
+  isHandleClick?: boolean
 }
 
 function AssetsList({ asset, username, solBalance, solPrice }: AssetsListProps) {
