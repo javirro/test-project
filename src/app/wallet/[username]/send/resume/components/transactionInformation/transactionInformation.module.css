@@ -1,6 +1,110 @@
 .main {
   display: flex;
+  padding: 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+  border-radius: 24px;
+  border: 2px solid #000000;
+  background: #fff;
+
+  box-shadow: 2px 3px 0px 1px #000;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.mainImage {
+  border-radius: 100%;
+}
+
+.mainText {
+  color: #000000;
+  text-align: center;
+
+  font-family: Borna;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: 0.1px;
+}
+
+.mainCurrency {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.mainCurrencyText {
+  color: #707579;
+  text-align: center;
+
+  font-family: Borna;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+}
+
+.toAddress {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0px;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.toAddressText {
+  color: var(--Native-section_header_text_color, #707579);
+
+  font-family: Borna;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addressText {
+  color: #000000;
+  text-align: end;
+
+  font-family: Borna;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+}
+
+.addressDirection {
+  color: #707579;
+  text-align: end;
+
+  font-family: Borna;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+}
+
+.mainDiv {
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
+  width: 100%;
 }

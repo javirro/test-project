@@ -4,39 +4,45 @@ import { getTokenImg } from '@/images/tokens'
 function TransactionInformation() {
   return (
     <section className={style.main}>
-      <div>
-        <img src="/Avatar.svg" alt="" />
+      <div className={style.mainInfo}>
+        <img className={style.mainImage} src="/Avatar.svg" alt="" />
         <div>
-          <p> 258,256.21 PEP</p>
-          <div>
+          <p className={style.mainText}> 258,256.21 PEP</p>
+          <div className={style.mainCurrency}>
             <img src={getTokenImg('sol')} alt="" />
-            <p>2,456 SOL</p>
+            <p className={style.mainCurrencyText}>2,456 SOL</p>
           </div>
         </div>
       </div>
-      <div>
-        <div>
-          <p>To:</p>
+      <div className={style.mainDiv}>
+        <div className={style.toAddress}>
+          <p className={style.toAddressText}>To:</p>
           <div>
-            <p>Address 1</p>
-            <p>dfkeb222...id23</p>
+            <p className={style.addressText}>Address 1</p>
+            <p className={style.addressDirection}>dfkeb222...id23</p>
           </div>
         </div>
-        <div>
-          <p>Network:</p>
-          <p>Solana</p>
+        <div className={style.toAddress}>
+          <p className={style.toAddressText}>Network:</p>
+          <p className={style.addressText}>Solana</p>
         </div>
-        <div>
-          <p>Network Fee:</p>
+        <div className={style.toAddress}>
+          <p className={style.toAddressText}>Network Fee:</p>
           <div>
-            <p>1.55 PEP</p>
-            <p>0.03 SOL</p>
+            <p className={style.addressText}>1.55 PEP</p>
+            <p className={style.addressDirection}>0.03 SOL</p>
           </div>
         </div>
         <hr />
-        <div>
-          <p>Total:</p>
-          <p>$ 457.00</p>
+        <div className={style.toAddress}>
+          <p className={style.toAddressText}>Total:</p>
+          <p className={style.addressText}>$ 457.00</p>
+        </div>
+      </div>
+      <div className={style.mainDiv}>
+        <div className={style.toAddress}>
+          <p className={style.toAddressText}>Send time:</p>
+          <p className={style.addressText}>30 min</p>
         </div>
       </div>
     </section>
