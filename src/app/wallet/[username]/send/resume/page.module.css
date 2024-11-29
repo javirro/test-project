@@ -8,9 +8,9 @@
   flex: 1 0 0;
   flex-shrink: 0;
   align-self: stretch;
-  margin-bottom: 40vh;
   width: 100%;
   background: #f7c84f;
+  min-height: 905px;
 }
 
 .text {

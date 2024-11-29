@@ -1,13 +1,10 @@
 import style from './page.module.css'
-import TransactionInformation from './components/transactionInformation/TransactionInformation'
-import SwipeBar from '@/components/navigation/tapBar/variants/SwipeBar'
+import ResumeContentWrapper from './components/resumeContentWrapper/ResumeContentWrapper'
 
 function page() {
   return (
     <main className={style.main}>
-      <p className={style.text}>Send</p>
-      <TransactionInformation />
-      <SwipeBar />
+      <ResumeContentWrapper />
     </main>
   )
 }

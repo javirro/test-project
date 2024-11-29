@@ -15,6 +15,7 @@ export const dynamicParams = true
 export async function generateStaticParams(): Promise<{ username: string }[]> {
   const usernames = await getUsersUsernames()
   const params = usernames.map((username) => ({ username }))
+  console.log('test', { params })
   return params
 }
 

@@ -1,0 +1,20 @@
+.main {
+  display: flex;
+  height: 779px;
+  padding: 64px 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+  align-self: stretch;
+  margin-bottom: 40vh;
+}
+
+.assetContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  flex-shrink: 0;
+  align-self: stretch;
+}

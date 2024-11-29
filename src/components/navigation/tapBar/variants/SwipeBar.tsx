@@ -4,12 +4,17 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './swipeBar.module.css'
 
-const SwipeBar = () => {
+interface swipeBarProps {
+  setLoading: (loading: boolean) => void
+}
+
+const SwipeBar = ({ setLoading }: swipeBarProps) => {
   const [isSwiped, setIsSwiped] = useState(false)
 
   const handleDragEnd = (_: any, info: any) => {
     if (info.offset.x > 200) {
       setIsSwiped(true)
+      setLoading(true)
     } else {
       setIsSwiped(false)
     }

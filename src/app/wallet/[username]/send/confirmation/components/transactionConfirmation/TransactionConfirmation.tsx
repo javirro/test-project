@@ -1,7 +1,7 @@
-import style from './transactionInformation.module.css'
+import style from './transactionConfirmation.module.css'
 import { getTokenImg } from '@/images/tokens'
 
-function TransactionInformation() {
+function TransactionConfirmation() {
   return (
     <section className={style.main}>
       <div className={style.mainInfo}>
@@ -39,14 +39,8 @@ function TransactionInformation() {
           <p className={style.addressText}>$ 457.00</p>
         </div>
       </div>
-      <div className={style.mainDiv}>
-        <div className={style.toAddress}>
-          <p className={style.toAddressText}>Send time:</p>
-          <p className={style.addressText}>30 min</p>
-        </div>
-      </div>
     </section>
   )
 }
 
-export default TransactionInformation
+export default TransactionConfirmation
