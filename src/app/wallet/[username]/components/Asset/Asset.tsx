@@ -22,7 +22,6 @@ interface Asset {
 function Asset({ asset, isHandleClick, username }: Asset) {
   const { setActionNavBarMessage } = useNavBarStore()
   const router = useRouter()
-
   const handleClick = (currency: string) => {
     router.push(`/wallet/${username}/send/address`)
     setActionNavBarMessage(`Send ${currency}`)

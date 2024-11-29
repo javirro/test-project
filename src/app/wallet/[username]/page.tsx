@@ -2,6 +2,7 @@ import WalletInformation from './components/walletInformation/WalletInformation'
 import Asset from './components/Asset/Asset'
 import styles from './walletPage.module.css'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
+import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -50,9 +51,11 @@ export async function generateStaticParams(): Promise<{ username: string }[]> {
 
 const Wallet = async ({ params }: PageProps) => {
   const { username } = await params
+  const solanaPrice: number = (await getSolanaPrice()).price
+
   return (
     <section className={styles.wallet}>
-      <WalletInformation amount={4980} gains={251} username={username} />
+      <WalletInformation priceSolana={solanaPrice} />
       <div className={styles.myAssetsDiv}>
         <p className={styles.myAssetsText}>My assets (04)</p>
         <Asset asset={assets} />
