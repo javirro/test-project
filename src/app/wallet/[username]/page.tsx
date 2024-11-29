@@ -1,43 +1,12 @@
-import WalletInformation from './components/walletInformation/WalletInformation'
-import Asset from './components/Asset/Asset'
 import styles from './walletPage.module.css'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
+import { TanstackQueryProvider } from '@/components/TanstackQueryProvider/TanstackQueryProvider'
+import WalletBalancesBody from './components/WalletBalancesBody/WalletBalancesBody'
 
 interface PageProps {
   params: Promise<{ username: string }>
 }
-
-const assets = [
-  {
-    currency: 'Solana',
-    network: 'SOL',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'USDT',
-    network: 'USDT',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'Solana',
-    network: 'SOL',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'Solana',
-    network: 'SOL',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-]
 
 export const revalidate = 30 // 100seconds
 
@@ -49,20 +18,17 @@ export async function generateStaticParams(): Promise<{ username: string }[]> {
   return params
 }
 
-const Wallet = async ({ params }: PageProps) => {
+const WalletPage = async ({ params }: PageProps) => {
   const { username } = await params
   const solanaPrice: number = (await getSolanaPrice()).price
 
   return (
     <section className={styles.wallet}>
-      <WalletInformation priceSolana={solanaPrice} />
-      <div className={styles.myAssetsDiv}>
-        <p className={styles.myAssetsText}>My assets (04)</p>
-        <Asset asset={assets} />
-      </div>
-      Walelt section: {username}
+      <TanstackQueryProvider>
+        <WalletBalancesBody priceSolana={solanaPrice} username={username} />
+      </TanstackQueryProvider>
     </section>
   )
 }
 
-export default Wallet
+export default WalletPage

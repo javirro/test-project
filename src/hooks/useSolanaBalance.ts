@@ -17,6 +17,6 @@ export const useSolanaBalance = (userWalletAddress: string) => {
     queryKey: ['solanaBalance', userWalletAddress],
     queryFn: async () => await getSolanaBalance(userWalletAddress),
   })
-  const balance = data?.solBalance
-  return { balance, isLoading, error }
+  const solBalance = data?.solBalance
+  return { solBalance, isLoading, error }
 }

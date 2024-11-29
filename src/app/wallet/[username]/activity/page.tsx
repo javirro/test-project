@@ -1,5 +1,5 @@
 import style from './page.module.css'
-import Asset from '../components/Asset/Asset'
+import AssetsList from '../components/Asset/AssetsList'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -46,9 +46,9 @@ async function page({ params }: PageProps) {
   return (
     <section className={style.main}>
       <p className={style.text}>Today</p>
-      <Asset asset={assets} />
+      <AssetsList asset={assets} />
       <p className={style.text}>Nov 1, 2024</p>
-      <Asset asset={assets} />
+      <AssetsList asset={assets} />
       Activity section: {username}
     </section>
   )
