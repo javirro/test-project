@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import SearchBar from '../searchBar/SearchBar'
-import Asset from '../../../components/Asset/Asset'
+import AssetsList from '../../../components/Asset/AssetsList'
 
 interface AssetProps {
   currency: string
@@ -25,7 +25,7 @@ function SearchableAsset({ assets, username }: SearchableAssetProps) {
   return (
     <>
       <SearchBar setSearchQuery={setSearchQuery} />
-      <Asset asset={filteredAssets} isHandleClick={true} username={username} />
+      <AssetsList asset={filteredAssets} isHandleClick={true} solBalance={"0"} solPrice={250} username={username as string} />
     </>
   )
 }

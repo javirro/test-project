@@ -1,0 +1,20 @@
+.myAssetsDiv {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  margin-bottom: 10vh;
+}
+
+.myAssetsText {
+  color: #000000;
+  font-family: Borna;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.15px;
+  align-self: stretch;
+}

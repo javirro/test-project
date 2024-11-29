@@ -2,6 +2,7 @@ import { clusterApiUrl, Connection, PublicKey } from '@solana/web3.js'
 import { Account, getAccount, getAssociatedTokenAddress } from '@solana/spl-token'
 import { convertFromLamportToSol } from './lamportSolConverter'
 
+export const SOLANA_RPC_URL = process.env.NEXT_PUBLIC_QUICKNODE_RPC as string
 export interface SolanaBalance {
   lamportSolBalance: string
   solBalance: string
@@ -13,7 +14,7 @@ export interface TokenBalance {
 }
 
 export const getSolanaBalance = async (userWalletAddress: string): Promise<{ lamportSolBalance: string; solBalance: string }> => {
-  const connection = new Connection(clusterApiUrl('mainnet-beta'), 'confirmed')
+  const connection = new Connection(SOLANA_RPC_URL)
   const publicKey = new PublicKey(userWalletAddress)
   const lamportSolBalance = await connection.getBalance(publicKey)
   const solBalance = convertFromLamportToSol(lamportSolBalance.toString())

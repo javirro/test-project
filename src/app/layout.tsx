@@ -7,7 +7,6 @@ import NavBarWrapper from '@/components/navigation/navBar/NavBarWrapper'
 
 import './globals.css'
 
-
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
   variable: '--font-geist-sans',
@@ -32,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, height=device-height" />
         <Script
           src="https://telegram.org/js/telegram-web-app.js"
           strategy="beforeInteractive" // Load it before the main app runs
