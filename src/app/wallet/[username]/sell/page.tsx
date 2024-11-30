@@ -2,12 +2,12 @@ import style from './page.module.css'
 import SearchableAsset from '../send/components/searchableAsset/SearchableAsset'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 import { cookies } from 'next/headers'
-import AmountInformation from './amount/components/amountInformation/AmountInformation'
-import Keyboard from './amount/components/keyboard/Keyboard'
-import SelectAmount from './amount/components/selectAmount/SelectAmount'
-import ResumeContentWrapper from './resume/components/resumeContentWrapper/ResumeContentWrapper'
+import AmountInformation from './amount/amountInformation/AmountInformation'
+import Keyboard from './amount/keyboard/Keyboard'
+import SelectAmount from './amount/selectAmount/SelectAmount'
+import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
 import Link from 'next/link'
-import TransactionConfirmation from './confirmation/components/transactionConfirmation/TransactionConfirmation'
+import TransactionConfirmation from './confirmation/TransactionConfirmation/transactionConfirmation/TransactionConfirmation'
 
 interface PageProps {
   params: Promise<{ username: string }>
