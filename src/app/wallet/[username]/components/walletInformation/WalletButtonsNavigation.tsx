@@ -26,11 +26,10 @@ const WalletButtonsNavigation = ({ username }: { username: string }) => {
     } else if (button === 'send') {
       router.push(`/wallet/${username}/send`)
       setActionNavBarMessage('Select a token')
-      setCookie('sellStep', '1')
     } else if(button === 'sell') {
       router.push(`/wallet/${username}/sell`)
       setActionNavBarMessage('Sell')
-      //setCookie('sellStep', '1')
+      setCookie('sellStep', '1')
     }
   }
   return (
