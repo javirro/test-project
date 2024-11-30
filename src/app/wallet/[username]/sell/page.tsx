@@ -1,7 +1,7 @@
 import style from './page.module.css'
 import SearchableAsset from '../send/components/searchableAsset/SearchableAsset'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
-import { cookies } from 'next/headers'
+// import { cookies } from 'next/headers'
 import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
 import Link from 'next/link'
 import TransactionConfirmation from './confirmation/TransactionConfirmation/transactionConfirmation/TransactionConfirmation'
@@ -35,10 +35,10 @@ export async function generateStaticParams(): Promise<{ username: string }[]> {
 async function page({ params }: PageProps) {
   const { username } = await params
   console.log("Username sell page: ", username)
-  const cookiesStore = await cookies()
-  const sellStep: string = (await cookiesStore).get('sellStep')?.value ?? '1'
+  // const cookiesStore = await cookies()
+  // const sellStep: string = (await cookiesStore).get('sellStep')?.value ?? '1'
+  const sellStep: string = '1'
   const solanaPrice: number = (await getSolanaPrice()).price
-  console.log("Sell page cookies: ", cookiesStore)
   console.warn("Solana price sell page: ", solanaPrice)
 
   //TODO: FETCH USER BALANCE
