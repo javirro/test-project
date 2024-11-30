@@ -3,8 +3,8 @@
 import style from './asset.module.css'
 import { getTokenImg } from '@/images/tokens'
 import { useNavBarStore } from '@/app/store/navBarStore'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+import { setCookie } from 'cookies-next'
 
 interface AssetProps {
   currency: string
@@ -45,16 +45,21 @@ export default AssetsList
 
 const AssetItem = ({ asset, username }: { asset: AssetProps; username: string }) => {
   const pathname = usePathname()
+  const router = useRouter()
+  const isSell = pathname.endsWith('sell')
+  const redirectPath = `/wallet/${username}/send/address`
   const { setActionNavBarMessage } = useNavBarStore()
   const onClick = () => {
-    setActionNavBarMessage(`Send ${asset.currency}`)
+    setActionNavBarMessage(`${isSell ? 'Sell' : 'Send'} ${asset.currency}`)
+    if (isSell) {
+      setCookie('sellStep', '2')
+      router.refresh()
+    } else {
+      router.push(redirectPath)
+    }
   }
   return (
-    <Link
-      href={pathname.endsWith('sell') ? `/wallet/${username}/sell/amount` : `/wallet/${username}/send/address`}
-      className={style.assetContainer}
-      onClick={onClick}
-    >
+    <div className={style.assetContainer} onClick={onClick}>
       <img className={style.image} src={getTokenImg(asset.network.toLowerCase())} alt="" />
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <p className={style.currency}>{asset.currency}</p>
@@ -66,6 +71,6 @@ const AssetItem = ({ asset, username }: { asset: AssetProps; username: string })
         <p className={style.amountInUsd}>${asset.amountInUSD}</p>
         <p className={style.gains}>${asset.gains}</p>
       </div>
-    </Link>
+    </div>
   )
 }

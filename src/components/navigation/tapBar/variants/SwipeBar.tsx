@@ -3,6 +3,8 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './swipeBar.module.css'
+import { setCookie } from 'cookies-next'
+import { useRouter } from 'next/navigation'
 
 interface swipeBarProps {
   setLoading: (loading: boolean) => void
@@ -10,11 +12,21 @@ interface swipeBarProps {
 
 const SwipeBar = ({ setLoading }: swipeBarProps) => {
   const [isSwiped, setIsSwiped] = useState(false)
-
+  const router = useRouter()
   const handleDragEnd = (_: any, info: any) => {
     if (info.offset.x > 200) {
       setIsSwiped(true)
-      setLoading(true)
+      try {
+        setLoading(true)
+        setTimeout(() => setLoading(false), 4000)
+        //TODO: Set order to sell to backend and await for response
+      } catch (error) {
+        console.error('Error while trying to sell order', error)
+      } finally {
+        setLoading(false)
+        setCookie('sellStep', '4')
+        router.refresh()
+      }
     } else {
       setIsSwiped(false)
     }
