@@ -2,19 +2,16 @@ import style from './page.module.css'
 import SearchableAsset from '../send/components/searchableAsset/SearchableAsset'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 import { cookies } from 'next/headers'
-import AmountInformation from './amount/amountInformation/AmountInformation'
-import Keyboard from './amount/keyboard/Keyboard'
-import SelectAmount from './amount/selectAmount/SelectAmount'
 import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
 import Link from 'next/link'
 import TransactionConfirmation from './confirmation/TransactionConfirmation/transactionConfirmation/TransactionConfirmation'
 import { assets } from '@/utils/fakeAssetsList'
+import AmountSelection from './amount/AmountSelection'
+import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 
 interface PageProps {
   params: Promise<{ username: string }>
 }
-
-
 
 export const revalidate = 30 // 100seconds
 
@@ -26,11 +23,11 @@ export async function generateStaticParams(): Promise<{ username: string }[]> {
   return params
 }
 
-// cookies structure
+//! cookies structure
 /*
   {
     sellStep: '1', '2', '3', '4'
-    tokenIn: {address: '0x', symbol: 'USDT', name: 'Tether'}
+    sellToken: {address: '0x', symbol: 'USDT', name: 'Tether'}
     tokenOut: {address: '0x', symbol: 'USDT', name: 'Tether'}
     amountIn: '0.0'
   }
@@ -39,8 +36,8 @@ async function page({ params }: PageProps) {
   const { username } = await params
   const cookiesStore = cookies()
   const sellStep: string = (await cookiesStore).get('sellStep')?.value ?? '1'
-  console.log({ sellStep })
-  //TODO: FETCH SOLANA PRICE
+  const solanaPrice: number = (await getSolanaPrice()).price
+
   //TODO: FETCH USER BALANCE
   //TODO: FETCH ASSETS PRICES
 
@@ -49,16 +46,12 @@ async function page({ params }: PageProps) {
   if (sellStep === '1') {
     return (
       <section className={style.main}>
-        <SearchableAsset assets={assets} username={username} />
+        <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice}/>
       </section>
     )
   } else if (sellStep === '2') {
     return (
-      <main className={style.amountMain}>
-        <AmountInformation />
-        <SelectAmount />
-        <Keyboard />
-      </main>
+      <AmountSelection />
     )
   } else if (sellStep === '3') {
     return (

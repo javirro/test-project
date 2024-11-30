@@ -7,7 +7,6 @@ import { usePathname, useRouter } from 'next/navigation'
 import { setCookie } from 'cookies-next'
 import { Asset } from '@/types/assetsList'
 
-
 interface AssetsListProps {
   asset: Asset[]
   username: string
@@ -21,6 +20,7 @@ function AssetsList({ asset, username, solBalance, solPrice }: AssetsListProps) 
   const solanaAsset: Asset = {
     name: 'Solana',
     symbol: 'SOL',
+    address: '0x',
     amount: parseFloat(solBalance),
     gains: 12,
     amountInUSD: amountInUSD,
@@ -47,6 +47,14 @@ const AssetItem = ({ asset, username }: { asset: Asset; username: string }) => {
     setActionNavBarMessage(`${isSell ? 'Sell' : 'Send'} ${asset.name}`)
     if (isSell) {
       setCookie('sellStep', '2')
+      setCookie(
+        'sellToken',
+        JSON.stringify({
+          name: asset.name,
+          symbol: asset.symbol,
+          address: asset.address,
+        })
+      )
       router.refresh()
     } else {
       router.push(redirectPath)

@@ -8,17 +8,18 @@ import { Asset } from '@/types/assetsList'
 interface SearchableAssetProps {
   assets: Asset[]
   username?: string
+  solanaPrice: number
 }
 
-function SearchableAsset({ assets, username }: SearchableAssetProps) {
+function SearchableAsset({ assets, username, solanaPrice }: SearchableAssetProps) {
   const [searchQuery, setSearchQuery] = useState<string>('')
 
-  const filteredAssets = assets.filter((asset) => asset.name.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredAssets = assets.filter((asset) => asset?.name?.toLowerCase().includes(searchQuery.toLowerCase()))
 
   return (
     <>
       <SearchBar setSearchQuery={setSearchQuery} />
-      <AssetsList asset={filteredAssets} isHandleClick={true} solBalance={"0"} solPrice={250} username={username as string} />
+      <AssetsList asset={filteredAssets} isHandleClick={true} solBalance={'0'} solPrice={solanaPrice} username={username as string} />
     </>
   )
 }

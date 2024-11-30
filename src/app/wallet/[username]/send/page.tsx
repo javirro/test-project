@@ -1,41 +1,13 @@
 import style from './page.module.css'
 import SearchableAsset from './components/searchableAsset/SearchableAsset'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
+import { assets } from '@/utils/fakeAssetsList'
+import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 
 interface PageProps {
   params: Promise<{ username: string }>
 }
 
-const assets = [
-  {
-    currency: 'Solana',
-    network: 'SOL',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'USDT',
-    network: 'USDT',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'Ethereum',
-    network: 'ETH',
-    amount: 4980.0,
-    gains: 300,
-    amountInUSD: 6000,
-  },
-  {
-    currency: 'Bitcoin',
-    network: 'BTC',
-    amount: 1.0,
-    gains: 10000,
-    amountInUSD: 60000,
-  },
-]
 export const revalidate = 30 // 100seconds
 
 export const dynamicParams = true
@@ -48,10 +20,10 @@ export async function generateStaticParams(): Promise<{ username: string }[]> {
 
 async function page({ params }: PageProps) {
   const { username } = await params
-
+  const solanaPrice: number = (await getSolanaPrice()).price
   return (
     <section className={style.main}>
-      <SearchableAsset assets={assets} username={username} />
+      <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} />
     </section>
   )
 }
