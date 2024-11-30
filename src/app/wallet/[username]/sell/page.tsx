@@ -8,41 +8,13 @@ import SelectAmount from './amount/selectAmount/SelectAmount'
 import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
 import Link from 'next/link'
 import TransactionConfirmation from './confirmation/TransactionConfirmation/transactionConfirmation/TransactionConfirmation'
+import { assets } from '@/utils/fakeAssetsList'
 
 interface PageProps {
   params: Promise<{ username: string }>
 }
 
-const assets = [
-  {
-    currency: 'Solana',
-    network: 'SOL',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'USDT',
-    network: 'USDT',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'Ethereum',
-    network: 'ETH',
-    amount: 4980.0,
-    gains: 300,
-    amountInUSD: 6000,
-  },
-  {
-    currency: 'Bitcoin',
-    network: 'BTC',
-    amount: 1.0,
-    gains: 10000,
-    amountInUSD: 60000,
-  },
-]
+
 
 export const revalidate = 30 // 100seconds
 

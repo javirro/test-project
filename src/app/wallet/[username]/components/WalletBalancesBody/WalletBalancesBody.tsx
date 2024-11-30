@@ -4,21 +4,12 @@ import useUser from '@/hooks/useUser'
 import AssetsList from '../Asset/AssetsList'
 import WalletInformation from '../walletInformation/WalletInformation'
 import styles from './WalletBalancesBody.module.css'
+import { assets } from '@/utils/fakeAssetsList'
 
 interface WalletInformationProps {
   priceSolana: number
   username: string
 }
-
-const assets = [
-  {
-    currency: 'USDT',
-    network: 'USDT',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-]
 
 const WalletBalancesBody = ({ priceSolana, username }: WalletInformationProps) => {
   const { user } = useUser()
