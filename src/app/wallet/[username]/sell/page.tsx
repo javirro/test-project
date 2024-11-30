@@ -1,27 +1,27 @@
 import style from './page.module.css'
 import SearchableAsset from '../send/components/searchableAsset/SearchableAsset'
-import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
-// import { cookies } from 'next/headers'
+// import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
 import Link from 'next/link'
 import TransactionConfirmation from './confirmation/TransactionConfirmation/transactionConfirmation/TransactionConfirmation'
 import { assets } from '@/utils/fakeAssetsList'
 import AmountSelection from './amount/AmountSelection'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
+import { cookies } from 'next/headers'
 
 interface PageProps {
   params: Promise<{ username: string }>
 }
 
-export const revalidate = 30 // 100seconds
+// export const revalidate = 30 // 100seconds
 
-export const dynamicParams = true
+// export const dynamicParams = true
 
-export async function generateStaticParams(): Promise<{ username: string }[]> {
-  const usernames = await getUsersUsernames()
-  const params = usernames.map((username) => ({ username }))
-  return params
-}
+// export async function generateStaticParams(): Promise<{ username: string }[]> {
+//   const usernames = await getUsersUsernames()
+//   const params = usernames.map((username) => ({ username }))
+//   return params
+// }
 
 //! cookies structure
 /*
@@ -35,7 +35,8 @@ export async function generateStaticParams(): Promise<{ username: string }[]> {
 async function page({ params }: PageProps) {
   const { username } = await params
   console.log("Username sell page: ", username)
-  // const cookiesStore = await cookies()
+  const cookiesStore = await cookies()
+  console.log("Cookies store sell page: ", cookiesStore)
   // const sellStep: string = (await cookiesStore).get('sellStep')?.value ?? '1'
   const sellStep: string = '1'
   const solanaPrice: number = (await getSolanaPrice()).price
