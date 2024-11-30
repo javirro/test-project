@@ -19,6 +19,7 @@ function NavBarWrapper() {
     pathname.endsWith('/receive') ||
     pathname.endsWith('/activity') ||
     pathname.endsWith('/send') ||
+    pathname.endsWith('/sell') ||
     pathname.endsWith('/send/address') ||
     pathname.endsWith('/send/amount') ||
     pathname.endsWith('/send/resume')

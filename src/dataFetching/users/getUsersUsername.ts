@@ -10,6 +10,7 @@ export const getUsersUsernames = async (): Promise<string[]> => {
     },
   })
   if (!response.ok) {
+    console.log(response)
     throw new Error('Failed to fetch usernames')
   }
   const data = await response.json()

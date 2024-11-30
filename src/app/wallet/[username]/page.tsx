@@ -14,12 +14,15 @@ export const dynamicParams = true
 
 export async function generateStaticParams(): Promise<{ username: string }[]> {
   const usernames = await getUsersUsernames()
+  console.log('test', { usernames })
   const params = usernames.map((username) => ({ username }))
   return params
 }
 
 const WalletPage = async ({ params }: PageProps) => {
+  console.log('test')
   const { username } = await params
+  console.log('test', { username })
   const solanaPrice: number = (await getSolanaPrice()).price
 
   return (

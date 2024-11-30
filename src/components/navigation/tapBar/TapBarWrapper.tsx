@@ -17,8 +17,10 @@ function TapBarWrapper() {
         (pathname.startsWith('/wallet') &&
           !pathname.endsWith('/receive') &&
           !pathname.endsWith('/send') &&
+          !pathname.endsWith('/sell') &&
           !pathname.endsWith('/address') &&
           !pathname.endsWith('/amount') &&
+          !pathname.endsWith('/confirmation') &&
           !pathname.endsWith('/resume'))) && <DynamicTapbarNoSSR />}
       {pathname.startsWith('/token-details') && !pathname.endsWith('/comments') && <TapBarTokenActions />}
       {pathname.endsWith('/comments') && <TapBarChat />}

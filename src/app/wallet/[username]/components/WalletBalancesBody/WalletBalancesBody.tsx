@@ -29,7 +29,7 @@ const WalletBalancesBody = ({ priceSolana, username }: WalletInformationProps) =
       {<WalletInformation priceSolana={priceSolana} solBalance={solBalance} username={username} />}
       <div className={styles.myAssetsDiv}>
         <p className={styles.myAssetsText}>My assets (02)</p>
-        <AssetsList asset={assets} username={username} solBalance={solBalance} solPrice={priceSolana}/>
+        <AssetsList asset={assets} username={username} solBalance={solBalance} solPrice={priceSolana} />
       </div>
     </>
   )
