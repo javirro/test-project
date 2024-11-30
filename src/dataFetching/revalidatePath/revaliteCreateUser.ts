@@ -2,7 +2,11 @@
 
 import { revalidatePath } from 'next/cache'
 
-export async function createUser() {
-  // Invalidate the /posts route in the cache
+export async function revalidateUser() {
   revalidatePath('/wallet')
+}
+
+
+export async function revalidateProjectDetails () {
+  revalidatePath('/token-details')
 }

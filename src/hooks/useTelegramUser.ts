@@ -4,6 +4,7 @@ import WebApp from '@twa-dev/sdk'
 import { useEffect, useState } from 'react'
 import { useUserStore } from '@/app/store/userStore'
 import { fakeTelegramUserData, IS_DEV } from '@/utils/fakeTelegramUserData'
+import { revalidateUser } from '@/dataFetching/revalidatePath/revaliteCreateUser'
 
 const useTelegramUser = (): TelegramUser | null => {
   const [userTelegramInfo, setUserTelegramInfo] = useState<TelegramUser | null>(null)
@@ -25,6 +26,7 @@ const useTelegramUser = (): TelegramUser | null => {
         setUserTelegramInfo(fakeTelegramUserData)
         try {
           const { user: completeUser, token } = await createOrLogin(fakeTelegramUserData)
+          revalidateUser()
           setUserStore(completeUser as User)
           setToken(token)
         } catch (error) {
@@ -33,6 +35,7 @@ const useTelegramUser = (): TelegramUser | null => {
       }
     }
     createUser()
+
   }, [setUserTelegramInfo, setUserStore, setToken])
 
   return userTelegramInfo
