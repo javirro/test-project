@@ -1,41 +1,11 @@
 import style from './page.module.css'
 import AssetsList from '../components/Asset/AssetsList'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
+import { assets } from '@/utils/fakeAssetsList'
 
 interface PageProps {
   params: Promise<{ username: string }>
 }
-
-const assets = [
-  {
-    currency: 'Solana',
-    network: 'SOL',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'USDT',
-    network: 'USDT',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'Solana',
-    network: 'SOL',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-  {
-    currency: 'Solana',
-    network: 'SOL',
-    amount: 4980.0,
-    gains: 251,
-    amountInUSD: 4050,
-  },
-]
 
 export const revalidate = 30 // 100seconds
 
