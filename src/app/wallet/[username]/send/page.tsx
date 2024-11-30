@@ -1,5 +1,6 @@
 import style from './page.module.css'
 import SearchableAsset from './components/searchableAsset/SearchableAsset'
+import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -35,9 +36,14 @@ const assets = [
     amountInUSD: 60000,
   },
 ]
+export const revalidate = 30 // 100seconds
+
+export const dynamicParams = true
 
 export async function generateStaticParams(): Promise<{ username: string }[]> {
-  return []
+  const usernames = await getUsersUsernames()
+  const params = usernames.map((username) => ({ username }))
+  return params
 }
 
 async function page({ params }: PageProps) {
