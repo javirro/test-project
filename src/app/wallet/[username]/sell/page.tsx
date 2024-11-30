@@ -35,7 +35,7 @@ export async function generateStaticParams(): Promise<{ username: string }[]> {
 async function page({ params }: PageProps) {
   const { username } = await params
   console.log("Username sell page: ", username)
-  const cookiesStore = cookies()
+  const cookiesStore = await cookies()
   const sellStep: string = (await cookiesStore).get('sellStep')?.value ?? '1'
   const solanaPrice: number = (await getSolanaPrice()).price
   console.log("Sell page cookies: ", cookiesStore)
