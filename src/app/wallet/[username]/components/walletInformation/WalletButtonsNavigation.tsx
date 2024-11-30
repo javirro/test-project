@@ -8,7 +8,7 @@ import SendButtonIcon from '@/images/status/components/sendButton'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import style from './walletInformation.module.css'
-import { setCookie } from 'cookies-next'
+// import { setCookie } from 'cookies-next'
 
 const WalletButtonsNavigation = ({ username }: { username: string }) => {
   const { setActionNavBarMessage } = useNavBarStore()
@@ -29,7 +29,7 @@ const WalletButtonsNavigation = ({ username }: { username: string }) => {
     } else if(button === 'sell') {
       router.push(`/wallet/${username}/sell`)
       setActionNavBarMessage('Sell')
-      setCookie('sellStep', '1')
+      //setCookie('sellStep', '1')
     }
   }
   return (
