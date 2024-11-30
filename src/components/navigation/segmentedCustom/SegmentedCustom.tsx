@@ -40,6 +40,7 @@ function SegmentedCustom({ solanaAmount }: SegmentedCustomProps) {
 
   const onBlurCustomInput = async () => {
     try {
+      console.log("Token: ", token)
       await updateBuySolanaAmount(user?.username as string, user?.telegramId as number, token, selectedAmount as number)
     } catch (err) {
       console.error('Error setting solana amount: ', err)
