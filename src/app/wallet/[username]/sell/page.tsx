@@ -8,6 +8,7 @@ import { assets } from '@/utils/fakeAssetsList'
 import AmountSelection from './amount/AmountSelection'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 import { cookies } from 'next/headers'
+import { Suspense } from 'react'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -32,15 +33,15 @@ interface PageProps {
     amountIn: '0.0'
   }
 */
-async function page({ params }: PageProps) {
+async function SellPage({ params }: PageProps) {
   const { username } = await params
-  console.log("Username sell page: ", username)
+  console.log('Username sell page: ', username)
   const cookiesStore = await cookies()
-  console.log("Cookies store sell page: ", cookiesStore)
+  console.log('Cookies store sell page: ', cookiesStore)
   // const sellStep: string = (await cookiesStore).get('sellStep')?.value ?? '1'
   const sellStep: string = '1'
   const solanaPrice: number = (await getSolanaPrice()).price
-  console.warn("Solana price sell page: ", solanaPrice)
+  console.warn('Solana price sell page: ', solanaPrice)
 
   //TODO: FETCH USER BALANCE
   //TODO: FETCH ASSETS PRICES
@@ -50,13 +51,11 @@ async function page({ params }: PageProps) {
   if (sellStep === '1') {
     return (
       <section className={style.main}>
-        <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice}/>
+        <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} />
       </section>
     )
   } else if (sellStep === '2') {
-    return (
-      <AmountSelection />
-    )
+    return <AmountSelection />
   } else if (sellStep === '3') {
     return (
       <main className={style.main}>
@@ -78,4 +77,12 @@ async function page({ params }: PageProps) {
   }
 }
 
-export default page
+const PageSellWrapper = ({ params }: PageProps) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SellPage params={params} />
+    </Suspense>
+  )
+}
+
+export default PageSellWrapper
