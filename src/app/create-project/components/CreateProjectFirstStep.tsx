@@ -52,7 +52,6 @@ function CreateProjectFirstStep({ setToastMessage }: { setToastMessage: (message
         <section style={{ width: '100%' }}>
           <Input
             className={`${style.inputStyle} ${style.customInputPadding}`}
-            status="focused"
             header="Project name"
             placeholder="PEPE"
             value={projectName}
@@ -67,7 +66,6 @@ function CreateProjectFirstStep({ setToastMessage }: { setToastMessage: (message
             }
           />
           <Input
-            status="focused"
             header="Token symbol"
             placeholder="DHU"
             value={tokenSymbol}

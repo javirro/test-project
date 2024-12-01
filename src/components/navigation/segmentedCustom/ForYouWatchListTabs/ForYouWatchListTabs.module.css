@@ -20,6 +20,7 @@
   font-size: 17px;
   font-weight: 600;
   line-height: 26px;
+  width: 50%;
 }
 
 .buttonInactive {
@@ -30,6 +31,7 @@
   font-size: 17px;
   font-weight: 600;
   line-height: 26px;
+  width: 50%;
 }
 
 .buttonLeft {
@@ -37,7 +39,7 @@
   border-bottom-left-radius: var(--size8);
   border: 2px solid #000;
   border-right-width: 1px;
-  width: 100%;
+  width: 50%;
 }
 
 .buttonRight {
@@ -45,4 +47,5 @@
   border-bottom-right-radius: var(--size8);
   border: 2px solid #000;
   border-left-width: 1px;
+  width: 50%;
 }
