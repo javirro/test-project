@@ -1,5 +1,6 @@
 import { User } from '@/types/user'
 
+
 function setTokenLocalStorage(token: string) {
   localStorage.setItem('token', token)
 }

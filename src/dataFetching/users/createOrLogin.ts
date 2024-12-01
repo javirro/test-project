@@ -1,6 +1,6 @@
 import { TelegramUser, User } from '@/types/user'
 import { userEndpoints } from '../endpoints'
-import localStorageUtils from '@/utils/localstorageUtils'
+import cookiesUserUtils from '@/utils/clientCookiesUtils'
 
 export const createOrLogin = async (telegramUser: TelegramUser): Promise<{ user: User; token: string }> => {
   const { id, username, language_code, photo_url } = telegramUser
@@ -20,12 +20,12 @@ export const createOrLogin = async (telegramUser: TelegramUser): Promise<{ user:
   const response = await fetch(url, options)
   if (response.ok && response.status === 200) {
     const userData: { user: User; token: string } = await response.json()
-    localStorageUtils.setTokenLocalStorage(userData.token)
-    localStorageUtils.setUserLocalStorage(userData.user)
+    cookiesUserUtils.setTokenInCookie(userData.token)
+    cookiesUserUtils.setUserDataInCookie(userData.user)
     return userData
   } else {
-    localStorageUtils.removeTokenLocalStorage()
-    localStorageUtils.removeUserLocalStorage()
+    cookiesUserUtils.removeTokenFromCookie()
+    cookiesUserUtils.removeUserDataFromCookie()
     throw new Error('Error creating or logging in user')
   }
 }
