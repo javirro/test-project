@@ -6,7 +6,7 @@ import Link from 'next/link'
 import TransactionConfirmation from './confirmation/TransactionConfirmation/transactionConfirmation/TransactionConfirmation'
 import { assets } from '@/utils/fakeAssetsList'
 import AmountSelection from './amount/AmountSelection'
-import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
+// import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 import { cookies } from 'next/headers'
 import { Suspense } from 'react'
 
@@ -50,7 +50,7 @@ async function SellPage({ params }: PageProps) {
 export default SellPage
 
 const SellBodyComponent = async ({ username, sellStep }: { sellStep: string; username: string }) => {
-  const solanaPrice: number = (await getSolanaPrice())?.price
+  const solanaPrice: number = 100
   return (
     <>
       {sellStep === '1' && (
