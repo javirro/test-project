@@ -1,4 +1,4 @@
-// import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
+import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 import style from './page.module.css'
 // import { cookies } from 'next/headers'
 // import SearchableAsset from '../send/components/searchableAsset/SearchableAsset'
@@ -20,11 +20,11 @@ interface PageProps {
 
 // export const dynamicParams = true
 
-// export async function generateStaticParams(): Promise<{ username: string }[]> {
-//   const usernames = await getUsersUsernames()
-//   const params = usernames.map((username) => ({ username }))
-//   return params
-// }
+export async function generateStaticParams(): Promise<{ username: string }[]> {
+  const usernames = await getUsersUsernames()
+  const params = usernames.map((username) => ({ username }))
+  return params
+}
 
 //! cookies structure
 /*
