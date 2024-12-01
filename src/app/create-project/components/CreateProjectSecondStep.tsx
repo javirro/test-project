@@ -118,7 +118,6 @@ function CreateProjectSecondStep() {
         <section className={`${style.socialMediaSection} ${showMoreOptions ? style.expand : style.collapse}`} style={{ width: '100%', marginBottom: '140px' }}>
           <Input
             className={`${style.inputStyle} ${style.customInputPadding}`}
-            status="focused"
             header="Discord"
             placeholder="PEPE"
             value={discord}
@@ -134,7 +133,6 @@ function CreateProjectSecondStep() {
           />
           <Input
             className={`${style.inputStyle} ${style.customInputPadding}`}
-            status="focused"
             header="Twitter"
             placeholder="PEPE"
             value={twitter}
@@ -150,7 +148,6 @@ function CreateProjectSecondStep() {
           />
           <Input
             className={`${style.inputStyle} ${style.customInputPadding}`}
-            status="focused"
             header="Telegram"
             placeholder="PEPE"
             value={telegram}
@@ -166,7 +163,6 @@ function CreateProjectSecondStep() {
           />
           <Input
             className={`${style.inputStyle} ${style.customInputPadding}`}
-            status="focused"
             header="Website"
             placeholder="PEPE"
             value={website}
