@@ -3,7 +3,7 @@
 import { revalidatePath } from 'next/cache'
 
 export async function revalidateUser() {
-  revalidatePath('/wallet')
+  revalidatePath('/wallet', 'layout')
 }
 
 
