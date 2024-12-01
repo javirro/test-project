@@ -8,5 +8,9 @@ export async function revalidateUser() {
 
 
 export async function revalidateProjectDetails () {
-  revalidatePath('/token-details')
+  revalidatePath('/token-details', 'layout')
+}
+
+export async function revalidateHome() {
+  revalidatePath('/')
 }

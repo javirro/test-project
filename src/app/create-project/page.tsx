@@ -10,7 +10,7 @@ import { ProjectForm } from '@/types/project'
 import { createProject } from '@/dataFetching/projects/createProject'
 import base64Utils from '@/utils/base64Utils'
 import useUser from '@/hooks/useUser'
-import { revalidateProjectDetails } from '@/dataFetching/revalidatePath/revaliteCreateUser'
+import { revalidateHome, revalidateProjectDetails } from '@/dataFetching/revalidatePath/revaliteCreateUser'
 
 function Page() {
   const { user, token } = useUser()
@@ -55,6 +55,8 @@ function Page() {
 
         await createProject(data, token as string)
         revalidateProjectDetails()
+        revalidateHome()
+        setToastMessage('Proyect created sucessfully')
       } catch (error) {
         console.error('Error creating project', error)
         setToastMessage('Error al publicar el proyecto')
