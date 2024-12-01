@@ -1,20 +1,9 @@
 import style from './page.module.css'
 import AssetsList from '../components/Asset/AssetsList'
-import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 import { assets } from '@/utils/fakeAssetsList'
 
 interface PageProps {
   params: Promise<{ username: string }>
-}
-
-export const revalidate = 30 // 100seconds
-
-export const dynamicParams = true
-
-export async function generateStaticParams(): Promise<{ username: string }[]> {
-  const usernames = await getUsersUsernames()
-  const params = usernames.map((username) => ({ username }))
-  return params
 }
 
 async function page({ params }: PageProps) {
