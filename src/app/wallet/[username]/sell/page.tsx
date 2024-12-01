@@ -1,6 +1,6 @@
-import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
+// import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 import style from './page.module.css'
-import { cookies } from 'next/headers'
+// import { cookies } from 'next/headers'
 // import SearchableAsset from '../send/components/searchableAsset/SearchableAsset'
 // import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 // import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
@@ -20,11 +20,11 @@ interface PageProps {
 
 // export const dynamicParams = true
 
-export async function generateStaticParams(): Promise<{ username: string }[]> {
-  const usernames = await getUsersUsernames()
-  const params = usernames.map((username) => ({ username }))
-  return params
-}
+// export async function generateStaticParams(): Promise<{ username: string }[]> {
+//   const usernames = await getUsersUsernames()
+//   const params = usernames.map((username) => ({ username }))
+//   return params
+// }
 
 //! cookies structure
 /*
@@ -37,8 +37,9 @@ export async function generateStaticParams(): Promise<{ username: string }[]> {
 */
 async function SellPage({ params }: PageProps) {
   const { username } = await params
-  const cookiesStore = await cookies()
-  const sellStep: string = (await cookiesStore).get('sellStep')?.value ?? '1'
+  // const cookiesStore = await cookies()
+  // const sellStep: string = (cookiesStore).get('sellStep')?.value ?? '1'
+  const sellStep: string = '1'
   //TODO: FETCH USER BALANCE
   //TODO: FETCH ASSETS PRICES
 
