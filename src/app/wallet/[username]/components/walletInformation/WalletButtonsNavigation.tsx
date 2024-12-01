@@ -25,6 +25,9 @@ const WalletButtonsNavigation = ({ username }: { username: string }) => {
     } else if (button === 'send') {
       router.push(`/wallet/${username}/send`)
       setActionNavBarMessage('Select a token')
+    } else if(button === 'sell') {
+      router.push(`/wallet/${username}/sell`)
+      setActionNavBarMessage('Sell')
     }
   }
   return (
