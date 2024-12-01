@@ -35,54 +35,42 @@ interface PageProps {
 */
 async function SellPage({ params }: PageProps) {
   const { username } = await params
-  console.log('Username sell page: ', username)
   const cookiesStore = await cookies()
-  console.log('Cookies store sell page: ', cookiesStore)
-  // const sellStep: string = (await cookiesStore).get('sellStep')?.value ?? '1'
-  const sellStep: string = '1'
-  const solanaPrice: number = (await getSolanaPrice()).price
-  console.warn('Solana price sell page: ', solanaPrice)
-
+  const sellStep: string = (await cookiesStore).get('sellStep')?.value ?? '1'
   //TODO: FETCH USER BALANCE
   //TODO: FETCH ASSETS PRICES
 
-  // Those values are common for all the users
-
-  if (sellStep === '1') {
-    return (
-      <section className={style.main}>
-        <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} />
-      </section>
-    )
-  } else if (sellStep === '2') {
-    return <AmountSelection />
-  } else if (sellStep === '3') {
-    return (
-      <main className={style.main}>
-        <ResumeContentWrapper />
-      </main>
-    )
-  } else if (sellStep === '4') {
-    return (
-      <main className={style.confirmationMain}>
-        <p className={style.confirmationText}>Just sold!</p>
-        <TransactionConfirmation />
-        <div className={style.confirmationNextButtonDiv}>
-          <Link href={`/wallet/${username}`} className={style.confirmationNextButton}>
-            Back to wallet
-          </Link>
-        </div>
-      </main>
-    )
-  }
-}
-
-const PageSellWrapper = ({ params }: PageProps) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <SellPage params={params} />
+      <SellBodyComponent username={username} sellStep={sellStep} />
     </Suspense>
   )
 }
 
-export default PageSellWrapper
+export default SellPage
+
+const SellBodyComponent = async ({ username, sellStep }: { sellStep: string; username: string }) => {
+  const solanaPrice: number = (await getSolanaPrice())?.price
+  return (
+    <>
+      {sellStep === '1' && (
+        <section className={style.main}>
+          <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} />
+        </section>
+      )}
+      {sellStep === '2' && <AmountSelection />}
+      {sellStep === '3' && <ResumeContentWrapper />}
+      {sellStep === '4' && (
+        <main className={style.confirmationMain}>
+          <p className={style.confirmationText}>Just sold!</p>
+          <TransactionConfirmation />
+          <div className={style.confirmationNextButtonDiv}>
+            <Link href={`/wallet/${username}`} className={style.confirmationNextButton}>
+              Back to wallet
+            </Link>
+          </div>
+        </main>
+      )}
+    </>
+  )
+}
