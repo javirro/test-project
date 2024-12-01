@@ -1,20 +1,22 @@
-'use client'
-import { useSolanaBalance } from '@/hooks/useSolanaBalance'
-import useUser from '@/hooks/useUser'
 import AssetsList from '../Asset/AssetsList'
 import WalletInformation from '../walletInformation/WalletInformation'
 import styles from './WalletBalancesBody.module.css'
 import { assets } from '@/utils/fakeAssetsList'
+import { cookies } from 'next/headers'
+import { notFound } from 'next/navigation'
+import { getSolanaBalance } from '@/contracts/getBalances'
 
 interface WalletInformationProps {
   priceSolana: number
   username: string
 }
 
-const WalletBalancesBody = ({ priceSolana, username }: WalletInformationProps) => {
-  const { user } = useUser()
-  const { solBalance, isLoading } = useSolanaBalance(user?.address as string)
-  if (isLoading || !solBalance) return null
+const WalletBalancesBody = async ({ priceSolana, username }: WalletInformationProps) => {
+  const cookiesStore = await cookies()
+  const userCookie = cookiesStore.get('user')?.value
+  if (!userCookie) notFound()
+  const user = JSON.parse(userCookie)
+  const { solBalance } = await getSolanaBalance(user?.address as string)
   return (
     <>
       {<WalletInformation priceSolana={priceSolana} solBalance={solBalance} username={username} />}
