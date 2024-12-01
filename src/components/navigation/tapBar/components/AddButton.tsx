@@ -13,7 +13,7 @@ const AddButton: React.FC<SquareButtonProps> = ({ onPress, size = 50 }) => {
   }
 
   return (
-    <div style={{ position: 'relative', width: size, height: size }}>
+    <div style={{ position: 'relative', width: size + 15, height: size }}>
       <div className="under-square-button" />
       <button className="square-button" onClick={handleClick}>
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">

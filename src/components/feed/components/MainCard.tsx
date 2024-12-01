@@ -72,7 +72,6 @@ function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps
     }
   )
 
-  console.log({ totalProjects, project })
   return (
     <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
       <Link href={`/token-details/${project.tokenMintAddress}/overview`} className={style.frame}>
@@ -90,13 +89,14 @@ function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps
       </Link>
       <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
       <div className={style.videoContainer}>
-        <Stream src={project.video} autoplay loop muted controls={false} height="100%" width="100%" />
+        <Stream src={project.video} autoplay loop muted controls={false} height="80%" width="100%" />
         <div className={style.dragOverlay} {...bind()}></div>
       </div>
 
       {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
       {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
 
+      <div className={style.shadow}></div>
       <div className={style.shadow}></div>
     </animated.section>
   )
