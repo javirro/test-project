@@ -1,8 +1,8 @@
 import { useState, useEffect, ChangeEvent } from 'react'
+import '@telegram-apps/telegram-ui/dist/styles.css'
 import { AppRoot, Input, Tappable, Textarea } from '@telegram-apps/telegram-ui'
 import { useCreateProjectStore } from '@/app/store/createProjectStore'
 import style from './CreateProjectFirstStep.module.css'
-import '@telegram-apps/telegram-ui/dist/styles.css'
 
 function CreateProjectFirstStep({ setToastMessage }: { setToastMessage: (message: string) => void }) {
   const { projectName, setProjectName, tokenSymbol, setTokenSymbol, projectDescription, setProjectDescription, projectImage, setProjectImage } =
