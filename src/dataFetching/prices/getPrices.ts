@@ -4,7 +4,9 @@ import { priceEndpoints } from '../endpoints'
 export const getSolanaPrice = async (): Promise<Price> => {
   const url = priceEndpoints.getSolanaPrice
   const response = await fetch(url,{
-    cache: 'no-cache',
+    next: {
+      revalidate: 60
+    },
   })
   if (!response.ok) {
     throw new Error('Error getting Solana price')

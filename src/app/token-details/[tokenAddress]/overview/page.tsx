@@ -35,7 +35,7 @@ async function page({ params }: PageProps) {
 
 const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
   const projectInfo = await getProjectByTokenAddress(tokenAddress)
-  const { tags, creationDate, creatorAddress } = projectInfo
+  const { tags, creationDate, creatorUsername} = projectInfo
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
@@ -43,7 +43,7 @@ const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
       <MarketInfoContainer project={projectInfo} />
       <TagsContainer tags={tags} />
       <CommentsContainer tokenAddress={tokenAddress} />
-      <CreatedBy createdOn={creationDate} creatorAddress={creatorAddress} />
+      <CreatedBy createdOn={creationDate} creatorUsername={creatorUsername} />
     </section>
   )
 }

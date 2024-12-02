@@ -1,9 +1,7 @@
-'use client'
 
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
 import style from './walletInformation.module.css'
 import WalletButtonsNavigation from './WalletButtonsNavigation'
-
 
 interface WalletInformationProps {
   priceSolana: number
@@ -12,11 +10,11 @@ interface WalletInformationProps {
 }
 
 function WalletInformation({ username, priceSolana, solBalance }: WalletInformationProps) {
-  console.log({ username, priceSolana, solBalance })
+  const totalBalance = parseFloat(solBalance) * priceSolana
   return (
     <section className={style.main}>
       <div className={style.balanceSection}>
-        <p className={style.amount}>${12}</p>
+        <p className={style.amount}>${totalBalance}</p>
         <div
           style={{
             display: 'flex',

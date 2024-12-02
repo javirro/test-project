@@ -14,7 +14,6 @@ import { revalidateHome, revalidateProjectDetails } from '@/dataFetching/revalid
 
 function Page() {
   const { user, token } = useUser()
-  console.log({ user, token })
   const { projectName, tokenSymbol, projectDescription, videoOriginal, tags, allowComments, projectImage, discord, telegram, twitter, website, nsfw } =
     useCreateProjectStore()
 
@@ -44,7 +43,7 @@ function Page() {
           video: base64video,
           tags,
           allowComments,
-          creatorAddress: user?.address as string,
+          creatorUsername: user?.username as string,
           image: projectImage,
           nsfw,
           discord,

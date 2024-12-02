@@ -5,7 +5,7 @@ export type Project = {
   tokenName: string
   tokenSymbol: string
   totalSupply: number
-  creatorAddress: string
+  creatorUsername: string
   description: string
   image: string
   video: string

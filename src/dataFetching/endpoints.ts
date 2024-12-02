@@ -33,3 +33,7 @@ export const userEndpoints = {
   createUser: `${BASE_URL}/users/login-create`, //POST
   updateSolanaBuyAmount: `${BASE_URL}/users/solana/buyamount`, //PUT
 }
+
+export const balancesEndpoints = {
+  getBalancesWithProjectsInfo: (username: string) => `${BASE_URL}/users/balances/projects/${username}`, //GET
+}

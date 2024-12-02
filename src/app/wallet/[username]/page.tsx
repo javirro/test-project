@@ -1,7 +1,6 @@
 import styles from './walletPage.module.css'
-import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
-import { TanstackQueryProvider } from '@/components/TanstackQueryProvider/TanstackQueryProvider'
 import WalletBalancesBody from './components/WalletBalancesBody/WalletBalancesBody'
+import { Suspense } from 'react'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -9,13 +8,12 @@ interface PageProps {
 
 const WalletPage = async ({ params }: PageProps) => {
   const { username } = await params
-  const solanaPrice: number = (await getSolanaPrice()).price
 
   return (
     <section className={styles.wallet}>
-      <TanstackQueryProvider>
-        <WalletBalancesBody priceSolana={solanaPrice} username={username} />
-      </TanstackQueryProvider>
+      <Suspense fallback={<div>Loading...</div>}>
+        <WalletBalancesBody username={username} />
+      </Suspense>
     </section>
   )
 }
