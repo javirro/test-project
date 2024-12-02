@@ -15,8 +15,9 @@ interface MainCardProps {
   project: Project
   setIndexShowProject: Dispatch<SetStateAction<number>>
   totalProjects: number
+  deactivated: boolean
 }
-function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps) {
+function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: MainCardProps) {
   const [likeStatus, setLikeStatus] = useState<'yes' | 'no' | null>(null)
   const [{ x, rotate, scale }, api] = useSpring(() => ({
     x: 0,
@@ -73,32 +74,57 @@ function MainCard({ project, setIndexShowProject, totalProjects }: MainCardProps
   )
 
   return (
-    <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
-      <Link href={`/token-details/${project.tokenMintAddress}/overview`} className={style.frame}>
-        <div className={style.avatarContainer}>
-          <ProjectAvatar badget={true} />
-          <div>
-            <p className={style.mainText}>{project?.tokenName}</p>
-            <p className={style.marketCapText}>Market Cap: 23.5k</p>
+    <>
+      {deactivated ? (
+        <div className={style.mainSecondProject}>
+          <Link href={`/token-details/${project.tokenMintAddress}/overview`} className={style.frame}>
+            <div className={style.avatarContainer}>
+              <ProjectAvatar badget={true} />
+              <div>
+                <p className={style.mainText}>{project?.tokenName}</p>
+                <p className={style.marketCapText}>Market Cap: 23.5k</p>
+              </div>
+            </div>
+            <div className={style.priceContainer}>
+              <p className={style.priceText}>$0.07851</p>
+              <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
+            </div>
+          </Link>
+          <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
+          <div className={style.videoContainer}>
+            <Stream src={project.video} autoplay loop muted controls={false} height="80%" width="100%" />
           </div>
-        </div>
-        <div className={style.priceContainer}>
-          <p className={style.priceText}>$0.07851</p>
-          <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
-        </div>
-      </Link>
-      <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
-      <div className={style.videoContainer}>
-        <Stream src={project.video} autoplay loop muted controls={false} height="80%" width="100%" />
-        <div className={style.dragOverlay} {...bind()}></div>
-      </div>
 
-      {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
-      {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
+          <div className={style.shadow}></div>
+        </div>
+      ) : (
+        <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
+          <Link href={`/token-details/${project.tokenMintAddress}/overview`} className={style.frame}>
+            <div className={style.avatarContainer}>
+              <ProjectAvatar badget={true} />
+              <div>
+                <p className={style.mainText}>{project?.tokenName}</p>
+                <p className={style.marketCapText}>Market Cap: 23.5k</p>
+              </div>
+            </div>
+            <div className={style.priceContainer}>
+              <p className={style.priceText}>$0.07851</p>
+              <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
+            </div>
+          </Link>
+          <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
+          <div className={style.videoContainer}>
+            <Stream src={project.video} autoplay loop muted controls={false} height="80%" width="100%" />
+            <div className={style.dragOverlay} {...bind()}></div>
+          </div>
 
-      <div className={style.shadow}></div>
-      <div className={style.shadow}></div>
-    </animated.section>
+          {likeStatus === 'yes' && <img src="/yes.svg" alt="Yes" className={`${style.yes} ${style.visible}`} />}
+          {likeStatus === 'no' && <img src="/no.svg" alt="No" className={`${style.no} ${style.visible}`} />}
+
+          <div className={style.shadow}></div>
+        </animated.section>
+      )}
+    </>
   )
 }
 
