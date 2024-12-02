@@ -1,12 +1,22 @@
+'use client'
+
 import ProjectAvatar from '@/components/avatars/ProjectAvatar'
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
 import StarButtonIcon from '@/images/buttons/components/starButton'
 import style from './tokenDetails.module.css'
 import Likes from './Likes'
 import { Project } from '@/types/project'
+import { useProjectStore } from '@/app/store/projectStore'
+import { useEffect } from 'react'
 
 function TokenDetails({ project }: { project: Project }) {
   const { tokenMintAddress, tokenName } = project
+  const { setProject } = useProjectStore()
+
+  useEffect(() => {
+    setProject(project)
+  }, [])
+
   return (
     <div style={{ display: 'flex', gap: '8px', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingTop: '16px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
