@@ -1,4 +1,3 @@
-
 import style from './page.module.css'
 import SearchableAsset from '../send/components/searchableAsset/SearchableAsset'
 import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
@@ -26,9 +25,7 @@ interface PageProps {
 async function SellPage({ params }: PageProps) {
   const { username } = await params
   const cookiesStore = await cookies()
-  const sellStep: string = (cookiesStore).get('sellStep')?.value ?? '1'
-  //TODO: FETCH USER BALANCE
-  //TODO: FETCH ASSETS PRICES
+  const sellStep: string = cookiesStore.get('sellStep')?.value ?? '1'
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
@@ -41,6 +38,8 @@ export default SellPage
 
 const SellBodyComponent = async ({ username, sellStep }: { sellStep: string; username: string }) => {
   const solanaPrice: number = (await getSolanaPrice()).price
+  //TODO: FETCH USER BALANCE
+  //TODO: FETCH ASSETS PRICES
   return (
     <>
       {sellStep === '1' && (
