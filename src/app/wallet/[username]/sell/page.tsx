@@ -8,6 +8,9 @@ import AmountSelection from './amount/AmountSelection'
 import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
+import { getSolanaBalance } from '@/contracts/getBalances'
+import { notFound } from 'next/navigation'
+import { User } from '@/types/user'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -26,25 +29,28 @@ async function SellPage({ params }: PageProps) {
   const { username } = await params
   const cookiesStore = await cookies()
   const sellStep: string = cookiesStore.get('sellStep')?.value ?? '1'
+  const user: User | null = JSON.parse(cookiesStore.get('user')?.value as string) ?? null
+  if (!user) notFound()
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <SellBodyComponent username={username} sellStep={sellStep} />
+      <SellBodyComponent username={username} userAddress={user.address} sellStep={sellStep} />
     </Suspense>
   )
 }
 
 export default SellPage
 
-const SellBodyComponent = async ({ username, sellStep }: { sellStep: string; username: string }) => {
+const SellBodyComponent = async ({ username, userAddress, sellStep }: { sellStep: string; username: string; userAddress: string }) => {
   const solanaPrice: number = (await getSolanaPrice()).price
+  const { solBalance } = await getSolanaBalance(userAddress as string)
   //TODO: FETCH USER BALANCE
   //TODO: FETCH ASSETS PRICES
   return (
     <>
       {sellStep === '1' && (
         <section className={style.main}>
-          <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} />
+          <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} solanaBalance={solBalance}/>
         </section>
       )}
       {sellStep === '2' && <AmountSelection />}
