@@ -103,7 +103,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
           </Link>
           <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
           <div className={style.videoContainer}>
-            <Stream src={project.video} autoplay loop muted={false} controls={false} height="80%" width="100%" />
+            <Stream src={project.video} autoplay loop muted controls={false} height="80%" width="100%" />
             <div className={style.dragOverlay} {...bind()}></div>
           </div>
 
