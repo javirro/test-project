@@ -20,3 +20,12 @@ export type User = {
   showWalletShortcuts: boolean
   creationDate: number
 }
+
+export type UserBalanceWithProjectInfo = {
+  username: string
+  tokenMintAddress: string
+  balance: number
+  tokenName: string
+  tokenSymbol: string
+  image: string
+}

@@ -1,13 +1,6 @@
-import { Asset } from '@/types/assetsList'
+import { Asset, AssetsListProps } from '@/types/assetsList'
 import AssetItem from './AssetItem'
 
-interface AssetsListProps {
-  assets: Asset[]
-  username: string
-  solBalance: string
-  solPrice: number
-  isHandleClick?: boolean
-}
 
 function AssetsList({ assets, username, solBalance, solPrice }: AssetsListProps) {
   const amountInUSD = parseFloat((parseFloat(solBalance) * solPrice).toFixed(2))
@@ -15,6 +8,7 @@ function AssetsList({ assets, username, solBalance, solPrice }: AssetsListProps)
     name: 'Solana',
     symbol: 'SOL',
     address: '0x',
+    image: 'solana',
     amount: parseFloat(solBalance),
     gains: 12,
     amountInUSD: amountInUSD,
