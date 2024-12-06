@@ -10,12 +10,14 @@ import { useState } from 'react'
 import style from './walletInformation.module.css'
 import { setCookie } from 'cookies-next'
 
+type WalletButtons = 'send' | 'receive' | 'activity' | 'sell' | ''
+
 const WalletButtonsNavigation = ({ username }: { username: string }) => {
   const { setActionNavBarMessage } = useNavBarStore()
-  const [activeButton, setActiveButton] = useState<string>('send')
+  const [activeButton, setActiveButton] = useState<WalletButtons>('')
   const router = useRouter()
 
-  const handleButtonClick = (button: string) => {
+  const handleButtonClick = (button: WalletButtons) => {
     setActiveButton(button)
 
     if (button === 'receive') {

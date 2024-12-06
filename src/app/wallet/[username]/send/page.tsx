@@ -1,38 +1,40 @@
 import style from './page.module.css'
 import SearchableAsset from './components/searchableAsset/SearchableAsset'
-import { assets } from '@/utils/fakeAssetsList'
+import { formatAssetsInfo } from '@/utils/fakeAssetsList'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
-import { User } from '@/types/user'
+import { User, UserBalanceWithProjectInfo } from '@/types/user'
 import { getSolanaBalance } from '@/contracts/getBalances'
 import { Suspense } from 'react'
+import { getUserBalancesProjectList } from '@/dataFetching/users/getUserBalancesProjectList'
+import { Price } from '@/types/prices'
 
-interface PageProps {
-  params: Promise<{ username: string }>
-}
-
-async function page({ params }: PageProps) {
-  const { username } = await params
+async function page() {
   const cookiesStore = await cookies()
   const user: User | null = JSON.parse(cookiesStore.get('user')?.value as string) ?? null
-  if (!user) notFound()
+  const token = cookiesStore.get('token')?.value
+  if (!user || !token) notFound()
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <SendBodyComponent username={username} userAddress={user.address} sendStep={'1'} />
+      <SendBodyComponent token={token} user={user} sendStep={'1'} />
     </Suspense>
   )
 }
 
 export default page
 
-const SendBodyComponent = async ({ username, userAddress }: { sendStep: string; username: string; userAddress: string }) => {
-  const solanaPrice: number = (await getSolanaPrice()).price
-  const { solBalance } = await getSolanaBalance(userAddress as string)
+const SendBodyComponent = async ({ user, token }: { sendStep: string; user: User; token: string }) => {
+  const promises = [getSolanaPrice(), getSolanaBalance(user.address as string), getUserBalancesProjectList(user, token as string)]
+  const [solanaPriceData, solanaBalance, balancesList] = await Promise.all(promises)
+  const { solBalance } = solanaBalance as { lamportSolBalance: string; solBalance: string }
+  const { price: solanaPrice } = solanaPriceData as Price
+
+  const formateddBalancesList = formatAssetsInfo(balancesList as UserBalanceWithProjectInfo[])
   return (
     <section className={style.main}>
-      <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
+      <SearchableAsset assets={formateddBalancesList} username={user.username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
     </section>
   )
 }
