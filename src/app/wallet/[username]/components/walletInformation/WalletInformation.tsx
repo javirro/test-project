@@ -14,7 +14,7 @@ function WalletInformation({ username, priceSolana, solBalance }: WalletInformat
   return (
     <section className={style.main}>
       <div className={style.balanceSection}>
-        <p className={style.amount}>${totalBalance}</p>
+        <p className={style.amount}>${totalBalance.toFixed(2)}</p>
         <div
           style={{
             display: 'flex',
