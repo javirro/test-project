@@ -23,6 +23,8 @@ export const priceEndpoints = {
 export const transactionsEndpoints = {
   getTransactionsByUserAddress: (address: string) => `${BASE_URL}/transactions/${address}`, //GET
   buySellTokens: `${BASE_URL}/transactions/buy-sell`, //POST
+  sendTokens: `${BASE_URL}/transactions/send/tokens`, //POST
+  sendSolana: `${BASE_URL}/transactions/send/solana`, //POST
 }
 
 export const userEndpoints = {
@@ -37,3 +39,4 @@ export const userEndpoints = {
 export const balancesEndpoints = {
   getBalancesWithProjectsInfo: (username: string) => `${BASE_URL}/users/balances/projects/${username}`, //GET
 }
+

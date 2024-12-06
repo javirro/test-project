@@ -29,6 +29,7 @@ export default page
 const ActivityBody = async ({ username, userAddress }: { username: string; userAddress: string }) => {
   const solanaPrice: number = (await getSolanaPrice()).price
   const { solBalance } = await getSolanaBalance(userAddress as string)
+  
   return (
     <section className={style.main}>
       <p className={style.text}>Today</p>
