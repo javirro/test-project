@@ -1,7 +1,6 @@
 import AmountInformation from './components/amountInformation/AmountInformation'
 import SelectAmount from './components/selectAmount/SelectAmount'
 import Keyboard from './components/keyboard/Keyboard'
-import Link from 'next/link'
 import style from './page.module.css'
 import NextButton from './components/nextButton/NextButton'
 

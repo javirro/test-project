@@ -1,7 +1,7 @@
 import { assetActivity, AssetsListActivityProps } from '@/types/assetsList'
 import AssetItemActivity from './AssetItemActivity'
 
-function AssetsListActivity({ assets, username, solBalance }: AssetsListActivityProps) {
+function AssetsListActivity({ assets, solBalance }: AssetsListActivityProps) {
   const solanaAsset: assetActivity = {
     type: 'receive',
     symbol: 'SOL',
