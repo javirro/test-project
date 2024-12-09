@@ -1,7 +1,7 @@
 .likeContainer {
   position: absolute;
   z-index: 500;
-  bottom: var(--size96);
+  bottom: var(--size58);
   right: var(--size20);
   display: flex;
   align-items: center;

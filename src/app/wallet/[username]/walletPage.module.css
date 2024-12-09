@@ -1,8 +1,7 @@
 .wallet {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 100%;
+  height: var(--height-main);
   background-color: #f5f5f5;
   color: black;
   width: 100%;

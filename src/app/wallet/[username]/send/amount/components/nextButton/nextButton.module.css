@@ -1,0 +1,22 @@
+.buttonNext {
+  display: flex;
+  height: 50px;
+  padding: 15px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: #f7c84f;
+  color: #332904;
+  text-align: center;
+
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+  border: none;
+  margin-bottom: 16px;
+}
