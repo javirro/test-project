@@ -5,7 +5,7 @@ const SendButtonIcon: React.FC<IconProps> = ({ width = '100%', height = '100%', 
     <svg
       width={width}
       height={height}
-      viewBox="0 0 15 13"
+      viewBox="0 0 15 10"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
