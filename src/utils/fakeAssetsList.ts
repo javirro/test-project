@@ -1,4 +1,4 @@
-import { Asset } from '@/types/assetsList'
+import { Asset, assetActivity } from '@/types/assetsList'
 import { UserBalanceWithProjectInfo } from '@/types/user'
 
 export const assets: Asset[] = [
@@ -19,6 +19,23 @@ export const assets: Asset[] = [
     gains: 251,
     amountInUSD: 4050,
     image: 'usdt',
+  },
+]
+
+export const assetsActivity: assetActivity[] = [
+  {
+    type: 'send',
+    symbol: 'SOL',
+    address: '9383h...uwi92',
+    amount: 4980.0,
+    gains: 251,
+  },
+  {
+    type: 'receive',
+    symbol: 'USDT',
+    address: '9383h...uwi92',
+    amount: 4980.0,
+    gains: 251,
   },
 ]
 

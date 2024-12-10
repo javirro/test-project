@@ -7,6 +7,8 @@ import { notFound } from 'next/navigation'
 import { getSolanaBalance } from '@/contracts/getBalances'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 import { getUserBalancesProjectList } from '@/dataFetching/users/getUserBalancesProjectList'
+import { Price } from '@/types/prices'
+import { UserBalanceWithProjectInfo } from '@/types/user'
 
 interface WalletInformationProps {
   username: string
@@ -18,18 +20,20 @@ const WalletBalancesBody = async ({  username }: WalletInformationProps) => {
   const token = cookiesStore.get('token')?.value
   if (!userCookie) notFound()
   const user = JSON.parse(userCookie)
-  const priceSolana: number = (await getSolanaPrice()).price
-  const { solBalance } = await getSolanaBalance(user?.address as string)
-  const balancesList = await getUserBalancesProjectList(user, token as string)
-  const formateddBalancesList = formatAssetsInfo(balancesList)
-  const numberOfAssets = balancesList.length  +1
+  const promises = [getSolanaPrice(), getSolanaBalance(user.address as string), getUserBalancesProjectList(user, token as string)]
+  const [solanaPriceData, solanaBalance, balancesList] = await Promise.all(promises)
+  const { solBalance } = solanaBalance as { lamportSolBalance: string; solBalance: string }
+  const { price: solanaPrice } = solanaPriceData as Price
+
+  const formateddBalancesList = formatAssetsInfo(balancesList as UserBalanceWithProjectInfo[])
+  const numberOfAssets = formateddBalancesList.length  +1
 
   return (
     <>
-      {<WalletInformation priceSolana={priceSolana} solBalance={solBalance} username={username} />}
+      {<WalletInformation priceSolana={solanaPrice} solBalance={solBalance} username={username} />}
       <div className={styles.myAssetsDiv}>
         <p className={styles.myAssetsText}>My assets ({numberOfAssets})</p>
-        <AssetsList assets={formateddBalancesList} username={username} solBalance={solBalance} solPrice={priceSolana} />
+        <AssetsList assets={formateddBalancesList} username={username} solBalance={solBalance} solPrice={solanaPrice} />
       </div>
     </>
   )
