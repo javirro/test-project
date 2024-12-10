@@ -1,0 +1,84 @@
+.skeletonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 120px;
+}
+
+.searchBarSkeleton {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  background-color: #e0e0e0;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.assetsSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.assetSkeleton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  background-color: #f0f0f0;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.assetImageSkeleton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+}
+
+.assetInfoSkeleton {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.assetNameSkeleton {
+  width: 50%;
+  height: 16px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+}
+
+.assetAmountSkeleton {
+  width: 30%;
+  height: 12px;
+  background-color: #d0d0d0;
+  border-radius: 4px;
+}
+
+.assetUsdSkeleton {
+  width: 20%;
+  height: 16px;
+  background-color: #c0c0c0;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+.skeletonContainer,
+.searchBarSkeleton,
+.assetsSkeleton,
+.assetSkeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f5f5f5 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+}

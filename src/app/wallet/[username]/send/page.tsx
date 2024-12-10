@@ -9,6 +9,7 @@ import { getSolanaBalance } from '@/contracts/getBalances'
 import { Suspense } from 'react'
 import { getUserBalancesProjectList } from '@/dataFetching/users/getUserBalancesProjectList'
 import { Price } from '@/types/prices'
+import SekeletonLoaderSend from './components/skeletonLoader/SekeletonLoaderSend'
 
 async function page() {
   const cookiesStore = await cookies()
@@ -18,7 +19,7 @@ async function page() {
   if (!user || !token) notFound()
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<SekeletonLoaderSend />}>
       <SendBodyComponent token={token} user={user} sendStep={sendStep} />
     </Suspense>
   )

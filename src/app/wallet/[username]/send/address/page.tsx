@@ -3,6 +3,7 @@
 import { AppRoot, Input, Tappable } from '@telegram-apps/telegram-ui'
 import '@telegram-apps/telegram-ui/dist/styles.css'
 import style from './page.module.css'
+import TapBarSendActions from './components/TapBarSendActions'
 // import { useState } from 'react'
 
 function page() {
@@ -25,6 +26,7 @@ function page() {
           </Tappable>
         }
       />
+      <TapBarSendActions />
     </AppRoot>
   )
 }

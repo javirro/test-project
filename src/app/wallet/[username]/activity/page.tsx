@@ -7,6 +7,7 @@ import { User } from '@/types/user'
 import { Suspense } from 'react'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 import { getSolanaBalance } from '@/contracts/getBalances'
+import SekeletonLoaderSend from '../send/components/skeletonLoader/SekeletonLoaderSend'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -18,7 +19,7 @@ async function page({ params }: PageProps) {
   const user: User | null = JSON.parse(cookiesStore.get('user')?.value as string) ?? null
   if (!user) notFound()
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<SekeletonLoaderSend />}>
       <ActivityBody username={username} userAddress={user.address} />
     </Suspense>
   )

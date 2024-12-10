@@ -1,6 +1,6 @@
 .profileNavBar {
   position: fixed;
-  top: 0;
+  top: 40px;
   left: 0;
   width: 100vw;
   padding: 35px 16px;
@@ -30,7 +30,7 @@
 
 .profileNavBarBack {
   position: fixed;
-  top: 0;
+  top: 40px;
   left: 0;
   width: 100vw;
   padding: 5px 16px;
@@ -74,7 +74,7 @@
 
 .projectPrivateNavBarMain {
   position: fixed;
-  top: 0;
+  top: 40px;
   left: 0;
   width: 100vw;
   padding: 35px 16px;
@@ -94,7 +94,7 @@
 
 .projectPublicNavBarMain {
   position: fixed;
-  top: 0;
+  top: 40px;
   left: 0;
   width: 100vw;
   padding: 14px 16px;

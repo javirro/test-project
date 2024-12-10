@@ -29,6 +29,8 @@ function NavBarWrapper() {
       <nav style={{ width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '1000' }}>
         {pathname === '/create-project' && <ProfileNavBar onBackClick={handleBackClick} />}
         {pathname.startsWith('/token-details') && <ProjectPublicNavBar onBackClick={handleBackClick} />}
+        {pathname.endsWith('/profile') && <ProfileNavBar onBackClick={handleBackClick} />}
+        {pathname.endsWith('/explore') && <ProfileNavBar onBackClick={handleBackClick} />}
         {pathname === '/' && <SegmentedCustom />}
         {showActionNavBar && <ActionNavBar />}
       </nav>
