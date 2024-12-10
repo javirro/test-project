@@ -7,11 +7,11 @@ import { usePathname, useRouter } from 'next/navigation'
 import { setCookie } from 'cookies-next'
 import { Asset } from '@/types/assetsList'
 
-const AssetItem = ({ asset, username }: { asset: Asset; username: string }) => {
+const AssetItem = ({ asset }: { asset: Asset; username: string }) => {
   const pathname = usePathname()
   const router = useRouter()
   const isSell = pathname.endsWith('sell')
-  const redirectPath = `/wallet/${username}/send/address`
+
   const { setActionNavBarMessage } = useNavBarStore()
   const onClick = () => {
     setActionNavBarMessage(`${isSell ? 'Sell' : 'Send'} ${asset.name}`)
@@ -25,10 +25,18 @@ const AssetItem = ({ asset, username }: { asset: Asset; username: string }) => {
           address: asset.address,
         })
       )
-      router.refresh()
     } else {
-      router.push(redirectPath)
+      setCookie('sendStep', '2')
+      setCookie(
+        'sendToken',
+        JSON.stringify({
+          name: asset.name,
+          symbol: asset.symbol,
+          address: asset.address,
+        })
+      )
     }
+    router.refresh()
   }
   return (
     <div className={style.assetContainer} onClick={onClick}>
