@@ -6,7 +6,7 @@ import TapBarChat from './variants/TapBarChat'
 import style from './tapBarWrapper.module.css'
 import DynamicTapbarNoSSR from './DynamicTapbarNoSSR'
 import TapBarWallet from './variants/TapBarWallet'
-import TapBarSendActions from './variants/TapBarSendActions'
+// import TapBarSendActions from './variants/TapBarSendActions'
 
 function TapBarWrapper() {
   const pathname = usePathname()
