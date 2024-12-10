@@ -6,7 +6,7 @@ import TapBarChat from './variants/TapBarChat'
 import style from './tapBarWrapper.module.css'
 import DynamicTapbarNoSSR from './DynamicTapbarNoSSR'
 import TapBarWallet from './variants/TapBarWallet'
-import TapBarSendActions from './variants/TapBarSendActions'
+// import TapBarSendActions from './variants/TapBarSendActions'
 
 function TapBarWrapper() {
   const pathname = usePathname()
@@ -25,7 +25,7 @@ function TapBarWrapper() {
       {pathname.startsWith('/token-details') && !pathname.endsWith('/comments') && <TapBarTokenActions />}
       {pathname.endsWith('/comments') && <TapBarChat />}
       {pathname.startsWith('/wallet') && pathname.endsWith('/receive') && <TapBarWallet />}
-      {pathname.startsWith('/wallet') && pathname.endsWith('/address') && <TapBarSendActions />}
+      {/* {pathname.startsWith('/wallet') && pathname.endsWith('/address') && <TapBarSendActions />} */}
     </div>
   )
 }

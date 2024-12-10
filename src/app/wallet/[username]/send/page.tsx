@@ -9,23 +9,25 @@ import { getSolanaBalance } from '@/contracts/getBalances'
 import { Suspense } from 'react'
 import { getUserBalancesProjectList } from '@/dataFetching/users/getUserBalancesProjectList'
 import { Price } from '@/types/prices'
+import SekeletonLoaderSend from './components/skeletonLoader/SekeletonLoaderSend'
 
 async function page() {
   const cookiesStore = await cookies()
   const user: User | null = JSON.parse(cookiesStore.get('user')?.value as string) ?? null
   const token = cookiesStore.get('token')?.value
+  const sendStep: string = cookiesStore.get('sendStep')?.value ?? '1'
   if (!user || !token) notFound()
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <SendBodyComponent token={token} user={user} sendStep={'1'} />
+    <Suspense fallback={<SekeletonLoaderSend />}>
+      <SendBodyComponent token={token} user={user} sendStep={sendStep} />
     </Suspense>
   )
 }
 
 export default page
 
-const SendBodyComponent = async ({ user, token }: { sendStep: string; user: User; token: string }) => {
+const SendBodyComponent = async ({ user, token, sendStep }: { sendStep: string; user: User; token: string }) => {
   const promises = [getSolanaPrice(), getSolanaBalance(user.address as string), getUserBalancesProjectList(user, token as string)]
   const [solanaPriceData, solanaBalance, balancesList] = await Promise.all(promises)
   const { solBalance } = solanaBalance as { lamportSolBalance: string; solBalance: string }
@@ -33,8 +35,12 @@ const SendBodyComponent = async ({ user, token }: { sendStep: string; user: User
 
   const formateddBalancesList = formatAssetsInfo(balancesList as UserBalanceWithProjectInfo[])
   return (
-    <section className={style.main}>
-      <SearchableAsset assets={formateddBalancesList} username={user.username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
-    </section>
+    <>
+      {sendStep === '1' && (
+        <section className={style.main}>
+          <SearchableAsset assets={formateddBalancesList} username={user.username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
+        </section>
+      )}
+    </>
   )
 }

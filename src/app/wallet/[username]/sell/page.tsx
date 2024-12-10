@@ -11,6 +11,7 @@ import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 import { getSolanaBalance } from '@/contracts/getBalances'
 import { notFound } from 'next/navigation'
 import { User } from '@/types/user'
+import SekeletonLoaderSend from '../send/components/skeletonLoader/SekeletonLoaderSend'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -33,7 +34,7 @@ async function SellPage({ params }: PageProps) {
   if (!user) notFound()
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<SekeletonLoaderSend />}>
       <SellBodyComponent username={username} userAddress={user.address} sellStep={sellStep} />
     </Suspense>
   )
@@ -50,7 +51,7 @@ const SellBodyComponent = async ({ username, userAddress, sellStep }: { sellStep
     <>
       {sellStep === '1' && (
         <section className={style.main}>
-          <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} solanaBalance={solBalance}/>
+          <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
         </section>
       )}
       {sellStep === '2' && <AmountSelection />}
