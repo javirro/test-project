@@ -25,7 +25,7 @@ function TapBarWrapper() {
       {pathname.startsWith('/token-details') && !pathname.endsWith('/comments') && <TapBarTokenActions />}
       {pathname.endsWith('/comments') && <TapBarChat />}
       {pathname.startsWith('/wallet') && pathname.endsWith('/receive') && <TapBarWallet />}
-      {pathname.startsWith('/wallet') && pathname.endsWith('/address') && <TapBarSendActions />}
+      {/* {pathname.startsWith('/wallet') && pathname.endsWith('/address') && <TapBarSendActions />} */}
     </div>
   )
 }
