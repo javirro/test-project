@@ -10,6 +10,11 @@ import { Suspense } from 'react'
 import { getUserBalancesProjectList } from '@/dataFetching/users/getUserBalancesProjectList'
 import { Price } from '@/types/prices'
 import SekeletonLoaderSend from './components/skeletonLoader/SekeletonLoaderSend'
+import SetDestinationAddress from './components/setDestinationAddress/SetDestinationAddress'
+import AmountInformation from './amount/amountInformation/AmountInformation'
+import Keyboard from './amount/keyboard/Keyboard'
+import NextButton from './amount/nextButton/NextButton'
+import SelectAmount from './amount/selectAmount/SelectAmount'
 
 async function page() {
   const cookiesStore = await cookies()
@@ -40,6 +45,16 @@ const SendBodyComponent = async ({ user, token, sendStep }: { sendStep: string; 
         <section className={style.main}>
           <SearchableAsset assets={formateddBalancesList} username={user.username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
         </section>
+      )}
+      {sendStep === '2' && <SetDestinationAddress />}
+
+      {sendStep === '3' && (
+        <main className={style.mainAmount}>
+          <AmountInformation balanceList={formateddBalancesList} />
+          <SelectAmount balanceList={formateddBalancesList} />
+          <NextButton />
+          <Keyboard />
+        </main>
       )}
     </>
   )
