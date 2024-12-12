@@ -20,8 +20,9 @@ import TransactionConfirmation from './confirmation/transactionConfirmation/Tran
 import BackToWalletButton from './confirmation/BackToWalletButton'
 
 interface PageProps {
-  params: { username: string }
+  params: Promise<{ username: string }>
 }
+
 async function page({ params }: PageProps) {
   const { username } = await params
   const cookiesStore = await cookies()
