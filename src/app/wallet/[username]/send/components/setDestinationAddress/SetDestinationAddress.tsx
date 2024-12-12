@@ -1,22 +1,22 @@
 'use client'
 
 import { AppRoot, Input, Tappable } from '@telegram-apps/telegram-ui'
+import TapBarSendActions from './TapBarSendActions'
+import { useState } from 'react'
+
+import style from './SetDestinationAddress.module.css'
 import '@telegram-apps/telegram-ui/dist/styles.css'
-import style from './page.module.css'
-import TapBarSendActions from './components/TapBarSendActions'
-// import { useState } from 'react'
 
-function page() {
-  // const [username, setUsername] = useState<string>('')
-
+const SetDestinationAddress = () => {
+  const [destination, setDestination ] = useState<string>('')
   return (
-    <AppRoot style={{ width: '100%', padding: '64px 16px' }} appearance="light">
+    <AppRoot style={{ width: '100%', padding: '100px 16px' }} appearance="light">
       <Input
         className={`${style.inputStyle} ${style.customInputPadding}`}
         header="To"
         placeholder="@username or address"
-        // value={username}
-        // onChange={(e) => setUsername(e.target.value)}
+        value={destination}
+        onChange={(e) => setDestination(e.target.value)}
         after={
           <Tappable Component="div" style={{ display: 'flex' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,9 +26,9 @@ function page() {
           </Tappable>
         }
       />
-      <TapBarSendActions />
+      <TapBarSendActions destination={destination}/>
     </AppRoot>
   )
 }
 
-export default page
+export default SetDestinationAddress

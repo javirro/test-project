@@ -6,11 +6,15 @@ import ProjectPublicNavBar from './navBars/ProjectPublicNavBar'
 import SegmentedCustom from '../segmentedCustom/SegmentedCustom'
 import ActionNavBar from './navBars/ActionNavBar'
 import { TanstackQueryProvider } from '@/components/TanstackQueryProvider/TanstackQueryProvider'
+import { getCookie } from 'cookies-next/client'
 
 function NavBarWrapper() {
   const pathname = usePathname()
   const router = useRouter()
-
+  const sendCookie = getCookie('sendStep')
+  const sellCookie = getCookie('sellStep')
+  const sendStep = sendCookie ? parseInt(sendCookie) : 0
+  const sellStep = sellCookie ? parseInt(sellCookie) : 0
   const handleBackClick = () => {
     router.push('/')
   }
@@ -18,11 +22,8 @@ function NavBarWrapper() {
   const showActionNavBar =
     pathname.endsWith('/receive') ||
     pathname.endsWith('/activity') ||
-    pathname.endsWith('/send') ||
-    pathname.endsWith('/sell') ||
-    pathname.endsWith('/send/address') ||
-    pathname.endsWith('/send/amount') ||
-    pathname.endsWith('/send/resume')
+    (pathname.endsWith('/send') && sendStep < 4) ||
+    (pathname.endsWith('/sell') && sellStep < 4)
 
   return (
     <TanstackQueryProvider>

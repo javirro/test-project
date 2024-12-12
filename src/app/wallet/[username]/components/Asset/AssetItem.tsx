@@ -6,12 +6,13 @@ import { useNavBarStore } from '@/app/store/navBarStore'
 import { usePathname, useRouter } from 'next/navigation'
 import { setCookie } from 'cookies-next'
 import { Asset } from '@/types/assetsList'
+import { useSendStore } from '@/app/store/sendStore'
 
 const AssetItem = ({ asset }: { asset: Asset; username: string }) => {
   const pathname = usePathname()
   const router = useRouter()
   const isSell = pathname.endsWith('sell')
-
+  const {setTokenName, setTokenSymbol, setTokenAddress} = useSendStore()
   const { setActionNavBarMessage } = useNavBarStore()
   const onClick = () => {
     setActionNavBarMessage(`${isSell ? 'Sell' : 'Send'} ${asset.name}`)
@@ -27,14 +28,9 @@ const AssetItem = ({ asset }: { asset: Asset; username: string }) => {
       )
     } else {
       setCookie('sendStep', '2')
-      setCookie(
-        'sendToken',
-        JSON.stringify({
-          name: asset.name,
-          symbol: asset.symbol,
-          address: asset.address,
-        })
-      )
+      setTokenName(asset.name)
+      setTokenSymbol(asset.symbol)
+      setTokenAddress(asset.address)
     }
     router.refresh()
   }
