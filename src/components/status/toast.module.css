@@ -1,0 +1,24 @@
+.toast-container {
+  display: flex;
+  gap: 12px;
+  background-color: #f7c84f;
+  padding: 16px;
+  border-radius: 12px;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  position: absolute;
+  width: 80%;
+}
+
+.toast-text {
+  color: #000;
+}
+
+.toast-icon {
+  width: 30px;
+  height: 30px;
+}

@@ -1,11 +1,13 @@
 .wallet {
   display: flex;
   flex-direction: column;
-  height: var(--height-main);
+  min-height: var(--height-main);
+  height: 100%;
   background-color: #f5f5f5;
   color: black;
   width: 100%;
   background: linear-gradient(189deg, #e0c52d 2.12%, #ffed89 97.88%);
+  margin-bottom: 15vh;
 }
 
 .myAssetsDiv {

@@ -3,13 +3,13 @@
 import './addButton.css'
 
 interface SquareButtonProps {
-  onPress: () => void
+  onPress?: () => void
   size?: number
 }
 
 const AddButton: React.FC<SquareButtonProps> = ({ onPress, size = 50 }) => {
   const handleClick = () => {
-    onPress()
+    if (onPress) onPress()
   }
 
   return (

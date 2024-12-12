@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useTransition, useEffect } from 'react'
 import CreateProjectFirstStep from './components/CreateProjectFirstStep'
 import CreateProjectSecondStep from './components/CreateProjectSecondStep'
 import { useCreateProjectStore } from '../store/createProjectStore'
@@ -21,6 +21,15 @@ function Page() {
   const [toastMessage, setToastMessage] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
 
+  useEffect(() => {
+    if (toastMessage) {
+      const timer = setTimeout(() => {
+        setToastMessage(null)
+      }, 2000)
+      return () => clearTimeout(timer)
+    }
+  }, [toastMessage])
+
   const getBackgroundColor = (index: number) => {
     return index <= step ? '#997312' : '#F4F4F7'
   }
@@ -32,6 +41,7 @@ function Page() {
     }
     setStep(step + 1)
   }
+
   const handlePublish = async () => {
     startTransition(async () => {
       try {
@@ -75,6 +85,7 @@ function Page() {
   } else if (step === 1 && isPending) {
     btnText = 'Publishing...'
   }
+
   return (
     <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px' }}>
       <div className={style.stepViewer}>

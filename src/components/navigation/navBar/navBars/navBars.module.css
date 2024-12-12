@@ -1,6 +1,6 @@
 .profileNavBar {
   position: fixed;
-  top: 40px;
+  top: 0;
   left: 0;
   width: 100vw;
   padding: 35px 16px;
@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
+  height: 90px;
   background-color: white;
 }
 
@@ -30,7 +30,7 @@
 
 .profileNavBarBack {
   position: fixed;
-  top: 40px;
+  top: 0;
   left: 0;
   width: 100vw;
   padding: 5px 16px;
@@ -39,7 +39,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
+  height: 90px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -74,7 +74,7 @@
 
 .projectPrivateNavBarMain {
   position: fixed;
-  top: 40px;
+  top: 0;
   left: 0;
   width: 100vw;
   padding: 35px 16px;
@@ -82,7 +82,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
+  height: 90px;
   background-color: #fff;
 }
 
@@ -94,7 +94,7 @@
 
 .projectPublicNavBarMain {
   position: fixed;
-  top: 40px;
+  top: 0;
   left: 0;
   width: 100vw;
   padding: 14px 16px;
@@ -102,7 +102,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 56px;
+  height: 90px;
   background-color: #fff;
 }
 

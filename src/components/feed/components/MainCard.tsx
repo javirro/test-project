@@ -10,6 +10,7 @@ import { useDrag } from '@use-gesture/react'
 import { Stream } from '@cloudflare/stream-react'
 import { Project } from '@/types/project'
 import LikeCommentButtons from './LikeCommentButtons/LikeCommentButtons'
+import { useTapBarActionsStore } from '@/app/store/tapBarActionsStore'
 
 interface MainCardProps {
   project: Project
@@ -19,6 +20,8 @@ interface MainCardProps {
 }
 
 function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: MainCardProps) {
+  const { isMuted } = useTapBarActionsStore()
+
   const [likeStatus, setLikeStatus] = useState<'yes' | 'no' | null>(null)
 
   const [{ x, rotate, scale }, api] = useSpring(() => ({
@@ -103,7 +106,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
           </Link>
           <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
           <div className={style.videoContainer}>
-            <Stream src={project.video} autoplay loop muted controls={false} height="80%" width="100%" />
+            <Stream src={project.video} autoplay loop muted={isMuted} controls={false} height="80%" width="100%" />
             <div className={style.dragOverlay} {...bind()}></div>
           </div>
 
