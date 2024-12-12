@@ -27,7 +27,7 @@ function NavBarWrapper() {
   return (
     <TanstackQueryProvider>
       <nav style={{ width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '1000' }}>
-        {pathname === '/create-project' && <ProfileNavBar onBackClick={handleBackClick} />}
+        {pathname === '/create-project' && <ProfileNavBar />}
         {pathname.startsWith('/token-details') && <ProjectPublicNavBar onBackClick={handleBackClick} />}
         {pathname.endsWith('/profile') && <ProfileNavBar onBackClick={handleBackClick} />}
         {pathname.endsWith('/explore') && <ProfileNavBar onBackClick={handleBackClick} />}

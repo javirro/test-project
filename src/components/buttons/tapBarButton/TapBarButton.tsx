@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './TapBarButton.module.css'
 import { IconProps } from '@/types'
+import { useTapBarActionsStore } from '@/app/store/tapBarActionsStore'
 
 interface TapBarButtonProps {
   backgroundColor?: string
@@ -9,12 +10,19 @@ interface TapBarButtonProps {
   heartColor?: string
   activeHeartColor?: string
   Icon: React.FC<IconProps>
+  buttonType?: string
 }
 
-function TapBarButton({ backgroundColor = '#FDFBF2', activeBackgroundColor = '#EFEFF4 ', onPress, Icon }: TapBarButtonProps) {
+function TapBarButton({ backgroundColor = '#FDFBF2', activeBackgroundColor = '#EFEFF4 ', onPress, Icon, buttonType }: TapBarButtonProps) {
+  const { isMuted, setIsMuted } = useTapBarActionsStore()
+
   const [isActive, setIsActive] = useState(false)
 
   const handleMouseDown = () => {
+    if (buttonType === 'sound') {
+      setIsMuted(!isMuted)
+    }
+
     setIsActive(true)
   }
 

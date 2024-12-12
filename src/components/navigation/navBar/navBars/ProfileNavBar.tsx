@@ -1,5 +1,6 @@
 import ArrowLeftButtonIcon from '@/images/navBar/components/arrowLeft'
 import ConfigButtonIcon from '@/images/navBar/components/configButton'
+import Link from 'next/link'
 import style from './navBars.module.css'
 
 interface ProfileNavBarProps {
@@ -9,10 +10,15 @@ interface ProfileNavBarProps {
 function ProfileNavBar({ onBackClick }: ProfileNavBarProps) {
   return (
     <div className={style.profileNavBar}>
-      <button onClick={onBackClick} style={{ display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: 'transparent', border: 'none' }}>
+      <Link
+        href="/"
+        prefetch={false}
+        onClick={onBackClick}
+        style={{ display: 'flex', alignItems: 'center', gap: '8px', backgroundColor: 'transparent', border: 'none' }}
+      >
         <ArrowLeftButtonIcon width="24" height="24" color="#000000" />
         <p className={style.text}>Home</p>
-      </button>
+      </Link>
       <ConfigButtonIcon width="24" height="24" color="#707579" />
     </div>
   )
