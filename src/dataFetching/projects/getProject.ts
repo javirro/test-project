@@ -5,7 +5,10 @@ export const getProjects = async (): Promise<Project[]> => {
   const url = projectEndpoints.getProjects
 
   const response = await fetch(url, {
-    cache: 'no-cache',
+    cache: 'force-cache',
+    next: {
+      revalidate: 300, // each 5 minutes
+    },
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

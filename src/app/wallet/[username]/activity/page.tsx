@@ -8,10 +8,20 @@ import { Suspense } from 'react'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 import { getSolanaBalance } from '@/contracts/getBalances'
 import SekeletonLoaderSend from '../send/components/skeletonLoader/SekeletonLoaderSend'
+import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 
 interface PageProps {
   params: Promise<{ username: string }>
 }
+
+export async function generateStaticParams() {
+  const usernames = await getUsersUsernames()
+  return usernames.map((u) => ({
+    username: u,
+  }))
+}
+
+export const revalidate = 3600 //revalidate each hour
 
 async function page({ params }: PageProps) {
   const { username } = await params
