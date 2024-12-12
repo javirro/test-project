@@ -14,6 +14,7 @@ import LikeButton from '@/components/buttons/likeButton/LikeButton'
 import DislikeButton from '@/components/buttons/dislikeButton/DislikeButton'
 import { usePathname, useRouter } from 'next/navigation'
 import useTelegramUser from '@/hooks/useTelegramUser'
+import Link from 'next/link'
 import { setCookie } from 'cookies-next/client'
 
 function TapBar() {
@@ -38,11 +39,11 @@ function TapBar() {
     }
   }
 
-  const handleOnPressButton = (index: number) => {
-    if (index === 0) {
-      router.push('/create-project')
-    }
-  }
+  // const handleOnPressButton = (index: number) => {
+  //   if (index === 0) {
+  //     router.push('/create-project')
+  //   }
+  // }
 
   return (
     <>
@@ -66,13 +67,13 @@ function TapBar() {
               <ExploreButtonIcon color={activeIndex === 1 ? '#DAB223' : '#707579'} />
               <span className={styles.iconLabel}>{activeIndex === 1 ? <div className={styles.buttonSelected}></div> : 'Explore'}</span>
             </div>
-            <div className={styles.addButtonWrapper}>
-              <AddButton onPress={() => handleOnPressButton(0)} size={35} />
-            </div>
-            <div className={styles.iconWrapper} onClick={() => handleButtonClick(2)}>
+            <Link href="/create-project" prefetch={false} className={styles.addButtonWrapper}>
+              <AddButton size={35} />
+            </Link>
+            <Link href={`/wallet/${user?.username}`} prefetch={false} className={styles.iconWrapper} onClick={() => handleButtonClick(2)}>
               <WalletButtonIcon color={activeIndex === 2 ? '#DAB223' : '#707579'} />
               <span className={styles.iconLabel}>{activeIndex === 2 ? <div className={styles.buttonSelected}></div> : 'Wallet'}</span>
-            </div>
+            </Link>
             <div className={styles.iconWrapper} onClick={() => handleButtonClick(3)}>
               <div className={styles.profile}></div>
               <span className={styles.iconLabel}>{activeIndex === 3 ? <div className={styles.buttonSelected}></div> : 'Profile'}</span>
