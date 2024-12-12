@@ -73,7 +73,7 @@ const SendBodyComponent = async ({ user, token, sendStep, username }: { sendStep
 
       {sendStep === '5' && (
         <main className={style.mainConfirmation}>
-          <p className={style.text}>Send</p>
+          <p className={style.text}>Just sent!</p>
           <TransactionConfirmation solPrice={solanaPrice} />
           <BackToWalletButton username={username} />
         </main>
