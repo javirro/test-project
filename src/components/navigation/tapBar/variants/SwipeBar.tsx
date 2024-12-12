@@ -4,7 +4,10 @@ import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './swipeBar.module.css'
 import { setCookie } from 'cookies-next/client'
-import { usePathname, useRouter } from 'next/navigation'
+import { notFound, usePathname, useRouter } from 'next/navigation'
+import { sendSolana, sendTokens } from '@/dataFetching/transactions/send'
+import cookiesUserUtils from '@/utils/clientCookiesUtils'
+import { useSendStore } from '@/app/store/sendStore'
 
 interface swipeBarProps {
   setLoading: (loading: boolean) => void
@@ -15,15 +18,26 @@ const SwipeBar = ({ setLoading }: swipeBarProps) => {
   const pathname = usePathname()
   const isSend = pathname.includes('send')
   const router = useRouter()
-  const handleDragEnd = (_: any, info: any) => {
+  const user = cookiesUserUtils.getUserDataFromCookie()
+  const token = cookiesUserUtils.getTokenFromCookie()
+  const { amount, destination, tokenAddress, tokenSymbol } = useSendStore()
+  if (!user || !token) notFound()
+  const handleDragEnd = async (_: any, info: any) => {
     if (info.offset.x > 200) {
       setIsSwiped(true)
       try {
         setLoading(true)
         setTimeout(() => setLoading(false), 4000)
+
         //TODO: Set order to sell to backend and await for response
-        if(isSend) setCookie('sendStep', '5')
-        else setCookie('sellStep', '4')
+        if (isSend) {
+          const txData =
+            tokenSymbol.toLowerCase() === 'sol'
+              ? await sendSolana(user, token, amount, destination)
+              : await sendTokens(user, token, tokenAddress, amount, destination)
+          console.log('txData', txData)
+          setCookie('sendStep', '5')
+        } else setCookie('sellStep', '4')
         router.refresh()
       } catch (error) {
         console.error('Error while trying to sell order', error)
