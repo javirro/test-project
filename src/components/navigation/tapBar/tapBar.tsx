@@ -15,6 +15,7 @@ import DislikeButton from '@/components/buttons/dislikeButton/DislikeButton'
 import { usePathname, useRouter } from 'next/navigation'
 import useTelegramUser from '@/hooks/useTelegramUser'
 import Link from 'next/link'
+import { setCookie } from 'cookies-next/client'
 
 function TapBar() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -30,6 +31,8 @@ function TapBar() {
     } else if (index === 1) {
       router.push('/explore')
     } else if (index === 2) {
+      setCookie('sellStep', '1')
+      setCookie('sendStep', '1')
       router.push(`/wallet/${user?.username}`)
     } else if (index === 3) {
       router.push('/profile')
