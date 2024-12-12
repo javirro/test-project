@@ -1,3 +1,5 @@
+'use client'
+
 import { useSendStore } from '@/app/store/sendStore'
 import style from './transactionInformation.module.css'
 import { getTokenImg } from '@/images/tokens'

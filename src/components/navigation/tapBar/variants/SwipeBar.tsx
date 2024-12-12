@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './swipeBar.module.css'
-import { setCookie } from 'cookies-next'
+import { setCookie } from 'cookies-next/client'
 import { usePathname, useRouter } from 'next/navigation'
 
 interface swipeBarProps {
