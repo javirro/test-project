@@ -1,17 +1,23 @@
 'use client'
 
 import React from 'react'
-import Link from 'next/link'
-import { useUserStore } from '@/app/store/userStore'
 import style from './nextButton.module.css'
+import { useSendStore } from '@/app/store/sendStore'
+import { setCookie } from 'cookies-next/client'
+import { useRouter } from 'next/navigation'
 
 function NextButton() {
-  const { user } = useUserStore()
-
+  const { amount } = useSendStore()
+  const amountNumber = parseFloat(amount)
+  const router = useRouter()
+  const handleNext = () => {
+    setCookie('sendStep', '4')
+    router.refresh()
+  }
   return (
-    <Link href={`/wallet/${user?.username}/send/resume`} className={style.buttonNext}>
+    <button className={style.buttonNext} disabled={amountNumber <= 0} onClick={handleNext}>
       Next
-    </Link>
+    </button>
   )
 }
 

@@ -6,7 +6,10 @@ import style from './resumeContentWrapper.module.css'
 import { useState } from 'react'
 import Loading from '../loading/Loading'
 
-function ResumeContentWrapper() {
+interface ResumeContentWrapperProps {
+  solPrice: number
+}
+function ResumeContentWrapper( { solPrice }: ResumeContentWrapperProps) {
   const [loading, setLoading] = useState(false)
 
   return (
@@ -16,7 +19,7 @@ function ResumeContentWrapper() {
       ) : (
         <>
           <p className={style.text}>Send</p>
-          <TransactionInformation />
+          <TransactionInformation solPrice={solPrice}/>
           <SwipeBar setLoading={setLoading} />
         </>
       )}

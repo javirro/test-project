@@ -15,6 +15,7 @@ import AmountInformation from './amount/amountInformation/AmountInformation'
 import Keyboard from './amount/keyboard/Keyboard'
 import NextButton from './amount/nextButton/NextButton'
 import SelectAmount from './amount/selectAmount/SelectAmount'
+import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
 
 async function page() {
   const cookiesStore = await cookies()
@@ -54,6 +55,12 @@ const SendBodyComponent = async ({ user, token, sendStep }: { sendStep: string; 
           <SelectAmount balanceList={formateddBalancesList} />
           <NextButton />
           <Keyboard />
+        </main>
+      )}
+
+      {sendStep === '4' && (
+        <main className={style.mainResume}>
+          <ResumeContentWrapper solPrice={solanaPrice}/>
         </main>
       )}
     </>
