@@ -1,22 +1,11 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
+import { roboto } from '@/components/fonts/fonts'
 import styles from './page.module.css'
 import Script from 'next/script'
 import TapBarWrapper from '@/components/navigation/tapBar/TapBarWrapper'
 import NavBarWrapper from '@/components/navigation/navBar/NavBarWrapper'
 
 import './globals.css'
-
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-})
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-})
 
 export const metadata: Metadata = {
   title: 'TikToken',
@@ -37,7 +26,7 @@ export default function RootLayout({
           strategy="beforeInteractive" // Load it before the main app runs
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${styles.page}`}>
+      <body className={`${roboto.className} ${styles.page}`}>
         <NavBarWrapper />
         {children}
         <TapBarWrapper />
