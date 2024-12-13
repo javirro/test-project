@@ -89,7 +89,7 @@ function CreateProjectSecondStep() {
 
   return (
     <AppRoot style={{ width: '100%' }} appearance="light">
-      <form style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16 }}>
+      <form style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16 }} className='animte-in'>
         <section className={style.uploadSection} onClick={handleSectionClick} style={{ cursor: 'pointer' }}>
           <img src="/uploadVideo.svg" alt="Upload Video" />
           <p>Upload your video</p>

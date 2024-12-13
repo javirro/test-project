@@ -57,7 +57,7 @@ const AnimatedSolanaBox = ({
       onTouchEnd={handleTouchEnd}
     >
       {inputType === 'custom' ? (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px 0', position: 'relative' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px 0', position: 'absolute', zIndex: '2000' }}>
           <button
             style={{
               backgroundColor: 'transparent',

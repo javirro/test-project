@@ -87,7 +87,7 @@ function Page() {
   }
 
   return (
-    <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px' }}>
+    <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px' }} className='animate-in'>
       <div className={style.stepViewer}>
         {[0, 1, 2].map((_, index) => (
           <div key={index} style={{ backgroundColor: getBackgroundColor(index) }}></div>
