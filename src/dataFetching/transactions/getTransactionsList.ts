@@ -3,7 +3,7 @@ import { User } from '@/types/user'
 import { transactionsEndpoints } from '../endpoints'
 
 export const getTransactionsList = async (user: User, token: string): Promise<TransactionData[]> => {
-  const url = transactionsEndpoints.getTransactionsByUserAddress(user.address)
+  const url = transactionsEndpoints.getTransactionsByUserAddress(user.username)
   const response = await fetch(url, {
     method: 'GET',
     headers: {

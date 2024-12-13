@@ -1,3 +1,5 @@
+import { TransactionType } from "./transactions"
+
 export interface Asset {
   name: string
   symbol: string
@@ -16,17 +18,11 @@ export interface AssetsListProps {
   isHandleClick?: boolean
 }
 
-export interface assetActivity {
-  type: string
+export interface TxAssetActivity {
+  type: TransactionType
   address: string
   amount: number
-  gains: number
   symbol: string
-}
-
-export interface AssetsListActivityProps {
-  assets: assetActivity[]
-  username: string
-  solBalance: string
-  solPrice: number
+  name: string
+  projectImage: string
 }
