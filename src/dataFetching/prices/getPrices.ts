@@ -5,7 +5,7 @@ export const getSolanaPrice = async (): Promise<Price> => {
   const url = priceEndpoints.getSolanaPrice
   const response = await fetch(url,{
     next: {
-      revalidate: 60
+      revalidate: 300 // each 5 minutes
     },
   })
   if (!response.ok) {

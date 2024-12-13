@@ -22,28 +22,24 @@ function TapBar() {
   const pathname = usePathname()
   const router = useRouter()
   const user = useTelegramUser()
-  console.log('tapbarUser', user)
 
   const handleButtonClick = (index: SetStateAction<number>) => {
     setActiveIndex(index)
     if (index === 0) {
-      router.push('/')
     } else if (index === 1) {
-      router.push('/explore')
     } else if (index === 2) {
       setCookie('sellStep', '1')
       setCookie('sendStep', '1')
-      router.push(`/wallet/${user?.username}`)
+      router.refresh()
     } else if (index === 3) {
-      router.push('/profile')
     }
   }
 
-  // const handleOnPressButton = (index: number) => {
-  //   if (index === 0) {
-  //     router.push('/create-project')
-  //   }
-  // }
+
+  const isHome = pathname === '/'
+  const isExplore = pathname === '/explore'
+  const isWallet = pathname.startsWith('/wallet')
+  const isProfile = pathname.startsWith('/profile')
 
   return (
     <>
@@ -59,25 +55,25 @@ function TapBar() {
             </div>
           )}
           <div className={styles.tapBar}>
-            <div className={styles.iconWrapper} onClick={() => handleButtonClick(0)}>
-              <HomeButtonIcon color={activeIndex === 0 ? '#DAB223' : '#707579'} />
-              <span className={styles.iconLabel}>{activeIndex === 0 ? <div className={styles.buttonSelected}></div> : 'Home'}</span>
-            </div>
-            <div className={`${styles.iconWrapper} ${activeIndex === 1 ? styles.active : ''}`} onClick={() => handleButtonClick(1)}>
-              <ExploreButtonIcon color={activeIndex === 1 ? '#DAB223' : '#707579'} />
-              <span className={styles.iconLabel}>{activeIndex === 1 ? <div className={styles.buttonSelected}></div> : 'Explore'}</span>
-            </div>
+            <Link href={'/'} className={styles.iconWrapper} onClick={() => handleButtonClick(0)}>
+              <HomeButtonIcon color={isHome ? '#DAB223' : '#707579'} />
+              <span className={styles.iconLabel}>{isHome ? <div className={styles.buttonSelected}></div> : 'Home'}</span>
+            </Link>
+            <Link href={'/explore'} className={`${styles.iconWrapper} ${activeIndex === 1 ? styles.active : ''}`} onClick={() => handleButtonClick(1)}>
+              <ExploreButtonIcon color={isExplore ? '#DAB223' : '#707579'} />
+              <span className={styles.iconLabel}>{isExplore ? <div className={styles.buttonSelected}></div> : 'Explore'}</span>
+            </Link>
             <Link href="/create-project" prefetch={false} className={styles.addButtonWrapper}>
               <AddButton size={35} />
             </Link>
             <Link href={`/wallet/${user?.username}`} prefetch={false} className={styles.iconWrapper} onClick={() => handleButtonClick(2)}>
-              <WalletButtonIcon color={activeIndex === 2 ? '#DAB223' : '#707579'} />
-              <span className={styles.iconLabel}>{activeIndex === 2 ? <div className={styles.buttonSelected}></div> : 'Wallet'}</span>
+              <WalletButtonIcon color={isWallet  ? '#DAB223' : '#707579'} />
+              <span className={styles.iconLabel}>{isWallet ? <div className={styles.buttonSelected}></div> : 'Wallet'}</span>
             </Link>
-            <div className={styles.iconWrapper} onClick={() => handleButtonClick(3)}>
+            <Link href="/profile" className={styles.iconWrapper} onClick={() => handleButtonClick(3)}>
               <div className={styles.profile}></div>
-              <span className={styles.iconLabel}>{activeIndex === 3 ? <div className={styles.buttonSelected}></div> : 'Profile'}</span>
-            </div>
+              <span className={styles.iconLabel}>{isProfile ? <div className={styles.buttonSelected}></div> : 'Profile'}</span>
+            </Link>
           </div>
         </main>
       )}

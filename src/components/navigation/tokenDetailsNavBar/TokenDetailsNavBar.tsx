@@ -1,7 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import style from './tokenDetailsNavBar.module.css'
-import { usePathname, useRouter, useParams } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation'
 
 enum NavigationOptions {
   Overview = 'overview',
@@ -11,11 +12,7 @@ enum NavigationOptions {
 
 function TokenDetailsNavBar() {
   const pathname = usePathname()
-  const router = useRouter()
   const { tokenAddress } = useParams<{ tokenAddress: string }>()
-  const navigateTo = (path: string) => {
-    router.push(path)
-  }
 
   let navigationOption = 'overview'
   if (pathname.includes(NavigationOptions.Comments)) {
@@ -26,24 +23,15 @@ function TokenDetailsNavBar() {
 
   return (
     <nav className={style.nav}>
-      <button
-        onClick={() => navigateTo(`/token-details/${tokenAddress}/overview`)}
-        className={navigationOption === NavigationOptions.Overview ? style.buttonSelected : style.button}
-      >
+      <Link href={`/token-details/${tokenAddress}/overview`} className={navigationOption === NavigationOptions.Overview ? style.buttonSelected : style.button}>
         Overview
-      </button>
-      <button
-        onClick={() => navigateTo(`/token-details/${tokenAddress}/comments`)}
-        className={navigationOption === NavigationOptions.Comments ? style.buttonSelected : style.button}
-      >
+      </Link>
+      <Link href={`/token-details/${tokenAddress}/comments`} className={navigationOption === NavigationOptions.Comments ? style.buttonSelected : style.button}>
         Comments
-      </button>
-      <button
-        onClick={() => navigateTo(`/token-details/${tokenAddress}/about`)}
-        className={navigationOption === NavigationOptions.About ? style.buttonSelected : style.button}
-      >
+      </Link>
+      <Link href={`/token-details/${tokenAddress}/about`} className={navigationOption === NavigationOptions.About ? style.buttonSelected : style.button}>
         About
-      </button>
+      </Link>
     </nav>
   )
 }
