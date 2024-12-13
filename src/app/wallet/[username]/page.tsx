@@ -8,8 +8,6 @@ interface PageProps {
   params: Promise<{ username: string }>
 }
 
-
-
 export async function generateStaticParams() {
   const usernames = await getUsersUsernames()
   return usernames.map((u) => ({
@@ -23,7 +21,7 @@ const WalletPage = async ({ params }: PageProps) => {
   const { username } = await params
 
   return (
-    <section className={styles.wallet}>
+    <section className={`${styles.wallet} animate-in`}>
       <Suspense fallback={<SekeletonLoaderWallet />}>
         <WalletBalancesBody username={username} />
       </Suspense>

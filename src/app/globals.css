@@ -35,7 +35,7 @@
   --size96: calc(104 * 100vw / 414);
   --size110: calc(110 * 100vw / 414);
   --size135: calc(135 * 100vw / 414);
-  --height-main: calc(620 * 100vw / 414);
+  --height-main: calc(640 * 100vw / 414);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -81,4 +81,19 @@ a {
   src: url('/fonts/borna-medium-webfont.woff') format('woff');
   font-weight: 400;
   font-style: normal;
+}
+
+.animate-in {
+  animation: animateIn 0.4s ease-in-out both;
+}
+
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

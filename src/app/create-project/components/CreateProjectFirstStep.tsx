@@ -36,7 +36,7 @@ function CreateProjectFirstStep({ setToastMessage }: { setToastMessage: (message
 
   return (
     <AppRoot style={{ width: '100%' }} appearance="light">
-      <form style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16 }}>
+      <form style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16 }} className='animate-in'>
         <section
           style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16, padding: '12px 12px 12px 12px' }}
         >
