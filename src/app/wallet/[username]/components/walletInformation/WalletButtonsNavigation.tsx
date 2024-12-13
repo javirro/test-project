@@ -20,6 +20,7 @@ const WalletButtonsNavigation = ({ username }: { username: string }) => {
     setActiveButton(button)
 
     if (button === 'receive') {
+      setActionNavBarMessage('Receive tokens')
     } else if (button === 'activity') {
       setActionNavBarMessage('Recent activity')
     } else if (button === 'send') {
