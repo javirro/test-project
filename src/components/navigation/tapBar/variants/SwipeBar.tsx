@@ -37,7 +37,10 @@ const SwipeBar = ({ setLoading }: swipeBarProps) => {
               : await sendTokens(user, token, tokenAddress, amount, destination)
           console.log('txData', txData)
           setCookie('sendStep', '5')
-        } else setCookie('sellStep', '4')
+          router.refresh()
+        } else {
+          setCookie('sellStep', '4')
+        }
         router.refresh()
       } catch (error) {
         console.error('Error while trying to sell order', error)
