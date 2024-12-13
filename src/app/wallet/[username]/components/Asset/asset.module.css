@@ -26,6 +26,9 @@
   display: flex;
   align-items: center;
   gap: 9.2px;
+  width: var(--size48);
+  height: var(--size48);
+  border-radius: 50%;
 }
 
 .amount {
