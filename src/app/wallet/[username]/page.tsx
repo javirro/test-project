@@ -8,6 +8,8 @@ interface PageProps {
   params: Promise<{ username: string }>
 }
 
+
+
 export async function generateStaticParams() {
   const usernames = await getUsersUsernames()
   return usernames.map((u) => ({

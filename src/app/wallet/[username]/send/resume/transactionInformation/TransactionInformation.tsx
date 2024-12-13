@@ -12,19 +12,21 @@ function TransactionInformation({ solPrice }: TransactionInformationProps) {
   const { amount, destination, tokenSymbol } = useSendStore()
   const solAmount = 1.21
   const total = solAmount * solPrice
+  const projectImg = tokenSymbol?.toLowerCase() === 'sol' ? getTokenImg('sol') : '/Avatar.svg'
   return (
     <section className={style.main}>
       <div className={style.mainInfo}>
-        <img className={style.mainImage} src="/Avatar.svg" alt="" />
+        <img className={style.mainImage} src={projectImg} alt="project image" />
         <div>
           <p className={style.mainText}>
-            {' '}
             {amount} {tokenSymbol}
           </p>
-          <div className={style.mainCurrency}>
-            <img src={getTokenImg('sol')} alt="" />
-            <p className={style.mainCurrencyText}>{solAmount} SOL</p>
-          </div>
+          {tokenSymbol?.toLowerCase() !== 'sol' && (
+            <div className={style.mainCurrency}>
+              <img src={getTokenImg('sol')} alt="" />
+              <p className={style.mainCurrencyText}>{solAmount} SOL</p>
+            </div>
+          )}
         </div>
       </div>
       <div className={style.mainDiv}>
@@ -32,7 +34,7 @@ function TransactionInformation({ solPrice }: TransactionInformationProps) {
           <p className={style.toAddressText}>To:</p>
           <div>
             <p className={style.addressText}>Address 1</p>
-            <p className={style.addressDirection}>{destination}</p>
+            <p className={style.addressDirection}>{`${destination.slice(0, 6)}...${destination.slice(-6)}`}</p>
           </div>
         </div>
         <div className={style.toAddress}>

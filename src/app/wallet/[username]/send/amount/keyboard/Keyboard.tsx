@@ -11,7 +11,7 @@ function Keyboard() {
 
   const handleNumberClick = (number: string) => {
     if (amount === '0') {
-      setAmount(number)
+      setAmount(number === "." ? '0.' : number)
     } else {
       setAmount(amount + number)
     }
@@ -33,6 +33,9 @@ function Keyboard() {
         </button>
       ))}
       <div style={{ width: '100%', display: 'flex', gap: '12px', justifyContent: 'end' }}>
+      <button className={style.button} onClick={() => handleNumberClick('.')}>
+          .
+        </button>
         <button className={style.button} onClick={() => handleNumberClick('0')}>
           0
         </button>

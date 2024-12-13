@@ -18,9 +18,17 @@ import SelectAmount from './amount/selectAmount/SelectAmount'
 import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
 import TransactionConfirmation from './confirmation/transactionConfirmation/TransactionConfirmation'
 import BackToWalletButton from './confirmation/BackToWalletButton'
+import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 
 interface PageProps {
   params: Promise<{ username: string }>
+}
+
+export async function generateStaticParams() {
+  const usernames = await getUsersUsernames()
+  return usernames.map((u) => ({
+    username: u,
+  }))
 }
 
 async function page({ params }: PageProps) {

@@ -12,6 +12,7 @@ import { getSolanaBalance } from '@/contracts/getBalances'
 import { notFound } from 'next/navigation'
 import { User } from '@/types/user'
 import SekeletonLoaderSend from '../send/components/skeletonLoader/SekeletonLoaderSend'
+import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -26,6 +27,14 @@ interface PageProps {
     amountIn: '0.0'
   }
 */
+
+export async function generateStaticParams() {
+  const usernames = await getUsersUsernames()
+  return usernames.map((u) => ({
+    username: u,
+  }))
+}
+
 async function SellPage({ params }: PageProps) {
   const { username } = await params
   const cookiesStore = await cookies()

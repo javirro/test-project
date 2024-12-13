@@ -19,18 +19,6 @@ function AssetsList({ assets, username, solBalance, solPrice }: AssetsListProps)
       {assets.map((asset, index) => (
         <AssetItem key={index} asset={asset} username={username} />
       ))}
-            <AssetItem asset={solanaAsset} username={username} />
-      {assets.map((asset, index) => (
-        <AssetItem key={index} asset={asset} username={username} />
-      ))}
-            <AssetItem asset={solanaAsset} username={username} />
-      {assets.map((asset, index) => (
-        <AssetItem key={index} asset={asset} username={username} />
-      ))}
-            <AssetItem asset={solanaAsset} username={username} />
-      {assets.map((asset, index) => (
-        <AssetItem key={index} asset={asset} username={username} />
-      ))}
     </>
   )
 }
