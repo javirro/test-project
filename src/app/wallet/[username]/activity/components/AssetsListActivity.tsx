@@ -15,6 +15,7 @@ function AssetsListActivity({ transactions }: AssetsListActivityProps) {
       projectImage: tx.image,
     }
   })
+  
   return (
     <>
       <p className={style.text}>Today</p>
