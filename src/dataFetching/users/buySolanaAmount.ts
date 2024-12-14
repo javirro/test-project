@@ -2,15 +2,16 @@ import { userEndpoints } from '../endpoints'
 
 export const getBuySolanaAmount = async (username: string, telegramId: number, token: string): Promise<number> => {
   const url = userEndpoints.getUserSolanaBuyAmountByUsername(username)
-  const options = {
+ 
+  const response = await fetch(url, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       authorization: `${token}`,
       'telegram-id': `${telegramId}`,
-    }
-  }
-  const response = await fetch(url, options)
+    },
+    cache: 'no-cache',
+  })
   if (response.ok) {
     const data = await response.json()
     const solanaAmount: number = data.solanaBuyAmount
