@@ -25,4 +25,5 @@ export interface TxAssetActivity {
   symbol: string
   name: string
   projectImage: string
+  timestamp: number
 }
