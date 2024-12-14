@@ -29,6 +29,7 @@ export const transactionsEndpoints = {
 
 export const userEndpoints = {
   getUsernames: `${BASE_URL}/users/usernames`, //GET
+  getUserImage: (username: string) => `${BASE_URL}/users/image/${username}`, //GET
   getUserWalletQrCode: (username: string) => `${BASE_URL}/users/walletqr/${username}`, //GET
   getUserProjectsWatchlistByUsername: (username: string) => `${BASE_URL}/users/watchlist/${username}`, //GET
   getUserSolanaBuyAmountByUsername: (username: string) => `${BASE_URL}/users/solana/buyamount/${username}`, //GET

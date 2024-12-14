@@ -3,21 +3,22 @@ import style from './createdBy.module.css'
 interface CreatedByProps {
   createdOn: number
   creatorUsername: string
+  creatorImage: string
 }
 
-function CreatedBy({ createdOn, creatorUsername }: CreatedByProps) {
+async function CreatedBy({ createdOn, creatorUsername, creatorImage }: CreatedByProps) {
   const msCreatedOn = createdOn * 1000
   const createdDate = new Intl.DateTimeFormat('en-US', {
     timeZone: 'UTC',
   }).format(new Date(msCreatedOn))
+
   return (
     <section className={style.main}>
       <p>Created</p>
       <div className={style.infoSection}>
-        <img className={style.img} src="/Image.png" alt="" />
+        <img className={style.img} src={creatorImage} alt="user-profile img" />
         <div className={style.userInfoSection}>
-          <p className={style.name}>Alex Cánovas</p>
-          <p className={style.userName}>{`@${creatorUsername}`}</p>
+          <p className={style.name}>{`@${creatorUsername}`}</p>
         </div>
         <button className={style.viewProfileButton}>View profile</button>
       </div>
