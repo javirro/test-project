@@ -2,20 +2,20 @@
 
 import TransactionInformation from '../transactionInformation/TransactionInformation'
 import SwipeBar from '@/components/navigation/tapBar/variants/SwipeBar'
-import { useState } from 'react'
+import { useTransition } from 'react'
 import Loading from '../loading/Loading'
 
 function ResumeContentWrapper() {
-  const [loading, setLoading] = useState(false)
+  const [pending, startTransition] = useTransition()
 
   return (
     <>
-      {loading ? (
+      {pending ? (
         <Loading />
       ) : (
         <>
           <TransactionInformation />
-          <SwipeBar setLoading={setLoading} />
+          <SwipeBar startTransition={startTransition} />
         </>
       )}
     </>

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { TransitionStartFunction, useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './swipeBar.module.css'
 import { setCookie } from 'cookies-next/client'
@@ -10,10 +10,10 @@ import cookiesUserUtils from '@/utils/clientCookiesUtils'
 import { useSendStore } from '@/app/store/sendStore'
 
 interface swipeBarProps {
-  setLoading: (loading: boolean) => void
+  startTransition: TransitionStartFunction
 }
 
-const SwipeBar = ({ setLoading }: swipeBarProps) => {
+const SwipeBar = ({ startTransition }: swipeBarProps) => {
   const [isSwiped, setIsSwiped] = useState(false)
   const pathname = usePathname()
   const isSend = pathname.includes('send')
@@ -23,34 +23,32 @@ const SwipeBar = ({ setLoading }: swipeBarProps) => {
   const { amount, destination, tokenAddress, tokenSymbol } = useSendStore()
   if (!user || !token) notFound()
   const handleDragEnd = async (_: any, info: any) => {
-    if (info.offset.x > 200) {
-      setIsSwiped(true)
-      try {
-        setLoading(true)
-        setTimeout(() => setLoading(false), 4000)
-
-        //TODO: Set order to sell to backend and await for response
-        if (isSend) {
-          const txData =
-            tokenSymbol.toLowerCase() === 'sol'
-              ? await sendSolana(user, token, amount, destination)
-              : await sendTokens(user, token, tokenAddress, amount, destination)
-          console.log('txData', txData)
-          setCookie('sendStep', '5')
+    startTransition(async () => {
+      if (info.offset.x > 200) {
+        setIsSwiped(true)
+        try {
+          //
+          if (isSend) {
+            const txData =
+              tokenSymbol.toLowerCase() === 'sol'
+                ? await sendSolana(user, token, amount, destination)
+                : await sendTokens(user, token, tokenAddress, amount, destination)
+            console.log('txData', txData)
+            setCookie('sendStep', '5')
+            router.refresh()
+          } else {
+            setCookie('sellStep', '4')
+          }
           router.refresh()
-        } else {
-          setCookie('sellStep', '4')
+        } catch (error) {
+          console.error('Error while trying to sell order', error)
+          return
+        } finally {
         }
-        router.refresh()
-      } catch (error) {
-        console.error('Error while trying to sell order', error)
-        return
-      } finally {
-        setLoading(false)
+      } else {
+        setIsSwiped(false)
       }
-    } else {
-      setIsSwiped(false)
-    }
+    })
   }
 
   return (

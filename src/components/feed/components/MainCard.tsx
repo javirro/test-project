@@ -11,6 +11,9 @@ import { Stream } from '@cloudflare/stream-react'
 import { Project } from '@/types/project'
 import LikeCommentButtons from './LikeCommentButtons/LikeCommentButtons'
 import { useTapBarActionsStore } from '@/app/store/tapBarActionsStore'
+import useUser from '@/hooks/useUser'
+// import { buyToken } from '@/dataFetching/transactions/buyToken'
+// import { User } from '@/types/user'
 
 interface MainCardProps {
   project: Project
@@ -21,7 +24,8 @@ interface MainCardProps {
 
 function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: MainCardProps) {
   const { isMuted } = useTapBarActionsStore()
-
+  const {user, token} = useUser()
+  console.log(user, token)
   const [likeStatus, setLikeStatus] = useState<'yes' | 'no' | null>(null)
 
   const [{ x, rotate, scale }, api] = useSpring(() => ({
@@ -32,7 +36,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
   }))
 
   const bind = useDrag(
-    ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
+    async ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
       if (typeof window === 'undefined') return
       const pointerType = (event as PointerEvent).pointerType || ('ontouchstart' in window ? 'touch' : 'mouse')
       if (pointerType === 'mouse' && 'ontouchstart' in window) return
@@ -43,6 +47,8 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
 
       if (trigger && !down) {
         if (isYes) {
+          // const tx = await buyToken(user as User, token as string, project.tokenMintAddress, project.tokenId)
+          // console.log(tx)
           setIndexShowProject((prev) => (prev + 1 < totalProjects ? prev + 1 : 0))
         } else {
           setIndexShowProject((prev) => (prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
