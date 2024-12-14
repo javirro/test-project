@@ -3,24 +3,23 @@
 import TransactionInformation from '../transactionInformation/TransactionInformation'
 import SwipeBar from '@/components/navigation/tapBar/variants/SwipeBar'
 import style from './resumeContentWrapper.module.css'
-import { useState } from 'react'
+import { useTransition } from 'react'
 import Loading from '../loading/Loading'
 
 interface ResumeContentWrapperProps {
   solPrice: number
 }
-function ResumeContentWrapper( { solPrice }: ResumeContentWrapperProps) {
-  const [loading, setLoading] = useState(false)
-
+function ResumeContentWrapper({ solPrice }: ResumeContentWrapperProps) {
+  const [pending, startTransition] = useTransition()
   return (
     <>
-      {loading ? (
+      {pending ? (
         <Loading />
       ) : (
         <>
           <p className={style.text}>Send</p>
-          <TransactionInformation solPrice={solPrice}/>
-          <SwipeBar setLoading={setLoading} />
+          <TransactionInformation solPrice={solPrice} />
+          <SwipeBar startTransition={startTransition} />
         </>
       )}
     </>
