@@ -23,7 +23,7 @@ export type Project = {
   nsfw: boolean
 }
 
-export type ProjectForm = Omit<Project, 'id' | 'creationDate' | 'marketCap' | 'likes' | 'comments'| 'tokenMintAddress' | 'totalSupply' | 'bondingCurveAddress'>
+export type ProjectForm = Omit<Project, 'id' | 'creationDate' | 'marketCap' | 'likes' | 'comments'| 'tokenMintAddress' | 'tokenId' | 'totalSupply' | 'bondingCurveAddress'>
 
 
 export type ProjectComments = {
