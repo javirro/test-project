@@ -4,6 +4,7 @@ import style from './page.module.css'
 import CreatedBy from '../../components/createdBy/CreatedBy'
 import { getAllProjectAddresses, getProjectByTokenAddress } from '@/dataFetching/projects/getProject'
 import { Suspense } from 'react'
+import { getUserImage } from '@/dataFetching/users/getUserImage'
 
 interface PageProps {
   params: Promise<{ tokenAddress: string }>
@@ -34,11 +35,12 @@ async function page({ params }: PageProps) {
 const AboutPage = async ({ tokenAddress }: { tokenAddress: string }) => {
   const projectInfo = await getProjectByTokenAddress(tokenAddress)
   const { description, creationDate, creatorUsername } = projectInfo
+    const creatorImage = await getUserImage(creatorUsername)
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
       <About description={description} />
-      <CreatedBy createdOn={creationDate} creatorUsername={creatorUsername} />
+      <CreatedBy createdOn={creationDate} creatorUsername={creatorUsername} creatorImage={creatorImage}/>
     </section>
   )
 }

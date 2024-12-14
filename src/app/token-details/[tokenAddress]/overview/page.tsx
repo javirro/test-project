@@ -7,6 +7,7 @@ import TagsContainer from '../../components/tagsContainer/TagsContainer'
 import TokenDetails from '../../components/tokenDetails/TokenDetails'
 import { Suspense } from 'react'
 import { getProjectByTokenAddress, getAllProjectAddresses } from '@/dataFetching/projects/getProject'
+import { getUserImage } from '@/dataFetching/users/getUserImage'
 
 interface PageProps {
   params: Promise<{ tokenAddress: string }>
@@ -34,6 +35,7 @@ async function page({ params }: PageProps) {
 const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
   const projectInfo = await getProjectByTokenAddress(tokenAddress)
   const { tags, creationDate, creatorUsername } = projectInfo
+  const creatorImage = await getUserImage(creatorUsername)
   return (
     <section className={style.main}>
       <TokenDetailsNavBar />
@@ -41,7 +43,7 @@ const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
       <MarketInfoContainer project={projectInfo} />
       <TagsContainer tags={tags} />
       <CommentsContainer tokenAddress={tokenAddress} />
-      <CreatedBy createdOn={creationDate} creatorUsername={creatorUsername} />
+      <CreatedBy createdOn={creationDate} creatorUsername={creatorUsername} creatorImage={creatorImage}/>
     </section>
   )
 }

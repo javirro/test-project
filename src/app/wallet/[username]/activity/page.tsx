@@ -1,5 +1,4 @@
 import style from './page.module.css'
-import AssetsListActivity from './components/AssetsListActivity'
 import { cookies } from 'next/headers'
 import { notFound } from 'next/navigation'
 import { User } from '@/types/user'
@@ -7,6 +6,7 @@ import { Suspense } from 'react'
 import SekeletonLoaderSend from '../send/components/skeletonLoader/SekeletonLoaderSend'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 import { getTransactionsList } from '@/dataFetching/transactions/getTransactionsList'
+import DynamicNoSSRAssetListActivity from './components/DynamicNoSSRAssetListActivity'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -42,7 +42,7 @@ const ActivityBody = async ({ user, token }: { user: User; username: string; tok
   console.log(transactions)
   return (
     <section className={style.main}>
-      <AssetsListActivity transactions={transactions} />
+      <DynamicNoSSRAssetListActivity transactions={transactions} />
     </section>
   )
 }
