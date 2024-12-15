@@ -1,14 +1,16 @@
 import { projectEndpoints } from '../endpoints'
 
 // Add like is the same that add to watchlist
-export const manageLike = async (tokenAddress: string, userAddress: string): Promise<boolean> => {
+export const manageLike = async (tokenAddress: string, username: string, token: string, telegramId: number): Promise<boolean> => {
   const url = projectEndpoints.manageProjectLikes
   const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'authorization': token,
+      'telegram-id': telegramId.toString()
     },
-    body: JSON.stringify({ tokenAddress, userAddress }),
+    body: JSON.stringify({ tokenAddress, username }),
   }
   const response = await fetch(url, options)
   if (!response.ok) {

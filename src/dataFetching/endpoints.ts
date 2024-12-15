@@ -7,6 +7,7 @@ export const projectEndpoints = {
   getProjects: `${BASE_URL}/projects`, //GET
   getProjectByTokenAddress: (tokenAddress: string) => `${BASE_URL}/projects/${tokenAddress}`, //GET
   getProjectLikesByTokenAddress: (tokenAddress: string) => `${BASE_URL}/projects/amount/likes/${tokenAddress}`, //GET
+  getProjectLikedByUser: (tokenAddress: string, username: string) => `${BASE_URL}/projects/like-by-user/${tokenAddress}/${username}`, //GET
   getProjectCommentsAmountByTokenAddress: (tokenAddress: string) => `${BASE_URL}/projects/amount/comments/${tokenAddress}`, //GET
   getProjectCommentsByTokenAddress: (tokenAddress: string) => `${BASE_URL}/project/comments/${tokenAddress}`, //GET
   create: `${BASE_URL}/projects/create`, //POST
