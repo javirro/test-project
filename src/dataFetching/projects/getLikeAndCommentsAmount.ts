@@ -21,7 +21,6 @@ export const getCommentsAmount = async (tokenAddress: string): Promise<number> =
   return data.commentsAmount
 }
 
-
 export const getComments = async (tokenAddress: string): Promise<ProjectComments[]> => {
   const url = projectEndpoints.getProjectCommentsByTokenAddress(tokenAddress)
   const response = await fetch(url)
@@ -33,13 +32,13 @@ export const getComments = async (tokenAddress: string): Promise<ProjectComments
 }
 
 export const getProjectLikeByUser = async (tokenAddress: string, username: string, token: string): Promise<boolean> => {
-
+  if (!token || !username) return false
   const url = projectEndpoints.getProjectLikedByUser(tokenAddress, username)
   const options = {
     headers: {
       'content-type': 'application/json',
-      'authorization': token
-    }
+      authorization: token,
+    },
   }
   const response = await fetch(url, options)
   if (!response.ok) {
