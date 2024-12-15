@@ -20,14 +20,16 @@ export const manageLike = async (tokenAddress: string, username: string, token: 
   return res.like
 }
 
-export const addComment = async (tokenAddress: string, userAddress: string, comment: string): Promise<void> => {
+export const addComment = async (tokenAddress: string, username: string, comment: string, token: string, telegramId: number): Promise<void> => {
   const url = projectEndpoints.addCommentToProject
   const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'authorization': token,
+      'telegram-id': telegramId.toString()
     },
-    body: JSON.stringify({ tokenAddress, userAddress, comment }),
+    body: JSON.stringify({ tokenAddress,  username, comment }),
   }
   const response = await fetch(url, options)
   if (!response.ok) {

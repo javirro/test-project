@@ -14,3 +14,11 @@ export async function revalidateProjectDetails () {
 export async function revalidateHome() {
   revalidatePath('/')
 }
+
+export async function revalidateComments(tokenAddress: string) {
+  revalidatePath('/token-details/' + tokenAddress + '/comments')
+}
+
+export async function revaliteSpecificWallet(username: string) {
+  revalidatePath('/wallet/' + username)
+}
