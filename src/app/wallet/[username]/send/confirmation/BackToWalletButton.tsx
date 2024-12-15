@@ -3,9 +3,11 @@
 import { setCookie } from 'cookies-next/client'
 import Link from 'next/link'
 import style from '../page.module.css'
+import { revaliteSpecificWallet } from '@/dataFetching/revalidatePath/revaliteCreateUser'
 
 const BackToWalletButton = ({ username }: { username: string }) => {
   const handleBackWallet = () => {
+    revaliteSpecificWallet(username)
     setCookie('sendStep', '1')
   }
   return (

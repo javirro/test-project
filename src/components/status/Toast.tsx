@@ -3,11 +3,12 @@ import style from './toast.module.css'
 
 interface ToastProps {
   text: string
+  type?: "error" | "success"
 }
 
-function Toast({ text }: ToastProps) {
+function Toast({ text, type = "success" }: ToastProps) {
   return (
-    <div className={style['toast-container']}>
+    <div className={style[`toast-container-${type}`]}>
       <WarningFileIcon className={style['toast-icon']} />
       <p className={style['toast-text']}>{text}</p>
     </div>

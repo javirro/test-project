@@ -1,4 +1,4 @@
-import { getCommentsAmount, getLikeAmount } from '@/dataFetching/projects/getLikeAndCommentsAmount'
+import { getCommentsAmount, getLikeAmount, getProjectLikeByUser } from '@/dataFetching/projects/getLikeAndCommentsAmount'
 import { useQuery } from '@tanstack/react-query'
 
 export const useGetProjectLikes = (tokenMintAddress: string) => {
@@ -18,3 +18,10 @@ export const useGetProjectCommentsAmount = (tokenMintAddress: string) => {
 }
 
 
+export const useGetProjectLikeByUser = (tokenMintAddress: string, username: string, token: string) => {
+  const { data, error, isLoading } = useQuery<boolean>({
+    queryKey: ['projectLikeByUser', tokenMintAddress, username, token],
+    queryFn: async () => await getProjectLikeByUser(tokenMintAddress, username, token),
+  })
+  return { userLike: data, userLikeLoading: isLoading, error }
+}

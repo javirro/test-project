@@ -1,4 +1,4 @@
-.toast-container {
+.toast-container-success {
   display: flex;
   gap: 12px;
   background-color: #f7c84f;
@@ -6,12 +6,28 @@
   border-radius: 12px;
   align-items: center;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: 30%;
   z-index: 1000;
   position: absolute;
-  width: 80%;
+  width: 85%;
+  animation: moveFromBottom 0.5s ease;
+}
+
+.toast-container-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: #fc5c5c;
+  padding: 16px;
+  border-radius: 12px;
+  align-items: center;
+  position: fixed;
+  bottom: 30%;
+  z-index: 1000;
+  position: absolute;
+  width: 85%;
+  animation: moveFromBottom 0.5s ease;
 }
 
 .toast-text {
@@ -21,4 +37,13 @@
 .toast-icon {
   width: 30px;
   height: 30px;
+}
+
+@keyframes moveFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
 }

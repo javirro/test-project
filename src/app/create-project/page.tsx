@@ -12,6 +12,7 @@ import base64Utils from '@/utils/base64Utils'
 import useUser from '@/hooks/useUser'
 import { revalidateHome, revalidateProjectDetails } from '@/dataFetching/revalidatePath/revaliteCreateUser'
 
+
 function Page() {
   const { user, token } = useUser()
   const { projectName, tokenSymbol, projectDescription, videoOriginal, tags, allowComments, projectImage, discord, telegram, twitter, website, nsfw } =
@@ -19,13 +20,14 @@ function Page() {
 
   const [step, setStep] = useState(0)
   const [toastMessage, setToastMessage] = useState<string | null>(null)
+  const [toastType, setToastType] = useState<'error' | 'success'>('success')
   const [isPending, startTransition] = useTransition()
 
   useEffect(() => {
     if (toastMessage) {
       const timer = setTimeout(() => {
         setToastMessage(null)
-      }, 2000)
+      }, 3300)
       return () => clearTimeout(timer)
     }
   }, [toastMessage])
@@ -37,6 +39,7 @@ function Page() {
   const handleNextClick = () => {
     if (!projectName || !tokenSymbol || !projectDescription || !projectImage) {
       setToastMessage('Por favor, completa todos los campos antes de continuar.')
+      setToastType('error')
       return
     }
     setStep(step + 1)
@@ -66,9 +69,11 @@ function Page() {
         revalidateProjectDetails()
         revalidateHome()
         setToastMessage('Proyect created sucessfully')
+        setToastType('success')
       } catch (error) {
         console.error('Error creating project', error)
         setToastMessage('Error al publicar el proyecto')
+        setToastType('error')
       }
     })
   }
@@ -87,13 +92,13 @@ function Page() {
   }
 
   return (
-    <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px' }} className='animate-in'>
+    <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px', position: 'relative' }} className='animate-in'>
       <div className={style.stepViewer}>
         {[0, 1, 2].map((_, index) => (
           <div key={index} style={{ backgroundColor: getBackgroundColor(index) }}></div>
         ))}
       </div>
-      {step === 0 && <CreateProjectFirstStep setToastMessage={setToastMessage} />}
+      {step === 0 && <CreateProjectFirstStep setToastMessage={setToastMessage} setToastType={setToastType}/>}
       {step === 1 && <CreateProjectSecondStep />}
 
       <div className={style.nextButtonDiv}>
@@ -101,7 +106,7 @@ function Page() {
           {btnText}
         </button>
       </div>
-      {toastMessage && <Toast text={toastMessage} />}
+      {toastMessage && <Toast text={toastMessage} type={toastType}/>}
     </section>
   )
 }

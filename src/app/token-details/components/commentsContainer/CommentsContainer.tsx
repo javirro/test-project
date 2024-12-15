@@ -12,7 +12,9 @@ async function CommentsContainer({ tokenAddress }: { tokenAddress: string }) {
       <p>Comentarios ({totalComments})</p>
       <div className={style.commentsDiv}>
         {comments.map((comment, index) => (
-          <Comment key={index} commentInfo={comment} />
+          <Suspense fallback={<div>....</div>} key={index}>
+            <Comment key={index} commentInfo={comment} />
+          </Suspense>
         ))}
       </div>
     </section>

@@ -13,6 +13,8 @@ import { notFound } from 'next/navigation'
 import { User } from '@/types/user'
 import SekeletonLoaderSend from '../send/components/skeletonLoader/SekeletonLoaderSend'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
+import { revalidatePath } from 'next/cache'
+import { setCookie } from 'cookies-next'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -56,6 +58,11 @@ const SellBodyComponent = async ({ username, userAddress, sellStep }: { sellStep
   const { solBalance } = await getSolanaBalance(userAddress as string)
   //TODO: FETCH USER BALANCE
   //TODO: FETCH ASSETS PRICES
+
+  const handleBackToWallet = () => {
+    revalidatePath(`/wallet/${username}`)
+    setCookie('sellStep', '1')
+  }
   return (
     <>
       {sellStep === '1' && (
@@ -70,7 +77,7 @@ const SellBodyComponent = async ({ username, userAddress, sellStep }: { sellStep
           <p className={style.confirmationText}>Just sold!</p>
           <TransactionConfirmation />
           <div className={style.confirmationNextButtonDiv}>
-            <Link href={`/wallet/${username}`} className={style.confirmationNextButton}>
+            <Link href={`/wallet/${username}`} className={style.confirmationNextButton} onClick={handleBackToWallet}>
               Back to wallet
             </Link>
           </div>
