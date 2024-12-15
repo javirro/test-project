@@ -4,7 +4,7 @@ import { AppRoot, Input, Tappable, Textarea } from '@telegram-apps/telegram-ui'
 import { useCreateProjectStore } from '@/app/store/createProjectStore'
 import style from './CreateProjectFirstStep.module.css'
 
-function CreateProjectFirstStep({ setToastMessage }: { setToastMessage: (message: string) => void }) {
+function CreateProjectFirstStep({ setToastMessage, setToastType }: { setToastMessage: (message: string) => void, setToastType: (type: 'error' | 'success') => void  }) {
   const { projectName, setProjectName, tokenSymbol, setTokenSymbol, projectDescription, setProjectDescription, projectImage, setProjectImage } =
     useCreateProjectStore()
 
@@ -19,6 +19,7 @@ function CreateProjectFirstStep({ setToastMessage }: { setToastMessage: (message
     const file = event.target.files?.[0]
     if (file && file.size > MAX_FILE_SIZE) {
       setToastMessage('Image Size must be lower than 500 KB.')
+      setToastType('error')
       return
     }
     if (file) {
