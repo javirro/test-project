@@ -15,7 +15,7 @@ export async function generateStaticParams() {
   }))
 }
 
-export const revalidate = 60 // revalidate each minute
+export const revalidate = 120 // revalidate two minute
 
 const WalletPage = async ({ params }: PageProps) => {
   const { username } = await params
