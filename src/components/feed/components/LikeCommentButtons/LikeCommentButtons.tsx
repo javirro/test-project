@@ -7,6 +7,7 @@ import { useGetProjectCommentsAmount, useGetProjectLikeByUser, useGetProjectLike
 import useUser from '@/hooks/useUser'
 import { manageLike } from '@/dataFetching/projects/manageLikeAndComments'
 import { Dispatch, SetStateAction, useState } from 'react'
+import Link from 'next/link'
 
 const LikeCommentButtons = ({ tokenMintAddress }: { tokenMintAddress: string }) => {
   const { commentsAmount, isLoading: commentsLoading } = useGetProjectCommentsAmount(tokenMintAddress)
@@ -15,10 +16,10 @@ const LikeCommentButtons = ({ tokenMintAddress }: { tokenMintAddress: string }) 
 
   return (
     <section className={style.likeContainer}>
-      <div className={style.badgeContainer}>
+      <Link href={`/token-details/${tokenMintAddress}/comments`} className={style.badgeContainer}>
         <CommentsButtonIcon width="30" height="30" color="#FFFFFF" />
         <span className={style.badge}>{commentsAmount}</span>
-      </div>
+      </Link>
       <LikeButton tokenMintAddress={tokenMintAddress} setLikeRefresher={setLikeRefresher} key={likeRefresher} />
     </section>
   )
