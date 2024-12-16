@@ -26,6 +26,8 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
   const [likeStatus, setLikeStatus] = useState<'yes' | 'no' | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
 
+  console.log(isAnimating)
+
   const [{ x, rotate, scale }, api] = useSpring(() => ({
     x: 0,
     rotate: 0,
@@ -33,7 +35,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
     config: { tension: 200, friction: 20 },
   }))
 
-  const THRESHOLD = 300
+  // const THRESHOLD = 300
 
   const bind = useDrag(
     async ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
