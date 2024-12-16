@@ -39,3 +39,16 @@
   cursor: pointer;
   font-family: borna;
 }
+
+.text {
+  color: var(--Custom-secondary_hint_color, #a2acb0);
+  text-overflow: ellipsis;
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+  width: 100%;
+  margin-bottom: 5px;
+}

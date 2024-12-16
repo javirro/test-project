@@ -1,10 +1,14 @@
 import { useState, useEffect, ChangeEvent } from 'react'
-import '@telegram-apps/telegram-ui/dist/styles.css'
-import { AppRoot, Input, Tappable, Textarea } from '@telegram-apps/telegram-ui'
 import { useCreateProjectStore } from '@/app/store/createProjectStore'
 import style from './CreateProjectFirstStep.module.css'
 
-function CreateProjectFirstStep({ setToastMessage, setToastType }: { setToastMessage: (message: string) => void, setToastType: (type: 'error' | 'success') => void  }) {
+function CreateProjectFirstStep({
+  setToastMessage,
+  setToastType,
+}: {
+  setToastMessage: (message: string) => void
+  setToastType: (type: 'error' | 'success') => void
+}) {
   const { projectName, setProjectName, tokenSymbol, setTokenSymbol, projectDescription, setProjectDescription, projectImage, setProjectImage } =
     useCreateProjectStore()
 
@@ -36,11 +40,9 @@ function CreateProjectFirstStep({ setToastMessage, setToastType }: { setToastMes
   if (!isClient) return null
 
   return (
-    <AppRoot style={{ width: '100%' }} appearance="light">
-      <form style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16 }} className='animate-in'>
-        <section
-          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16, padding: '12px 12px 12px 12px' }}
-        >
+    <div style={{ width: '100%' }}>
+      <form style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16 }} className="animate-in">
+        <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, padding: '12px' }}>
           <p className={style.text}>Icono del proyecto</p>
           <div style={{ display: 'flex', gap: 16, flexDirection: 'column', alignItems: 'center' }}>
             <div className={style.imageDiv}>{projectImage ? <img src={projectImage} alt="Project Icon" className={style.projectImagePreview} /> : 'TG'}</div>
@@ -50,47 +52,83 @@ function CreateProjectFirstStep({ setToastMessage, setToastType }: { setToastMes
             </label>
           </div>
         </section>
-        <section style={{ width: '100%' }}>
-          <Input
-            className={`${style.inputStyle} ${style.customInputPadding}`}
-            header="Project name"
-            placeholder="PEPE"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-            after={
-              <Tappable Component="div" style={{ display: 'flex' }} onClick={() => setProjectName('')}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Tappable>
-            }
-          />
-          <Input
-            header="Token symbol"
-            placeholder="DHU"
-            value={tokenSymbol}
-            onChange={(e) => setTokenSymbol(e.target.value)}
-            after={
-              <Tappable Component="div" style={{ display: 'flex' }} onClick={() => setTokenSymbol('')}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Tappable>
-            }
-          />
-          <Textarea
-            header="Description"
-            placeholder="Write a cool description here"
-            maxLength={500}
-            value={projectDescription}
-            onChange={(e) => setProjectDescription(e.target.value)}
-          />
-          <div className={style.charCounter}>{projectDescription.length}/500 words</div>
+
+        <section style={{ width: '100%', padding: '0 10px' }}>
+          <div style={{ marginBottom: '12px', position: 'relative', width: '100%' }}>
+            <label htmlFor="project-name" className={style.text}>
+              Project name
+            </label>
+            <input
+              id="project-name"
+              type="text"
+              placeholder="PEPE"
+              value={projectName}
+              onChange={(e) => setProjectName(e.target.value)}
+              className={style.customInput}
+              style={{ width: '100%', padding: '12px 10px', borderRadius: '8px', border: '1px solid #a2acb0', backgroundColor: '#fff', color: '#000' }}
+            />
+            {projectName && (
+              <button
+                type="button"
+                onClick={() => setProjectName('')}
+                style={{ position: 'absolute', right: '10px', top: '65%', transform: 'translateY(-50%)', background: 'transparent', border: 'none' }}
+              >
+                ✖️
+              </button>
+            )}
+          </div>
+
+          <div style={{ marginBottom: '12px', position: 'relative', width: '100%' }}>
+            <label htmlFor="token-symbol" className={style.text}>
+              Token symbol
+            </label>
+            <input
+              id="token-symbol"
+              type="text"
+              placeholder="DHU"
+              value={tokenSymbol}
+              onChange={(e) => setTokenSymbol(e.target.value)}
+              className={style.customInput}
+              style={{ width: '100%', padding: '12px 10px', borderRadius: '8px', border: '1px solid #a2acb0', backgroundColor: '#fff', color: '#000' }}
+            />
+            {tokenSymbol && (
+              <button
+                type="button"
+                onClick={() => setTokenSymbol('')}
+                style={{ position: 'absolute', right: '10px', top: '65%', transform: 'translateY(-50%)', background: 'transparent', border: 'none' }}
+              >
+                ✖️
+              </button>
+            )}
+          </div>
+
+          <div style={{ marginBottom: '12px', width: '100%' }}>
+            <label htmlFor="description" className={style.text}>
+              Description
+            </label>
+            <textarea
+              id="description"
+              placeholder="Write a cool description here"
+              maxLength={500}
+              value={projectDescription}
+              onChange={(e) => setProjectDescription(e.target.value)}
+              className={style.customInput}
+              style={{
+                width: '100%',
+                padding: '12px 10px',
+                borderRadius: '8px',
+                border: '1px solid #a2acb0',
+                resize: 'none',
+                backgroundColor: '#fff',
+                color: '#000',
+              }}
+              rows={4}
+            ></textarea>
+            <div className={style.charCounter}>{projectDescription.length}/500 words</div>
+          </div>
         </section>
       </form>
-    </AppRoot>
+    </div>
   )
 }
 
