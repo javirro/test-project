@@ -35,7 +35,6 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
 
   const THRESHOLD = 300
 
-
   const bind = useDrag(
     ({ movement: [mx], down, velocity: [vx], direction: [xDir] }) => {
       if (isAnimating) return
@@ -62,10 +61,9 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
         api.start({ x: mx, rotate: mx / 10, scale: 0.95 })
       }
     },
-    { threshold: 5, pointer: { touch: true } }
+    { threshold: 10, pointer: { touch: true } }
   )
 
-  // Escuchar cambios en triggerAction (like/dislike desde TapBar)
   useEffect(() => {
     if (!triggerAction) return
 
