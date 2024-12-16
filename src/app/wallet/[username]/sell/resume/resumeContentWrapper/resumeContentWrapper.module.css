@@ -1,3 +1,20 @@
+
+.mainResume {
+  display: flex;
+  height: 779px;
+  padding: 76px 16px;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  flex: 1 0 0;
+  flex-shrink: 0;
+  align-self: stretch;
+  width: 100%;
+  background: #f7c84f;
+  min-height: 905px;
+}
+
+
 .text {
   color: #000000;
   text-align: center;

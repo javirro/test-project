@@ -7,25 +7,23 @@ import { usePathname, useRouter } from 'next/navigation'
 import { setCookie } from 'cookies-next'
 import { Asset } from '@/types/assetsList'
 import { useSendStore } from '@/app/store/sendStore'
+import { useSellStore } from '@/app/store/sellStore'
 
 const AssetItem = ({ asset }: { asset: Asset; username: string }) => {
   const pathname = usePathname()
   const router = useRouter()
   const isSell = pathname.endsWith('sell')
-  const {setTokenName, setTokenSymbol, setTokenAddress} = useSendStore()
+  const { setTokenName, setTokenSymbol, setTokenAddress } = useSendStore()
+  const { setTokenName: setNameSell, setTokenSymbol: setSymbolSell, setTokenAddress: setTokenAddressSell, setTokenImg } = useSellStore()
   const { setActionNavBarMessage } = useNavBarStore()
   const onClick = () => {
     setActionNavBarMessage(`${isSell ? 'Sell' : 'Send'} ${asset.name}`)
     if (isSell) {
       setCookie('sellStep', '2')
-      setCookie(
-        'sellToken',
-        JSON.stringify({
-          name: asset.name,
-          symbol: asset.symbol,
-          address: asset.address,
-        })
-      )
+      setNameSell(asset.name)
+      setSymbolSell(asset.symbol)
+      setTokenAddressSell(asset.address)
+      setTokenImg(asset.image)
     } else {
       setCookie('sendStep', '2')
       setTokenName(asset.name)

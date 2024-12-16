@@ -20,3 +20,8 @@
   border: none;
   margin-bottom: 16px;
 }
+
+
+.buttonNext:disabled {
+  opacity: 0.5;
+}
