@@ -3,25 +3,33 @@
 import style from './keyboard.module.css'
 import BackSpaceButtonIcon from '@/images/buttons/components/backspaceButton'
 import { useSendStore } from '@/app/store/sendStore'
+import { useSellStore } from '@/app/store/sellStore'
+import { usePathname } from 'next/navigation'
 
 function Keyboard() {
   const { amount, setAmount } = useSendStore()
+  const { amount: amountSell, setAmount: setAmountSell } = useSellStore()
+  const pathname = usePathname()
+  const isSell = pathname.includes('sell')
+
+  const amountToUse = isSell ? amountSell : amount
+  const setAmountToUse = isSell ? setAmountSell : setAmount
 
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
   const handleNumberClick = (number: string) => {
-    if (amount === '0') {
-      setAmount(number === "." ? '0.' : number)
+    if (amountToUse === '0') {
+      setAmountToUse(number === "." ? '0.' : number)
     } else {
-      setAmount(amount + number)
+      setAmountToUse(amountToUse + number)
     }
   }
 
   const handleBackspace = () => {
-    if (amount.length > 1) {
-      setAmount(amount.slice(0, -1))
+    if (amountToUse.length > 1) {
+      setAmountToUse(amountToUse.slice(0, -1))
     } else {
-      setAmount('0')
+      setAmountToUse('0')
     }
   }
 

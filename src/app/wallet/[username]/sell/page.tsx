@@ -3,18 +3,20 @@ import SearchableAsset from '../send/components/searchableAsset/SearchableAsset'
 import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
 import Link from 'next/link'
 import TransactionConfirmation from './confirmation/TransactionConfirmation/transactionConfirmation/TransactionConfirmation'
-import { assets } from '@/utils/fakeAssetsList'
+import { formatAssetsInfo } from '@/utils/fakeAssetsList'
 import AmountSelection from './amount/AmountSelection'
 import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
 import { getSolanaBalance } from '@/contracts/getBalances'
 import { notFound } from 'next/navigation'
-import { User } from '@/types/user'
+import { User, UserBalanceWithProjectInfo } from '@/types/user'
 import SekeletonLoaderSend from '../send/components/skeletonLoader/SekeletonLoaderSend'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
 import { revalidatePath } from 'next/cache'
 import { setCookie } from 'cookies-next'
+import { getUserBalancesProjectList } from '@/dataFetching/users/getUserBalancesProjectList'
+import { Price } from '@/types/prices'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -42,22 +44,25 @@ async function SellPage({ params }: PageProps) {
   const cookiesStore = await cookies()
   const sellStep: string = cookiesStore.get('sellStep')?.value ?? '1'
   const user: User | null = JSON.parse(cookiesStore.get('user')?.value as string) ?? null
-  if (!user) notFound()
+  const token = cookiesStore.get('token')?.value
+  if (!user || !token) notFound()
 
   return (
     <Suspense fallback={<SekeletonLoaderSend />}>
-      <SellBodyComponent username={username} userAddress={user.address} sellStep={sellStep} />
+      <SellBodyComponent username={username} user={user} sellStep={sellStep} token={token} />
     </Suspense>
   )
 }
 
 export default SellPage
 
-const SellBodyComponent = async ({ username, userAddress, sellStep }: { sellStep: string; username: string; userAddress: string }) => {
-  const solanaPrice: number = (await getSolanaPrice()).price
-  const { solBalance } = await getSolanaBalance(userAddress as string)
-  //TODO: FETCH USER BALANCE
-  //TODO: FETCH ASSETS PRICES
+const SellBodyComponent = async ({ user, token, sellStep, username }: { sellStep: string; user: User; token: string; username: string }) => {
+  const promises = [getSolanaPrice(), getSolanaBalance(user.address as string), getUserBalancesProjectList(user, token as string)]
+  const [solanaPriceData, solanaBalance, balancesList] = await Promise.all(promises)
+  const { solBalance } = solanaBalance as { lamportSolBalance: string; solBalance: string }
+  const { price: solanaPrice } = solanaPriceData as Price
+
+  const formateddBalancesList = formatAssetsInfo(balancesList as UserBalanceWithProjectInfo[])
 
   const handleBackToWallet = () => {
     revalidatePath(`/wallet/${username}`)
@@ -67,10 +72,10 @@ const SellBodyComponent = async ({ username, userAddress, sellStep }: { sellStep
     <>
       {sellStep === '1' && (
         <section className={style.main}>
-          <SearchableAsset assets={assets} username={username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
+          <SearchableAsset assets={formateddBalancesList} username={username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
         </section>
       )}
-      {sellStep === '2' && <AmountSelection />}
+      {sellStep === '2' && <AmountSelection balanceList={formateddBalancesList}/>}
       {sellStep === '3' && <ResumeContentWrapper />}
       {sellStep === '4' && (
         <main className={style.confirmationMain}>
