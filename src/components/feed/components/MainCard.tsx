@@ -36,32 +36,40 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
   const THRESHOLD = 300
 
   const bind = useDrag(
-    ({ movement: [mx], down, velocity: [vx], direction: [xDir] }) => {
-      if (isAnimating) return
+    async ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
+      if (typeof window === 'undefined') return
+      const pointerType = (event as PointerEvent).pointerType || ('ontouchstart' in window ? 'touch' : 'mouse')
+      if (pointerType === 'mouse' && 'ontouchstart' in window) return
 
-      const trigger = Math.abs(mx) > THRESHOLD || vx > 0.15
+      const trigger = vx > 0.15 || Math.abs(mx) > 80
       const isYes = mx > 0
-
       setLikeStatus(isYes ? 'yes' : mx < 0 ? 'no' : null)
 
-      if (!down) {
-        if (trigger) {
-          api.start({
-            x: xDir > 0 ? 500 : -500,
-            rotate: xDir > 0 ? 20 : -20,
-            scale: 1,
-          })
-          setNextProjectState(!nextProjectState)
-          setIndexShowProject((prev) => (isYes ? (prev + 1 < totalProjects ? prev + 1 : 0) : prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
+      if (trigger && !down) {
+        if (isYes) {
+          // const tx = await buyToken(user as User, token as string, project.tokenMintAddress, project.tokenId)
+          // console.log(tx)
+          setIndexShowProject((prev) => (prev + 1 < totalProjects ? prev + 1 : 0))
         } else {
-          api.start({ x: 0, rotate: 0, scale: 1 })
+          setIndexShowProject((prev) => (prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
         }
-        setLikeStatus(null)
+        api.start({ x: xDir > 0 ? 500 : -500, rotate: xDir > 0 ? 20 : -20, scale: 1 })
       } else {
-        api.start({ x: mx, rotate: mx / 10, scale: 0.95 })
+        api.start({
+          x: down ? mx : 0,
+          rotate: down ? mx / 10 : 0,
+          scale: down ? 0.95 : 1,
+        })
+      }
+
+      if (!down && !trigger) {
+        setLikeStatus(null)
       }
     },
-    { threshold: 10, pointer: { touch: true } }
+    {
+      threshold: 5,
+      pointer: { touch: true },
+    }
   )
 
   useEffect(() => {
