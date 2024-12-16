@@ -11,7 +11,6 @@ import { Stream } from '@cloudflare/stream-react'
 import { Project } from '@/types/project'
 import LikeCommentButtons from './LikeCommentButtons/LikeCommentButtons'
 import { useTapBarActionsStore } from '@/app/store/tapBarActionsStore'
-import { useMainCardStore } from '@/app/store/mainCardStore'
 
 interface MainCardProps {
   project: Project
@@ -21,11 +20,9 @@ interface MainCardProps {
 }
 
 function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: MainCardProps) {
-  const { nextProjectState, setNextProjectState } = useMainCardStore()
   const { isMuted, triggerAction, setTriggerAction } = useTapBarActionsStore()
   const [likeStatus, setLikeStatus] = useState<'yes' | 'no' | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
-
   console.log(isAnimating)
 
   const [{ x, rotate, scale }, api] = useSpring(() => ({
@@ -35,8 +32,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
     config: { tension: 200, friction: 20 },
   }))
 
-  // const THRESHOLD = 300
-
+  // Swipe manual con `useDrag`
   const bind = useDrag(
     async ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
       if (typeof window === 'undefined') return
@@ -74,6 +70,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
     }
   )
 
+  // Swipe con `triggerAction`
   useEffect(() => {
     if (!triggerAction) return
 
@@ -88,13 +85,16 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
     })
 
     setTimeout(() => {
-      setLikeStatus(null)
-      setNextProjectState(!nextProjectState)
+      // Cambiar al siguiente proyecto
       setIndexShowProject((prev) => (isYes ? (prev + 1 < totalProjects ? prev + 1 : 0) : prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
+      setLikeStatus(null)
       setTriggerAction(null)
       setIsAnimating(false)
+
+      // Resetear valores
+      api.start({ x: 0, rotate: 0, scale: 1 })
     }, 500)
-  }, [triggerAction, api, setNextProjectState, setIndexShowProject, totalProjects, setTriggerAction])
+  }, [triggerAction, api, setIndexShowProject, totalProjects, setTriggerAction])
 
   return (
     <>
@@ -137,6 +137,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
           <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
           <div className={style.videoContainer}>
             <Stream src={project.video} autoplay loop muted={isMuted} controls={false} height="80%" width="100%" />
+            <div className={style.dragOverlay} {...bind()}></div>
           </div>
 
           {likeStatus === 'yes' && (
