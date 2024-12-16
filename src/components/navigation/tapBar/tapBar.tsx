@@ -20,7 +20,7 @@ import { useTapBarActionsStore } from '@/app/store/tapBarActionsStore'
 import MuteButtonIcon from '@/images/buttons/components/muteButton'
 
 function TapBar() {
-  const { isMuted } = useTapBarActionsStore()
+  const { isMuted, setTriggerAction } = useTapBarActionsStore()
   const [activeIndex, setActiveIndex] = useState(0)
   const pathname = usePathname()
   const router = useRouter()
@@ -42,7 +42,6 @@ function TapBar() {
   const isExplore = pathname === '/explore'
   const isWallet = pathname.startsWith('/wallet')
 
-
   return (
     <>
       {pathname === '/create-project' ? null : (
@@ -50,9 +49,9 @@ function TapBar() {
           {pathname.startsWith('/wallet') ? null : (
             <div className={`${styles.tapBarUserControl} animate-in`}>
               <TapBarButton Icon={isMuted ? MuteButtonIcon : VolumeButtonIcon} buttonType="sound" />
-              <DislikeButton />
+              <DislikeButton onPress={() => setTriggerAction('deny')} />
               <TapBarButton Icon={PauseButtonIcon} />
-              <LikeButton />
+              <LikeButton onPress={() => setTriggerAction('approve')} />
               <TapBarButton Icon={StatisticsButtonIcon} />
             </div>
           )}

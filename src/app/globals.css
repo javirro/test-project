@@ -35,7 +35,7 @@
   --size96: calc(104 * 100vw / 414);
   --size110: calc(110 * 100vw / 414);
   --size135: calc(135 * 100vw / 414);
-  --height-main: calc(640 * 100vw / 414);
+  --height-main: calc(680 * 100vw / 414);
 }
 
 @media (prefers-color-scheme: dark) {
