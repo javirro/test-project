@@ -14,7 +14,7 @@ interface WalletInformationProps {
   username: string
 }
 
-const WalletBalancesBody = async ({  username }: WalletInformationProps) => {
+const WalletBalancesBody = async ({ username }: WalletInformationProps) => {
   const cookiesStore = await cookies()
   const userCookie = cookiesStore.get('user')?.value
   const token = cookiesStore.get('token')?.value
@@ -26,7 +26,7 @@ const WalletBalancesBody = async ({  username }: WalletInformationProps) => {
   const { price: solanaPrice } = solanaPriceData as Price
 
   const formateddBalancesList = formatAssetsInfo(balancesList as UserBalanceWithProjectInfo[])
-  const numberOfAssets = formateddBalancesList.length  +1
+  const numberOfAssets = formateddBalancesList.length + 1
 
   return (
     <>

@@ -38,12 +38,14 @@ const Overview = async ({ tokenAddress }: { tokenAddress: string }) => {
   const creatorImage = await getUserImage(creatorUsername)
   return (
     <section className={style.main}>
-      <TokenDetailsNavBar />
-      <TokenDetails project={projectInfo} />
-      <MarketInfoContainer project={projectInfo} />
-      <TagsContainer tags={tags} />
-      <CommentsContainer tokenAddress={tokenAddress} />
-      <CreatedBy createdOn={creationDate} creatorUsername={creatorUsername} creatorImage={creatorImage}/>
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', gap: 16 }}>
+        <TokenDetailsNavBar />
+        <TokenDetails project={projectInfo} />
+        <MarketInfoContainer project={projectInfo} />
+        <TagsContainer tags={tags} />
+        <CommentsContainer tokenAddress={tokenAddress} />
+        <CreatedBy createdOn={creationDate} creatorUsername={creatorUsername} creatorImage={creatorImage} />
+      </div>
     </section>
   )
 }

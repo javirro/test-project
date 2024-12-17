@@ -8,3 +8,15 @@
   font-family: var(--font-family-inter);
   z-index: 1000;
 }
+
+.main {
+  position: fixed;
+  bottom: 0; /* Pegada a la parte inferior */
+  left: 0;
+  width: 100%;
+  padding: 16px 16px;
+  border-top: 2px solid #000000;
+  background: #ffffff;
+  height: 100px;
+  z-index: 1000; /* Asegura que esté sobre el contenido */
+}
