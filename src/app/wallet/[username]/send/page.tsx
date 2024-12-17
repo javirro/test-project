@@ -19,6 +19,7 @@ import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWra
 import TransactionConfirmation from './confirmation/transactionConfirmation/TransactionConfirmation'
 import BackToWalletButton from './confirmation/BackToWalletButton'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
+import { getLastAddressesList } from '@/dataFetching/transactions/getTransactionsList'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -55,6 +56,7 @@ const SendBodyComponent = async ({ user, token, sendStep, username }: { sendStep
   const { price: solanaPrice } = solanaPriceData as Price
 
   const formateddBalancesList = formatAssetsInfo(balancesList as UserBalanceWithProjectInfo[])
+  const addresses = await getLastAddressesList(user, token)
 
   return (
     <>
@@ -63,7 +65,7 @@ const SendBodyComponent = async ({ user, token, sendStep, username }: { sendStep
           <SearchableAsset assets={formateddBalancesList} username={user.username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
         </section>
       )}
-      {sendStep === '2' && <SetDestinationAddress />}
+      {sendStep === '2' && <SetDestinationAddress addresses={addresses} />}
 
       {sendStep === '3' && (
         <main className={style.mainAmount}>

@@ -7,14 +7,15 @@ import style from './navBars.module.css'
 import { useNavBarStore } from '@/app/store/navBarStore'
 
 function ActionNavBar() {
-  const { actionNavBarMessage } = useNavBarStore()
+  const { actionNavBarMessage, setActionNavBarMessage } = useNavBarStore()
   const [mounted, setMounted] = useState(false)
   const router = useRouter()
   const currentPath = usePathname()
 
   useEffect(() => {
+    if(currentPath.includes('/activity')) setActionNavBarMessage('Last transactions')
     setMounted(true)
-  }, [])
+  }, [currentPath, setActionNavBarMessage])
 
   const handleBackNavigation = () => {
     const newPath = currentPath.split('/').slice(0, -1).join('/')
