@@ -8,6 +8,7 @@ import { notFound, usePathname, useRouter } from 'next/navigation'
 import { sendSolana, sendTokens } from '@/dataFetching/transactions/send'
 import cookiesUserUtils from '@/utils/clientCookiesUtils'
 import { useSendStore } from '@/app/store/sendStore'
+import { revalidateActivity } from '@/dataFetching/revalidatePath/revaliteCreateUser'
 
 interface swipeBarProps {
   startTransition: TransitionStartFunction
@@ -35,6 +36,7 @@ const SwipeBar = ({ startTransition }: swipeBarProps) => {
                 : await sendTokens(user, token, tokenAddress, amount, destination)
             console.log('txData', txData)
             setCookie('sendStep', '5')
+            revalidateActivity(user.username)
             router.refresh()
           } else {
             setCookie('sellStep', '4')

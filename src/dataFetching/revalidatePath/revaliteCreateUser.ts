@@ -20,5 +20,9 @@ export async function revalidateComments(tokenAddress: string) {
 }
 
 export async function revaliteSpecificWallet(username: string) {
-  revalidatePath('/wallet/' + username)
+  revalidatePath('/wallet/' + username, 'layout')
+}
+
+export async function revalidateActivity(username: string) {
+  revalidatePath('/wallet/' + username + '/activity')
 }
