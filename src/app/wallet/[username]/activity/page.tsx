@@ -39,7 +39,7 @@ export default page
 
 const ActivityBody = async ({ user, token }: { user: User; username: string; token: string }) => {
   const transactions = await getTransactionsList(user, token)
-  console.log(transactions)
+
   return (
     <section className={style.main}>
       <DynamicNoSSRAssetListActivity transactions={transactions} />

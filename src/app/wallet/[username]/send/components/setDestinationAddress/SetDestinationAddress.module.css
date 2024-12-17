@@ -4,9 +4,54 @@
   padding: 64px 16px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
+  gap: 12px;
   flex-shrink: 0;
   align-self: stretch;
   margin-bottom: 40vh;
   width: 100%;
+}
+
+.inputStyle {
+  border: 1.8px solid #131313;
+  width: 100%;
+}
+
+.lastAddressesBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+  width: 100%;
+  height: 500px;
+  overflow-y: auto;
+}
+
+.title {
+  font-size: var(--size16);
+  font-weight: 600;
+  font-family: Borna;
+  color: #000000cc;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  list-style: none;
+  width: 100%;
+}
+
+.listItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: var(--size12);
+  border-radius: 8px;
+  border: 1px solid #131313;
+  color: #494E05CC;
+  font-weight: 600;
+  font-family: Borna;
 }

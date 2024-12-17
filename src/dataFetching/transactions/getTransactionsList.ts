@@ -18,3 +18,20 @@ export const getTransactionsList = async (user: User, token: string): Promise<Tr
   const { transactions }: { transactions: TransactionData[] } = await response.json()
   return transactions
 }
+
+export const getLastAddressesList = async (user: User, token: string): Promise<string[]> => {
+  const url = transactionsEndpoints.getLastAddressesList(user.username)
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `${token}`,
+      'telegram-id': `${user.telegramId}`,
+    },
+  })
+  if (!response.ok) {
+    throw new Error('Error getting transactions')
+  }
+  const { addresses }: { addresses: string[] } = await response.json()
+  return addresses
+}

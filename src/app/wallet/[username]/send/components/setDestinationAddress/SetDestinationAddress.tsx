@@ -3,14 +3,18 @@
 import { AppRoot, Input, Tappable } from '@telegram-apps/telegram-ui'
 import TapBarSendActions from './TapBarSendActions'
 import { useState } from 'react'
+import LastAddressesUsed from './LastAddressesUsed'
+
 
 import style from './SetDestinationAddress.module.css'
 import '@telegram-apps/telegram-ui/dist/styles.css'
 
-const SetDestinationAddress = () => {
-  const [destination, setDestination ] = useState<string>('')
+const SetDestinationAddress = ({ addresses }: { addresses: string[] }) => {
+  const [destination, setDestination] = useState<string>('')
+
+
   return (
-    <AppRoot style={{ width: '100%', padding: '100px 16px' }} appearance="light">
+    <AppRoot style={{ width: '100%', padding: '100px 16px', display: 'flex', flexDirection: 'column', gap: '24px' }} appearance="light">
       <Input
         className={`${style.inputStyle} ${style.customInputPadding}`}
         header="To"
@@ -26,7 +30,10 @@ const SetDestinationAddress = () => {
           </Tappable>
         }
       />
-      <TapBarSendActions destination={destination}/>
+      {addresses && addresses.length > 0 && (
+        <LastAddressesUsed setDestination={setDestination} lastUsedAddresses={addresses as string[]} />
+      )}
+      <TapBarSendActions destination={destination} />
     </AppRoot>
   )
 }

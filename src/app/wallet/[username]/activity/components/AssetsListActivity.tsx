@@ -25,11 +25,11 @@ function AssetsListActivity({ transactions }: AssetsListActivityProps) {
   const lastWeekTxs = transactionsFormatted.filter((tx) => tx.timestamp > oneWeekAgoTimestamp && tx.timestamp < oneDayAgoTimestamp)
   return (
     <>
-      <p className={style.text}>Last 24 hours</p>
+      {todayTxs?.length > 0 && <p className={style.text}>Last 24 hours</p>}
       {todayTxs.map((asset, index) => (
         <AssetItemActivity key={index} tx={asset} />
       ))}
-      <p className={style.text}>Last week</p>
+      {lastWeekTxs.length > 0 && <p className={style.text}>Last week</p>}
       {lastWeekTxs.map((asset, index) => (
         <AssetItemActivity key={index} tx={asset} />
       ))}
