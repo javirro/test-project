@@ -53,7 +53,7 @@ function CreateProjectFirstStep({
           </div>
         </section>
 
-        <section style={{ width: '100%', padding: '0 10px' }}>
+        <section style={{ width: '100%', padding: '0 10px', height: '330px' }}>
           <div style={{ marginBottom: '12px', position: 'relative', width: '100%' }}>
             <label htmlFor="project-name" className={style.text}>
               Project name
