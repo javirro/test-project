@@ -14,8 +14,8 @@ const LastAddressesUsed = ({ setDestination, lastUsedAddresses }: LastAddressesU
       <ul className={style.list}>
         {lastUsedAddresses?.map((address, index) => (
           <li key={index} className={style.listItem} onClick={() => setDestination(address)}>
-            <CopyButtonIcon width="24" height="24" color="#707579" />
-            <span>{address?.slice(0,14)}...{address?.slice(-14)}</span>
+            <CopyButtonIcon width="28" height="28" color="#707579" />
+            <span>{address?.slice(0,10)}...{address?.slice(-10)}</span>
           </li>
         ))}
       </ul>
