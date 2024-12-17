@@ -32,14 +32,15 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
     config: { tension: 200, friction: 20 },
   }))
 
-  // Swipe manual con `useDrag`
+  const THRESHOLD = 300
+
   const bind = useDrag(
     async ({ movement: [mx], down, velocity: [vx], direction: [xDir], event }) => {
       if (typeof window === 'undefined') return
       const pointerType = (event as PointerEvent).pointerType || ('ontouchstart' in window ? 'touch' : 'mouse')
       if (pointerType === 'mouse' && 'ontouchstart' in window) return
 
-      const trigger = vx > 0.15 || Math.abs(mx) > 80
+      const trigger = Math.abs(mx) > THRESHOLD || vx > 0.15
       const isYes = mx > 0
       setLikeStatus(isYes ? 'yes' : mx < 0 ? 'no' : null)
 
