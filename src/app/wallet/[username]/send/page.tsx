@@ -71,7 +71,7 @@ const SendBodyComponent = async ({ user, token, sendStep, username }: { sendStep
         <main className={style.mainAmount}>
           <AmountInformation balanceList={formateddBalancesList} />
           <SelectAmount balanceList={formateddBalancesList} />
-          <NextButton />
+          <NextButton balanceList={formateddBalancesList} solBalance={solBalance} />
           <Keyboard />
         </main>
       )}
