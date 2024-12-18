@@ -7,19 +7,18 @@ import { useGetProjectCommentsAmount, useGetProjectLikeByUser, useGetProjectLike
 import useUser from '@/hooks/useUser'
 import { manageLike } from '@/dataFetching/projects/manageLikeAndComments'
 import { Dispatch, SetStateAction, useState } from 'react'
-import Link from 'next/link'
 
-const LikeCommentButtons = ({ tokenMintAddress }: { tokenMintAddress: string }) => {
+const LikeCommentButtons = ({ tokenMintAddress, toggleDropdown }: { tokenMintAddress: string; toggleDropdown: () => void }) => {
   const { commentsAmount, isLoading: commentsLoading } = useGetProjectCommentsAmount(tokenMintAddress)
   const [likeRefresher, setLikeRefresher] = useState<number>(0)
   if (commentsLoading) return <div></div>
 
   return (
     <section className={style.likeContainer}>
-      <Link href={`/token-details/${tokenMintAddress}/comments`} className={style.badgeContainer}>
+      <button className={style.badgeContainer} onClick={() => toggleDropdown()}>
         <CommentsButtonIcon width="30" height="30" color="#FFFFFF" />
         <span className={style.badge}>{commentsAmount}</span>
-      </Link>
+      </button>
       <LikeButton tokenMintAddress={tokenMintAddress} setLikeRefresher={setLikeRefresher} key={likeRefresher} />
     </section>
   )
@@ -35,7 +34,7 @@ const LikeButton = ({ tokenMintAddress, setLikeRefresher }: { tokenMintAddress: 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', position: 'relative' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-          <HeartButtonIcon width="30" height="30" color={'#C2C5CC'}  />
+          <HeartButtonIcon width="30" height="30" color={'#C2C5CC'} />
           <p>...</p>
         </div>
       </div>
