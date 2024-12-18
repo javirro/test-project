@@ -14,7 +14,7 @@ const SetDestinationAddress = ({ addresses }: { addresses: string[] }) => {
 
 
   return (
-    <AppRoot style={{ width: '100%', padding: '100px 16px', display: 'flex', flexDirection: 'column', gap: '24px' }} appearance="light">
+    <AppRoot style={{ width: '100%', padding: '100px 16px', display: 'flex', flexDirection: 'column', gap: '24px',  }} appearance="light" className="tg-ui--light">
       <Input
         className={`${style.inputStyle} ${style.customInputPadding}`}
         header="To"
