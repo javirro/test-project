@@ -4,7 +4,6 @@ import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWra
 import Link from 'next/link'
 import TransactionConfirmation from './confirmation/TransactionConfirmation/transactionConfirmation/TransactionConfirmation'
 import { formatAssetsInfo } from '@/utils/fakeAssetsList'
-import AmountSelection from './amount/AmountSelection'
 import { Suspense } from 'react'
 import { cookies } from 'next/headers'
 import { getSolanaPrice } from '@/dataFetching/prices/getPrices'
@@ -17,20 +16,14 @@ import { revalidatePath } from 'next/cache'
 import { setCookie } from 'cookies-next'
 import { getUserBalancesProjectList } from '@/dataFetching/users/getUserBalancesProjectList'
 import { Price } from '@/types/prices'
+import AmountInformation from '../send/amount/amountInformation/AmountInformation'
+import Keyboard from '../send/amount/keyboard/Keyboard'
+import NextButton from '../send/amount/nextButton/NextButton'
+import SelectAmount from './amount/selectAmount/SelectAmount'
 
 interface PageProps {
   params: Promise<{ username: string }>
 }
-
-//! cookies structure
-/*
-  {
-    sellStep: '1', '2', '3', '4'
-    sellToken: {address: '0x', symbol: 'USDT', name: 'Tether'}
-    tokenOut: {address: '0x', symbol: 'USDT', name: 'Tether'}
-    amountIn: '0.0'
-  }
-*/
 
 export async function generateStaticParams() {
   const usernames = await getUsersUsernames()
@@ -75,7 +68,14 @@ const SellBodyComponent = async ({ user, token, sellStep, username }: { sellStep
           <SearchableAsset assets={formateddBalancesList} username={username} solanaPrice={solanaPrice} solanaBalance={solBalance} />
         </section>
       )}
-      {sellStep === '2' && <AmountSelection balanceList={formateddBalancesList}/>}
+      {sellStep === '2' && (
+        <main className={style.amountMain}>
+          <AmountInformation balanceList={formateddBalancesList} />
+          <SelectAmount balanceList={formateddBalancesList} />
+          <NextButton balanceList={formateddBalancesList} />
+          <Keyboard />
+        </main>
+      )}
       {sellStep === '3' && <ResumeContentWrapper />}
       {sellStep === '4' && (
         <main className={style.confirmationMain}>
