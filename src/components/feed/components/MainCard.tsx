@@ -11,6 +11,8 @@ import { Stream } from '@cloudflare/stream-react'
 import { Project } from '@/types/project'
 import LikeCommentButtons from './LikeCommentButtons/LikeCommentButtons'
 import { useTapBarActionsStore } from '@/app/store/tapBarActionsStore'
+import CommentsSection from './commentsSection/CommentsSection'
+import { useRef } from 'react'
 
 interface MainCardProps {
   project: Project
@@ -23,7 +25,36 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
   const { isMuted, triggerAction, setTriggerAction } = useTapBarActionsStore()
   const [likeStatus, setLikeStatus] = useState<'yes' | 'no' | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [showDropdown, setShowDropdown] = useState<boolean>(false)
+  const [isCommentsAnimating, setIsCommentsAnimating] = useState<'animateIn' | 'animateOut' | ''>('')
+  const startY = useRef<number>(0)
+  const currentY = useRef<number>(0)
   console.log(isAnimating)
+
+  const toggleDropdown = () => {
+    if (!showDropdown) {
+      setShowDropdown(true)
+      setIsCommentsAnimating('animateIn')
+    } else {
+      setIsCommentsAnimating('animateOut')
+      setTimeout(() => setShowDropdown(false), 300)
+    }
+  }
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startY.current = e.touches[0].clientY
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    currentY.current = e.touches[0].clientY
+  }
+
+  const handleTouchEnd = () => {
+    if (currentY.current - startY.current > 50) {
+      setIsCommentsAnimating('animateOut')
+      setTimeout(() => setShowDropdown(false), 300)
+    }
+  }
 
   const [{ x, rotate, scale }, api] = useSpring(() => ({
     x: 0,
@@ -71,7 +102,6 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
     }
   )
 
-  // Swipe con `triggerAction`
   useEffect(() => {
     if (!triggerAction) return
 
@@ -86,13 +116,11 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
     })
 
     setTimeout(() => {
-      // Cambiar al siguiente proyecto
       setIndexShowProject((prev) => (isYes ? (prev + 1 < totalProjects ? prev + 1 : 0) : prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
       setLikeStatus(null)
       setTriggerAction(null)
       setIsAnimating(false)
 
-      // Resetear valores
       api.start({ x: 0, rotate: 0, scale: 1 })
     }, 500)
   }, [triggerAction, api, setIndexShowProject, totalProjects, setTriggerAction])
@@ -114,7 +142,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
               <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
             </div>
           </Link>
-          <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
+          <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} toggleDropdown={toggleDropdown} />
           <div className={style.videoContainer}>
             <Stream src={project.video} autoplay loop muted controls={false} height="80%" width="100%" />
           </div>
@@ -135,7 +163,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
               <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
             </div>
           </Link>
-          <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} />
+          <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} toggleDropdown={toggleDropdown} />
           <div className={style.videoContainer}>
             <Stream src={project.video} autoplay loop muted={isMuted} controls={false} height="80%" width="100%" />
             <div className={style.dragOverlay} {...bind()}></div>
@@ -166,6 +194,20 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
 
           <div className={style.shadow}></div>
         </animated.section>
+      )}
+      {showDropdown && (
+        <section
+          className={`${style.commentsSection} ${style[isCommentsAnimating]}`}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <CommentsSection
+            tokenMintAddress={project.tokenMintAddress}
+            isCommentsAnimating={isCommentsAnimating}
+            setIsCommentsAnimating={setIsCommentsAnimating}
+          />
+        </section>
       )}
     </>
   )

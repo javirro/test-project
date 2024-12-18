@@ -12,6 +12,8 @@
 .badgeContainer {
   position: relative;
   display: inline-block;
+  background-color: transparent;
+  border: none;
 }
 
 .badge {

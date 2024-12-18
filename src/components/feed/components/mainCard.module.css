@@ -135,3 +135,57 @@
   background-color: transparent;
   cursor: grab;
 }
+
+.commentsSection {
+  position: absolute;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  bottom: 0;
+  width: 100%;
+  max-height: 450px;
+  overflow: scroll;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.commentsSection.animateIn {
+  animation: slideInComments 0.3s ease-in forwards;
+}
+
+.commentsSection.animateOut {
+  animation: slideOutComments 0.3s ease-in forwards;
+}
+
+@keyframes slideInComments {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutComments {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
