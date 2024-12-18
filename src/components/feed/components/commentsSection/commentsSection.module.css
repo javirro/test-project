@@ -1,0 +1,34 @@
+.main {
+  display: flex;
+  padding: 16px 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  padding: 10px;
+}
+
+.main > p {
+  display: flex;
+  padding: 8px 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+  color: #707579;
+
+  font-family: Borna;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0.15px;
+}
+
+.commentsDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  align-self: stretch;
+}

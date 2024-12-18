@@ -72,7 +72,7 @@ const SellBodyComponent = async ({ user, token, sellStep, username }: { sellStep
         <main className={style.amountMain}>
           <AmountInformation balanceList={formateddBalancesList} />
           <SelectAmount balanceList={formateddBalancesList} />
-          <NextButton balanceList={formateddBalancesList} />
+          <NextButton balanceList={formateddBalancesList} solBalance={solBalance}/>
           <Keyboard />
         </main>
       )}
