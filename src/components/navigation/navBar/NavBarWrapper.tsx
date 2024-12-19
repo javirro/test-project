@@ -14,7 +14,6 @@ function NavBarWrapper() {
   const sellCookie = getCookie('sellStep')
   const sendStep = sendCookie ? parseInt(sendCookie) : 0
   const sellStep = sellCookie ? parseInt(sellCookie) : 0
- 
 
   const showActionNavBar =
     pathname.endsWith('/receive') ||
@@ -28,7 +27,9 @@ function NavBarWrapper() {
         {pathname === '/create-project' && <ProfileNavBar />}
         {pathname.startsWith('/token-details') && <ProjectPublicNavBar />}
         {pathname.endsWith('/profile') && <ProfileNavBar />}
-        {pathname.endsWith('/explore') && <ProfileNavBar  />}
+        {pathname.endsWith('/explore') && <ProfileNavBar />}
+        {pathname.endsWith('/explore/top100') && <ProfileNavBar />}
+        {pathname.endsWith('/explore/top100/feed') && <ProfileNavBar />}
         {pathname === '/' && <SegmentedCustom />}
         {showActionNavBar && <ActionNavBar />}
       </nav>

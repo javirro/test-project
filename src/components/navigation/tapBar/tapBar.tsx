@@ -46,7 +46,7 @@ function TapBar() {
     <>
       {pathname === '/create-project' ? null : (
         <main className={styles.mainSelector}>
-          {pathname.startsWith('/wallet') ? null : (
+          {pathname.startsWith('/wallet') || (pathname.startsWith('/explore') && !pathname.endsWith('/feed')) ? null : (
             <div className={`${styles.tapBarUserControl} animate-in`}>
               <TapBarButton Icon={isMuted ? MuteButtonIcon : VolumeButtonIcon} buttonType="sound" />
               <DislikeButton onPress={() => setTriggerAction('deny')} />
