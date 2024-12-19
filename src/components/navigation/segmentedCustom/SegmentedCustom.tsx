@@ -1,6 +1,4 @@
-'use client'
-
-import { Dispatch, SetStateAction, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import ArrowDownNormalButtonIcon from '@/images/buttons/components/arrowDownButton'
 import style from './segmentedCustom.module.css'
 import { useGetUserSolanaBuyAmount } from '@/hooks/useGetUserData'
@@ -21,6 +19,7 @@ function SegmentedCustom({ solanaAmount, setRefresher }: SegmentedCustomProps) {
   const [inputType, setInputType] = useState<'custom' | 'default'>('default')
   const [isAnimating, setIsAnimating] = useState<'animateIn' | 'animateOut' | ''>('')
   const { user, token } = useUser()
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const toggleDropdown = () => {
     if (!showDropdown) {
@@ -53,22 +52,43 @@ function SegmentedCustom({ solanaAmount, setRefresher }: SegmentedCustomProps) {
     }
   }
 
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsAnimating('animateOut')
+      setTimeout(() => setShowDropdown(false), 300)
+    }
+  }
+
+  useEffect(() => {
+    if (showDropdown) {
+      document.addEventListener('mousedown', handleClickOutside)
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showDropdown])
+
   return (
-    <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', marginTop: 'var(--size27)' }}>
+    <section style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', marginTop: 'var(--size27)', zIndex: '2000' }}>
       <ForYouWatchListTabs />
-      {<SolanaAmountBox key={selectedAmount} selectedAmount={selectedAmount as number} toggleDropdown={toggleDropdown} />}
+      <SolanaAmountBox key={selectedAmount} selectedAmount={selectedAmount as number} toggleDropdown={toggleDropdown} />
       {showDropdown && (
-        <AnimatedSolanaBox
-          isAnimating={isAnimating}
-          selectedAmount={selectedAmount}
-          setIsAnimating={setIsAnimating}
-          setSelectedAmount={setSelectedAmount}
-          setShowDropdown={setShowDropdown}
-          handleUpdateSolanaAmount={handleUpdateSolanaAmount}
-          onBlurCustomInput={onBlurCustomInput}
-          inputType={inputType}
-          setInputType={setInputType}
-        />
+        <div ref={dropdownRef}>
+          <AnimatedSolanaBox
+            isAnimating={isAnimating}
+            selectedAmount={selectedAmount}
+            setIsAnimating={setIsAnimating}
+            setSelectedAmount={setSelectedAmount}
+            setShowDropdown={setShowDropdown}
+            handleUpdateSolanaAmount={handleUpdateSolanaAmount}
+            onBlurCustomInput={onBlurCustomInput}
+            inputType={inputType}
+            setInputType={setInputType}
+          />
+        </div>
       )}
     </section>
   )
@@ -81,8 +101,7 @@ const SegmentedCustomWrapper = () => {
 }
 export default SegmentedCustomWrapper
 
-const SolanaAmountBox = ({ selectedAmount, toggleDropdown }: { selectedAmount: number;  toggleDropdown: () => void }) => {
-
+const SolanaAmountBox = ({ selectedAmount, toggleDropdown }: { selectedAmount: number; toggleDropdown: () => void }) => {
   return (
     <div className={style.setAmountDiv} onClick={toggleDropdown}>
       <p key={selectedAmount}>Set amount: {selectedAmount} SOL</p>

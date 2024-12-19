@@ -35,6 +35,7 @@ export const userEndpoints = {
   getUserWalletQrCode: (username: string) => `${BASE_URL}/users/walletqr/${username}`, //GET
   getUserProjectsWatchlistByUsername: (username: string) => `${BASE_URL}/users/watchlist/${username}`, //GET
   getUserSolanaBuyAmountByUsername: (username: string) => `${BASE_URL}/users/solana/buyamount/${username}`, //GET
+  // getUserSolanaBuyAmountByUsername: (username: string) => `${BASE_URL}/users/solana/buyamount/johndoe`, //GET
   getUserBalancesProjectList: (username: string) => `${BASE_URL}/users/balances/projects/${username}`, //GET
   createUser: `${BASE_URL}/users/login-create`, //POST
   updateSolanaBuyAmount: `${BASE_URL}/users/solana/buyamount`, //PUT
@@ -43,4 +44,3 @@ export const userEndpoints = {
 export const balancesEndpoints = {
   getBalancesWithProjectsInfo: (username: string) => `${BASE_URL}/users/balances/projects/${username}`, //GET
 }
-
