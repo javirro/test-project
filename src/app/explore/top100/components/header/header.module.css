@@ -1,0 +1,44 @@
+.main {
+  margin-top: 80px;
+  display: flex;
+  height: 251px;
+  flex-direction: column;
+  align-items: center;
+  gap: -68px;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: radial-gradient(113.24% 84.78% at 50% 88.64%, #fbe69d 0%, rgba(255, 255, 255, 0) 100%);
+  position: relative;
+}
+
+.mainText {
+  color: #000000;
+  text-align: center;
+  font-family: Borna;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 42px;
+  letter-spacing: 0.25px;
+}
+
+.secondaryText {
+  color: #707579;
+  text-align: center;
+
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+}
+
+.image {
+  display: flex;
+  padding: 0px 36.665px 0px 43.589px;
+  justify-content: flex-end;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+}

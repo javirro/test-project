@@ -32,7 +32,7 @@ function NextButton({ balanceList, solBalance }: { balanceList: Asset[]; solBala
     router.refresh()
   }
   return (
-    <button className={style.buttonNext} disabled={amountNumber <= 0 || !isAmountValid} onClick={handleNext}>
+    <button className={style.buttonNext} disabled={amountNumber <= -10 || !isAmountValid} onClick={handleNext}>
       Next
     </button>
   )

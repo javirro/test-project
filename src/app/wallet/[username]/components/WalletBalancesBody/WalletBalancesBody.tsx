@@ -28,6 +28,9 @@ const WalletBalancesBody = async ({ username }: WalletInformationProps) => {
   const formateddBalancesList = formatAssetsInfo(balancesList as UserBalanceWithProjectInfo[])
   const numberOfAssets = formateddBalancesList.length + 1
 
+  console.log('sola', user)
+  console.log('sola', formateddBalancesList)
+
   return (
     <>
       {<WalletInformation priceSolana={solanaPrice} solBalance={solBalance} username={username} />}

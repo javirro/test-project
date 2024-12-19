@@ -1,6 +1,7 @@
 .main {
   display: flex;
-  width: 414px;
+  width: 100%;
+  height: 951px;
   flex-direction: column;
   align-items: flex-start;
 }

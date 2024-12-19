@@ -41,13 +41,6 @@ function TransactionInformation({ solPrice }: TransactionInformationProps) {
           <p className={style.toAddressText}>Network:</p>
           <p className={style.addressText}>Solana</p>
         </div>
-        <div className={style.toAddress}>
-          <p className={style.toAddressText}>Network Fee:</p>
-          <div>
-            <p className={style.addressText}>1.55 PEP</p>
-            <p className={style.addressDirection}>0.03 SOL</p>
-          </div>
-        </div>
         <hr style={{ width: '100%' }} />
         <div className={style.toAddress}>
           <p className={style.toAddressText}>Total:</p>
@@ -57,7 +50,7 @@ function TransactionInformation({ solPrice }: TransactionInformationProps) {
       <div className={style.mainDiv}>
         <div className={style.toAddress}>
           <p className={style.toAddressText}>Send time:</p>
-          <p className={style.addressText}>30 min</p>
+          <p className={style.addressText}>5 min</p>
         </div>
       </div>
     </section>

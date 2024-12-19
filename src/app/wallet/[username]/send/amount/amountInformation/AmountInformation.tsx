@@ -14,7 +14,7 @@ function AmountInformation({ balanceList }: { balanceList: Asset[] }) {
   const tokenSymbolToUse = isSell ? tokenSymbolSell : tokenSymbol
   const amountToUse = isSell ? amountSell : amount
 
-  const asset = balanceList.find((token) => token.symbol.toLowerCase() === tokenSymbolToUse.toLowerCase())
+  const asset = balanceList.find((token) => token.symbol?.toLowerCase() === tokenSymbolToUse.toLowerCase())
   return (
     <section className={style.main}>
       <div className={style.amountContainer}>
