@@ -3,7 +3,6 @@
 import { usePathname } from 'next/navigation'
 import ProfileNavBar from './navBars/ProfileNavBar'
 import ProjectPublicNavBar from './navBars/ProjectPublicNavBar'
-import SegmentedCustomWrapper from '../segmentedCustom/SegmentedCustom'
 import ActionNavBar from './navBars/ActionNavBar'
 import { TanstackQueryProvider } from '@/components/TanstackQueryProvider/TanstackQueryProvider'
 import { getCookie } from 'cookies-next/client'
