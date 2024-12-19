@@ -10,13 +10,51 @@
   margin-bottom: 40vh;
   width: 100%;
 }
-.tg-ui--light {
+.tg-ui-light {
   color-scheme: light !important;
 }
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: var(--size12);
+  position: relative;
+}
+
+.inputLabel {
+  font-size: var(--size16);
+  font-weight: 600;
+  font-family: Borna;
+  color: #000000cc;
+}
+
 .inputStyle {
   border: 1.8px solid #131313;
+  border-radius: 16px;
   width: 100%;
   background: transparent !important;
+  color-scheme: light !important;
+  color: #000000cc;
+  font-size: var(--size16);
+  font-weight: 500;
+  width: 100%;
+  padding: var(--size16);
+}
+
+.inputStyle:focus {
+  border: 2.3px solid #131313;
+  outline: none;
+
+}
+
+.cross {
+  position: absolute !important;
+  right: 16px !important;
+  bottom: 25px !important;
+  z-index: 9999 !important;
+  cursor: pointer;
 }
 
 .lastAddressesBox {
