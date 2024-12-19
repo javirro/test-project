@@ -1,6 +1,6 @@
 'use client'
 
-import { Dispatch, SetStateAction, useState, useEffect } from 'react'
+import { Dispatch, SetStateAction, useState, useEffect, useRef } from 'react'
 import style from './mainCard.module.css'
 import ProjectAvatar from '@/components/avatars/ProjectAvatar'
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
@@ -12,7 +12,7 @@ import { Project } from '@/types/project'
 import LikeCommentButtons from './LikeCommentButtons/LikeCommentButtons'
 import { useTapBarActionsStore } from '@/app/store/tapBarActionsStore'
 import CommentsSection from './commentsSection/CommentsSection'
-import { useRef } from 'react'
+import SegmentedCustomWrapper from '@/components/navigation/segmentedCustom/SegmentedCustom'
 
 interface MainCardProps {
   project: Project
@@ -29,7 +29,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
   const [isCommentsAnimating, setIsCommentsAnimating] = useState<'animateIn' | 'animateOut' | ''>('')
   const startY = useRef<number>(0)
   const currentY = useRef<number>(0)
-  console.log(isAnimating)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   const toggleDropdown = () => {
     if (!showDropdown) {
@@ -56,6 +56,28 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
     }
   }
 
+  const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsCommentsAnimating('animateOut')
+      setTimeout(() => setShowDropdown(false), 300)
+    }
+  }
+
+  useEffect(() => {
+    if (showDropdown) {
+      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('touchstart', handleClickOutside)
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
+  }, [showDropdown])
+
   const [{ x, rotate, scale }, api] = useSpring(() => ({
     x: 0,
     rotate: 0,
@@ -77,8 +99,6 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
 
       if (trigger && !down) {
         if (isYes) {
-          // const tx = await buyToken(user as User, token as string, project.tokenMintAddress, project.tokenId)
-          // console.log(tx)
           setIndexShowProject((prev) => (prev + 1 < totalProjects ? prev + 1 : 0))
         } else {
           setIndexShowProject((prev) => (prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
@@ -149,54 +169,58 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
           <div className={style.shadow}></div>
         </div>
       ) : (
-        <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
-          <Link href={`/token-details/${project.tokenMintAddress}/overview`} className={style.frame}>
-            <div className={style.avatarContainer}>
-              <ProjectAvatar badget={true} />
-              <div>
-                <p className={style.mainText}>{project?.tokenName}</p>
-                <p className={style.marketCapText}>Market Cap: 23.5k</p>
+        <>
+          <SegmentedCustomWrapper />
+          <animated.section className={style.main} {...bind()} style={{ x, scale, rotate }}>
+            <Link href={`/token-details/${project.tokenMintAddress}/overview`} className={style.frame}>
+              <div className={style.avatarContainer}>
+                <ProjectAvatar badget={true} />
+                <div>
+                  <p className={style.mainText}>{project?.tokenName}</p>
+                  <p className={style.marketCapText}>Market Cap: 23.5k</p>
+                </div>
               </div>
+              <div className={style.priceContainer}>
+                <p className={style.priceText}>$0.07851</p>
+                <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
+              </div>
+            </Link>
+            <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} toggleDropdown={toggleDropdown} />
+            <div className={style.videoContainer}>
+              <Stream src={project.video} autoplay loop muted={isMuted} controls={false} height="80%" width="100%" />
+              <div className={style.dragOverlay} {...bind()}></div>
             </div>
-            <div className={style.priceContainer}>
-              <p className={style.priceText}>$0.07851</p>
-              <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" />
-            </div>
-          </Link>
-          <LikeCommentButtons tokenMintAddress={project.tokenMintAddress} toggleDropdown={toggleDropdown} />
-          <div className={style.videoContainer}>
-            <Stream src={project.video} autoplay loop muted={isMuted} controls={false} height="80%" width="100%" />
-            <div className={style.dragOverlay} {...bind()}></div>
-          </div>
 
-          {likeStatus === 'yes' && (
-            <animated.img
-              src="/yes.svg"
-              alt="Yes"
-              className={`${style.yes} ${style.visible}`}
-              style={{
-                opacity: x.to((xVal) => Math.min(Math.abs(xVal) / 100, 1)),
-                transform: x.to((xVal) => `translateX(${xVal / 2}px)`),
-              }}
-            />
-          )}
-          {likeStatus === 'no' && (
-            <animated.img
-              src="/no.svg"
-              alt="No"
-              className={`${style.no} ${style.visible}`}
-              style={{
-                opacity: x.to((xVal) => Math.min(Math.abs(xVal) / 100, 1)),
-                transform: x.to((xVal) => `translateX(${xVal / 2}px)`),
-              }}
-            />
-          )}
+            {likeStatus === 'yes' && (
+              <animated.img
+                src="/yes.svg"
+                alt="Yes"
+                className={`${style.yes} ${style.visible}`}
+                style={{
+                  opacity: x.to((xVal) => Math.min(Math.abs(xVal) / 100, 1)),
+                  transform: x.to((xVal) => `translateX(${xVal / 2}px)`),
+                }}
+              />
+            )}
+            {likeStatus === 'no' && (
+              <animated.img
+                src="/no.svg"
+                alt="No"
+                className={`${style.no} ${style.visible}`}
+                style={{
+                  opacity: x.to((xVal) => Math.min(Math.abs(xVal) / 100, 1)),
+                  transform: x.to((xVal) => `translateX(${xVal / 2}px)`),
+                }}
+              />
+            )}
 
-          <div className={style.shadow}></div>
-        </animated.section>
+            <div className={style.shadow}></div>
+          </animated.section>
+        </>
       )}
       {showDropdown && (
         <section
+          ref={dropdownRef}
           className={`${style.commentsSection} ${style[isCommentsAnimating]}`}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}

@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 import ProfileNavBar from './navBars/ProfileNavBar'
 import ProjectPublicNavBar from './navBars/ProjectPublicNavBar'
-import SegmentedCustom from '../segmentedCustom/SegmentedCustom'
+import SegmentedCustomWrapper from '../segmentedCustom/SegmentedCustom'
 import ActionNavBar from './navBars/ActionNavBar'
 import { TanstackQueryProvider } from '@/components/TanstackQueryProvider/TanstackQueryProvider'
 import { getCookie } from 'cookies-next/client'
@@ -30,7 +30,7 @@ function NavBarWrapper() {
         {pathname.endsWith('/explore') && <ProfileNavBar />}
         {pathname.endsWith('/explore/top100') && <ProfileNavBar />}
         {pathname.endsWith('/explore/top100/feed') && <ProfileNavBar />}
-        {pathname === '/' && <SegmentedCustom />}
+        {/* {pathname === '/' && <SegmentedCustomWrapper />} */}
         {showActionNavBar && <ActionNavBar />}
       </nav>
     </TanstackQueryProvider>

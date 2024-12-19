@@ -1,7 +1,7 @@
 'use client'
 
 import React, { TransitionStartFunction, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
 import styles from './swipeBar.module.css'
 import { setCookie } from 'cookies-next/client'
 import { notFound, usePathname, useRouter } from 'next/navigation'
@@ -23,12 +23,19 @@ const SwipeBar = ({ startTransition }: swipeBarProps) => {
   const token = cookiesUserUtils.getTokenFromCookie()
   const { amount, destination, tokenAddress, tokenSymbol } = useSendStore()
   if (!user || !token) notFound()
+
+  const motionValue = useMotionValue(0)
+  const background = useTransform(
+    motionValue,
+    [0, 200],
+    ['linear-gradient(90deg, #F7C84F 0%, #F7C84F 0%, #fff 0%, #fff 100%)', 'linear-gradient(90deg, #F7C84F 0%, #F7C84F 100%, #fff 100%, #fff 100%)']
+  )
+
   const handleDragEnd = async (_: any, info: any) => {
     startTransition(async () => {
-      if (info.offset.x > 200) {
+      if (info.offset.x > 150) {
         setIsSwiped(true)
         try {
-          //
           if (isSend) {
             const txData =
               tokenSymbol.toLowerCase() === 'sol'
@@ -43,9 +50,8 @@ const SwipeBar = ({ startTransition }: swipeBarProps) => {
           }
           router.refresh()
         } catch (error) {
-          console.error('Error while trying to sell order', error)
+          console.error('Error while trying to process order', error)
           return
-        } finally {
         }
       } else {
         setIsSwiped(false)
@@ -54,26 +60,20 @@ const SwipeBar = ({ startTransition }: swipeBarProps) => {
   }
 
   return (
-    <div className={styles.swipeContainer}>
+    <motion.div className={styles.swipeContainer} style={{ background }}>
       <motion.div
-        className={`${styles.swipeBar} ${isSwiped ? styles.swiped : ''}`}
-        initial={{ x: 0 }}
-        animate={{ backgroundColor: isSwiped ? '#f5c242' : 'transparent' }}
-        transition={{ duration: 0.3 }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 200 }}
+        dragElastic={0}
+        dragMomentum={false}
+        onDragEnd={handleDragEnd}
+        style={{ x: motionValue }}
+        className={`${styles.circle} ${isSwiped ? styles.completed : ''}`}
       >
-        <motion.div
-          className={styles.circle}
-          drag="x"
-          dragConstraints={{ left: 0, right: 278 }}
-          onDragEnd={handleDragEnd}
-          animate={{ x: isSwiped ? 278 : 0 }}
-          transition={{ type: 'spring', stiffness: 278, damping: 20 }}
-        >
-          <span>&gt;</span>
-        </motion.div>
-        <div className={styles.label}>{!isSwiped ? 'Swipe to confirm' : ''}</div>
+        <span>&gt;</span>
       </motion.div>
-    </div>
+      <div className={styles.label}>{!isSwiped ? 'Swipe to confirm' : ''}</div>
+    </motion.div>
   )
 }
 
