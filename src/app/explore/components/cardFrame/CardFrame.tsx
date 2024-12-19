@@ -35,7 +35,7 @@ function CardFrame() {
         <ArrowRightButtonIcon color="#000000" height="24" width="24" />
       </Link>
       {mockCards.map((card) => (
-        <CardLeaderBoard position={card.position} image={card.image} name={card.name} marketCap={card.marketCap} />
+        <CardLeaderBoard key={card.position} position={card.position} image={card.image} name={card.name} marketCap={card.marketCap} />
       ))}
     </section>
   )

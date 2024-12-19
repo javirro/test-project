@@ -33,7 +33,7 @@ const AssetItem = ({ asset }: { asset: Asset; username: string }) => {
     router.refresh()
   }
 
-  const projectImg = asset.symbol.toLowerCase() === 'sol' ? getTokenImg('sol') : asset.image
+  const projectImg = asset.symbol?.toLowerCase() === 'sol' ? getTokenImg('sol') : asset.image
   return (
     <div className={style.assetContainer} onClick={onClick}>
       <img className={style.image} src={projectImg} alt="Project image" />

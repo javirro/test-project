@@ -9,7 +9,7 @@ interface cardLeaderBoardProps {
 
 function CardLeaderBoard({ position, image, name, marketCap }: cardLeaderBoardProps) {
   return (
-    <div className={style.main}>
+    <div className={style.main} key={position}>
       <p className={style.position}>#{position}</p>
       <img className={style.image} src={image} alt="user-profile img" />
       <p className={style.name}>{name}</p>

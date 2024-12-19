@@ -31,7 +31,7 @@ function LeaderBoard() {
       </div>
       <div className={style.cardSection}>
         {mockCards.map((card) => (
-          <CardLeaderBoard position={card.position} image={card.image} name={card.name} marketCap={card.marketCap} />
+          <CardLeaderBoard key={card.position} position={card.position} image={card.image} name={card.name} marketCap={card.marketCap} />
         ))}
       </div>
     </section>

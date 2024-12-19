@@ -26,6 +26,8 @@ const useTelegramUser = (): TelegramUser | null => {
         setUserTelegramInfo(fakeTelegramUserData)
         try {
           const { user: completeUser, token } = await createOrLogin(fakeTelegramUserData)
+          console.log('console log', completeUser)
+          console.log('token', token)
           revalidateUser()
           setUserStore(completeUser as User)
           setToken(token)
@@ -35,7 +37,6 @@ const useTelegramUser = (): TelegramUser | null => {
       }
     }
     createUser()
-
   }, [setUserTelegramInfo, setUserStore, setToken])
 
   return userTelegramInfo

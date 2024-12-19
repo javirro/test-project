@@ -38,6 +38,8 @@ function TapBar() {
     }
   }
 
+  console.log('user', user)
+
   const isHome = pathname === '/'
   const isExplore = pathname === '/explore'
   const isWallet = pathname.startsWith('/wallet')
@@ -62,10 +64,10 @@ function TapBar() {
             <Link href={'/explore'} className={`${styles.iconWrapper} ${activeIndex === 1 ? styles.active : ''}`} onClick={() => handleButtonClick(1)}>
               <ExploreButtonIcon color={isExplore ? '#DAB223' : '#707579'} />
             </Link>
-            <Link href="/create-project" prefetch={false} className={styles.addButtonWrapper}>
+            <Link href="/create-project" className={styles.addButtonWrapper}>
               <AddButton size={35} />
             </Link>
-            <Link href={`/wallet/${user?.username}`} prefetch={false} className={styles.iconWrapper} onClick={() => handleButtonClick(2)}>
+            <Link href={`/wallet/${user?.username}`} className={styles.iconWrapper} onClick={() => handleButtonClick(2)}>
               <WalletButtonIcon width="35px" color={isWallet ? '#DAB223' : '#707579'} />
             </Link>
             <Link href="/profile" className={styles.iconWrapper} onClick={() => handleButtonClick(3)}>
