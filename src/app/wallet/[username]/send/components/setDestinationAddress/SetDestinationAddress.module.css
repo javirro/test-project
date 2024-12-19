@@ -10,13 +10,19 @@
   margin-bottom: 40vh;
   width: 100%;
 }
-.tg-ui--light {
+.tg-ui-light {
   color-scheme: light !important;
 }
+
 .inputStyle {
   border: 1.8px solid #131313;
   width: 100%;
   background: transparent !important;
+  color-scheme: light !important;
+  color: #000000cc;
+  font-size: var(--size16);
+  font-weight: 500;
+  width: 100%;
 }
 
 .lastAddressesBox {

@@ -14,15 +14,15 @@ const SetDestinationAddress = ({ addresses }: { addresses: string[] }) => {
 
 
   return (
-    <AppRoot style={{ width: '100%', padding: '100px 16px', display: 'flex', flexDirection: 'column', gap: '24px',  }} appearance="light" className="tg-ui--light">
+    <AppRoot style={{ width: '100%', padding: '100px 16px', display: 'flex', flexDirection: 'column', gap: '24px',  }} appearance="light" className="tg-ui-light">
       <Input
-        className={`${style.inputStyle} ${style.customInputPadding}`}
+        className={`${style.inputStyle}`}
         header="To"
         placeholder="@username or address"
         value={destination}
         onChange={(e) => setDestination(e.target.value)}
         after={
-          <Tappable Component="div" style={{ display: 'flex' }}>
+          <Tappable Component="div" style={{ display: 'flex' }} onClick={() => setDestination('')}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
