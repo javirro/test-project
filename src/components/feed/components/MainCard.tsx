@@ -13,15 +13,21 @@ import LikeCommentButtons from './LikeCommentButtons/LikeCommentButtons'
 import { useTapBarActionsStore } from '@/app/store/tapBarActionsStore'
 import CommentsSection from './commentsSection/CommentsSection'
 import SegmentedCustomWrapper from '@/components/navigation/segmentedCustom/SegmentedCustom'
+import { useRef } from 'react'
+import useUser from '@/hooks/useUser'
+import { buyToken } from '@/dataFetching/transactions/buyToken'
+import { User } from '@/types/user'
 
 interface MainCardProps {
   project: Project
   setIndexShowProject: Dispatch<SetStateAction<number>>
   totalProjects: number
   deactivated: boolean
+  setToastMessage: Dispatch<SetStateAction<string | null>>
+  setToastType: Dispatch<SetStateAction<'error' | 'success'>>
 }
 
-function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: MainCardProps) {
+function MainCard({ project, setIndexShowProject, totalProjects, deactivated, setToastMessage, setToastType }: MainCardProps) {
   const { isMuted, triggerAction, setTriggerAction } = useTapBarActionsStore()
   const [likeStatus, setLikeStatus] = useState<'yes' | 'no' | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -30,6 +36,8 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
   const startY = useRef<number>(0)
   const currentY = useRef<number>(0)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const { user, token } = useUser()
+  console.log(isAnimating)
 
   const toggleDropdown = () => {
     if (!showDropdown) {
@@ -99,6 +107,19 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
 
       if (trigger && !down) {
         if (isYes) {
+          try {
+            setToastMessage('Sending transaction, please wait')
+            setToastType('success')
+            const tx = await buyToken(user as User, token as string, project.tokenMintAddress, project.tokenId)
+            setToastMessage('Transaction completed. Token Bought')
+            console.log(tx)
+          } catch (error) {
+            console.error('Error buying token', error)
+            setToastMessage('Error buying token')
+            setToastType('error')
+            return
+          }
+
           setIndexShowProject((prev) => (prev + 1 < totalProjects ? prev + 1 : 0))
         } else {
           setIndexShowProject((prev) => (prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
