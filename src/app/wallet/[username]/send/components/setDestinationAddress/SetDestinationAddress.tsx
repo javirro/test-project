@@ -18,8 +18,8 @@ const SetDestinationAddress = ({ addresses }: { addresses: string[] }) => {
         <input className={style.inputStyle} placeholder="@username or address" value={destination} onChange={(e) => setDestination(e.target.value)} />
         <Tappable Component="div" style={{ display: 'flex' }} onClick={() => setDestination('')} className={style.cross}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            <path d="M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M18 6L6 18" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill=''/>
+            <path d="M6 6L18 18" stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </Tappable>
       </div>

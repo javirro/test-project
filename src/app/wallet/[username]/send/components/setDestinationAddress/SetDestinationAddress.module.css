@@ -40,7 +40,7 @@
   font-size: var(--size16);
   font-weight: 500;
   width: 100%;
-  padding: var(--size12);
+  padding: var(--size16);
 }
 
 .inputStyle:focus {
@@ -52,7 +52,7 @@
 .cross {
   position: absolute !important;
   right: 16px !important;
-  bottom: 22px !important;
+  bottom: 25px !important;
   z-index: 9999 !important;
   cursor: pointer;
 }
