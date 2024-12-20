@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition, useEffect } from 'react'
+import { useState, useTransition } from 'react'
 import CreateProjectFirstStep from './components/CreateProjectFirstStep'
 import CreateProjectSecondStep from './components/CreateProjectSecondStep'
 import { useCreateProjectStore } from '../store/createProjectStore'
@@ -11,26 +11,16 @@ import { createProject } from '@/dataFetching/projects/createProject'
 import base64Utils from '@/utils/base64Utils'
 import useUser from '@/hooks/useUser'
 import { revalidateHome, revalidateProjectDetails } from '@/dataFetching/revalidatePath/revaliteCreateUser'
-
+import { useToastStore } from '../store/toastStore'
 
 function Page() {
   const { user, token } = useUser()
   const { projectName, tokenSymbol, projectDescription, videoOriginal, tags, allowComments, projectImage, discord, telegram, twitter, website, nsfw } =
     useCreateProjectStore()
-
+  const { setToastType, setToastMessage } = useToastStore()
   const [step, setStep] = useState(0)
-  const [toastMessage, setToastMessage] = useState<string | null>(null)
-  const [toastType, setToastType] = useState<'error' | 'success'>('success')
-  const [isPending, startTransition] = useTransition()
 
-  useEffect(() => {
-    if (toastMessage) {
-      const timer = setTimeout(() => {
-        setToastMessage(null)
-      }, 3300)
-      return () => clearTimeout(timer)
-    }
-  }, [toastMessage])
+  const [isPending, startTransition] = useTransition()
 
   const getBackgroundColor = (index: number) => {
     return index <= step ? '#997312' : '#F4F4F7'
@@ -64,11 +54,12 @@ function Page() {
           website,
           telegram,
         }
-
+        setToastMessage(`Creating ${projectName}...`)
+        setToastType('loading')
         await createProject(data, token as string)
         revalidateProjectDetails()
         revalidateHome()
-        setToastMessage('Proyect created sucessfully')
+        setToastMessage(`${projectName} created successfully!`)
         setToastType('success')
       } catch (error) {
         console.error('Error creating project', error)
@@ -92,13 +83,16 @@ function Page() {
   }
 
   return (
-    <section style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px', position: 'relative' }} className='animate-in'>
+    <section
+      style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px', position: 'relative' }}
+      className="animate-in"
+    >
       <div className={style.stepViewer}>
         {[0, 1, 2].map((_, index) => (
           <div key={index} style={{ backgroundColor: getBackgroundColor(index) }}></div>
         ))}
       </div>
-      {step === 0 && <CreateProjectFirstStep setToastMessage={setToastMessage} setToastType={setToastType}/>}
+      {step === 0 && <CreateProjectFirstStep setToastMessage={setToastMessage} setToastType={setToastType} />}
       {step === 1 && <CreateProjectSecondStep />}
 
       <div className={style.nextButtonDiv}>
@@ -106,7 +100,7 @@ function Page() {
           {btnText}
         </button>
       </div>
-      {toastMessage && <Toast text={toastMessage} type={toastType}/>}
+      <Toast />
     </section>
   )
 }
