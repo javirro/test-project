@@ -25,12 +25,14 @@ const Receive = async ({ params }: PageProps) => {
   const defaultQr = '/solanaQr.png'
   const qrWithBase64 = qr ? `data:image/png;base64,${qr}` : defaultQr
 
+  console.log(username)
+
   return (
     <section className={style.main}>
       <img style={{ width: '20vh' }} src={qrWithBase64} alt="qr code for solana wallet" />
       <p className={style.mainText}>Your Solana Address</p>
       <p className={style.secondaryText}>Use this address to receive tokens and collectibles on Solana</p>
-      Receive section: {username}
+      {/* Receive section: {username} */}
     </section>
   )
 }
