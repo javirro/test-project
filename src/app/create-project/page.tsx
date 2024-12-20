@@ -54,12 +54,12 @@ function Page() {
           website,
           telegram,
         }
-        setToastMessage('Creating project. Please wait...')
+        setToastMessage(`Creating ${projectName}...`)
         setToastType('loading')
         await createProject(data, token as string)
         revalidateProjectDetails()
         revalidateHome()
-        setToastMessage('Proyect created sucessfully')
+        setToastMessage(`${projectName} created successfully!`)
         setToastType('success')
       } catch (error) {
         console.error('Error creating project', error)

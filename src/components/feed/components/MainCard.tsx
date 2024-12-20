@@ -32,7 +32,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
   const [isAnimating, setIsAnimating] = useState(false)
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
   const [isCommentsAnimating, setIsCommentsAnimating] = useState<'animateIn' | 'animateOut' | ''>('')
-  const { tokenMintAddress, tokenId } = project
+  const { tokenMintAddress, tokenId, tokenSymbol } = project
   const startY = useRef<number>(0)
   const currentY = useRef<number>(0)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -73,21 +73,21 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
 
   const buyTokenFunction = async () => {
     try {
-      setToastMessage('Sending transaction, please wait')
+      setToastMessage(`Buying ${tokenSymbol} token...`)
       setToastType('loading')
       const tx = await buyToken(user as User, token as string, tokenMintAddress, tokenId)
       setToastType('success')
-      setToastMessage('Transaction completed. Token Bought')
+      setToastMessage('Transaction completed')
       console.log(tx)
     } catch (error) {
       console.error('Error buying token', error)
-      setToastMessage('Error buying token')
+      setToastMessage(`Error buying ${tokenSymbol}`)
       setToastType('error')
       return
     }
   }
 
-  const callbackBuyToken = useCallback(buyTokenFunction, [user, token, tokenMintAddress, tokenId, setToastMessage, setToastType])
+  const callbackBuyToken = useCallback(buyTokenFunction, [user, token, tokenMintAddress, tokenId, tokenSymbol, setToastMessage, setToastType])
  
 
   useEffect(() => {
@@ -126,7 +126,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
 
       if (trigger && !down) {
         if (isYes) {
-          await callbackBuyToken()
+           callbackBuyToken()
           setIndexShowProject((prev) => (prev + 1 < totalProjects ? prev + 1 : 0))
         } else {
           setIndexShowProject((prev) => (prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
