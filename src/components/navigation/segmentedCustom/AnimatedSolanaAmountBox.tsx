@@ -57,7 +57,7 @@ const AnimatedSolanaBox = ({
       onTouchEnd={handleTouchEnd}
     >
       {inputType === 'custom' ? (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px 0', position: 'absolute', zIndex: '2000' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '16px 0', zIndex: '2000' }}>
           <button
             style={{
               backgroundColor: 'transparent',
@@ -65,14 +65,12 @@ const AnimatedSolanaBox = ({
               display: 'flex',
               alignItems: 'center',
               padding: '0',
-              position: 'absolute',
-              left: '0',
             }}
             onClick={() => setInputType('default')}
           >
             <ArrowLeftButtonIcon width="20" height="20" color="#000" />
           </button>
-          <h3 style={{ margin: '0', textAlign: 'center', width: '100%' }}>Custom amount</h3>
+          <h3 style={{ margin: '0', textAlign: 'left', width: '100%' }}>Custom amount</h3>
         </div>
       ) : (
         <h3 style={{ padding: '16px 0' }}>Set amount</h3>
