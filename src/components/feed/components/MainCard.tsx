@@ -174,7 +174,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: 
       }, 500)
     }
     handleTrigger()
-  }, [triggerAction, api, setIndexShowProject, totalProjects, setTriggerAction, buyTokenFunction])
+  }, [triggerAction, api, setIndexShowProject, totalProjects, setTriggerAction])
 
   return (
     <>
