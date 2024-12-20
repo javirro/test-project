@@ -84,7 +84,7 @@ function Page() {
 
   return (
     <section
-      style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px', position: 'relative' }}
+      style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '100%', marginTop: '80px', paddingBottom: "80px" }}
       className="animate-in"
     >
       <div className={style.stepViewer}>
