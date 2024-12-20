@@ -1,6 +1,6 @@
 'use client'
 
-import { Dispatch, SetStateAction, useState, useEffect, useRef } from 'react'
+import { Dispatch, SetStateAction, useState, useEffect, useRef, useCallback } from 'react'
 import style from './mainCard.module.css'
 import ProjectAvatar from '@/components/avatars/ProjectAvatar'
 import PerformancePercentage from '@/components/status/performance/PerformancePercentage'
@@ -16,22 +16,23 @@ import SegmentedCustomWrapper from '@/components/navigation/segmentedCustom/Segm
 import useUser from '@/hooks/useUser'
 import { buyToken } from '@/dataFetching/transactions/buyToken'
 import { User } from '@/types/user'
+import { useToastStore } from '@/app/store/toastStore'
 
 interface MainCardProps {
   project: Project
   setIndexShowProject: Dispatch<SetStateAction<number>>
   totalProjects: number
   deactivated: boolean
-  setToastMessage: Dispatch<SetStateAction<string | null>>
-  setToastType: Dispatch<SetStateAction<'error' | 'success'>>
 }
 
-function MainCard({ project, setIndexShowProject, totalProjects, deactivated, setToastMessage, setToastType }: MainCardProps) {
+function MainCard({ project, setIndexShowProject, totalProjects, deactivated }: MainCardProps) {
+  const { setToastType, setToastMessage } = useToastStore()
   const { isMuted, triggerAction, setTriggerAction } = useTapBarActionsStore()
   const [likeStatus, setLikeStatus] = useState<'yes' | 'no' | null>(null)
   const [isAnimating, setIsAnimating] = useState(false)
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
   const [isCommentsAnimating, setIsCommentsAnimating] = useState<'animateIn' | 'animateOut' | ''>('')
+  const { tokenMintAddress, tokenId } = project
   const startY = useRef<number>(0)
   const currentY = useRef<number>(0)
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -70,6 +71,25 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated, se
     }
   }
 
+  const buyTokenFunction = async () => {
+    try {
+      setToastMessage('Sending transaction, please wait')
+      setToastType('loading')
+      const tx = await buyToken(user as User, token as string, tokenMintAddress, tokenId)
+      setToastType('success')
+      setToastMessage('Transaction completed. Token Bought')
+      console.log(tx)
+    } catch (error) {
+      console.error('Error buying token', error)
+      setToastMessage('Error buying token')
+      setToastType('error')
+      return
+    }
+  }
+
+  const callbackBuyToken = useCallback(buyTokenFunction, [user, token, tokenMintAddress, tokenId, setToastMessage, setToastType])
+ 
+
   useEffect(() => {
     if (showDropdown) {
       document.addEventListener('mousedown', handleClickOutside)
@@ -106,19 +126,7 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated, se
 
       if (trigger && !down) {
         if (isYes) {
-          try {
-            setToastMessage('Sending transaction, please wait')
-            setToastType('success')
-            const tx = await buyToken(user as User, token as string, project.tokenMintAddress, project.tokenId)
-            setToastMessage('Transaction completed. Token Bought')
-            console.log(tx)
-          } catch (error) {
-            console.error('Error buying token', error)
-            setToastMessage('Error buying token')
-            setToastType('error')
-            return
-          }
-
+          await callbackBuyToken()
           setIndexShowProject((prev) => (prev + 1 < totalProjects ? prev + 1 : 0))
         } else {
           setIndexShowProject((prev) => (prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
@@ -144,26 +152,29 @@ function MainCard({ project, setIndexShowProject, totalProjects, deactivated, se
 
   useEffect(() => {
     if (!triggerAction) return
+    const handleTrigger = async () => {
+      const isYes = triggerAction === 'approve'
+      if (isYes)
+      setLikeStatus(isYes ? 'yes' : 'no')
+      setIsAnimating(true)
 
-    const isYes = triggerAction === 'approve'
-    setLikeStatus(isYes ? 'yes' : 'no')
-    setIsAnimating(true)
+      api.start({
+        x: isYes ? 500 : -500,
+        rotate: isYes ? 20 : -20,
+        scale: 1,
+      })
 
-    api.start({
-      x: isYes ? 500 : -500,
-      rotate: isYes ? 20 : -20,
-      scale: 1,
-    })
+      setTimeout(() => {
+        setIndexShowProject((prev) => (isYes ? (prev + 1 < totalProjects ? prev + 1 : 0) : prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
+        setLikeStatus(null)
+        setTriggerAction(null)
+        setIsAnimating(false)
 
-    setTimeout(() => {
-      setIndexShowProject((prev) => (isYes ? (prev + 1 < totalProjects ? prev + 1 : 0) : prev - 1 >= 0 ? prev - 1 : totalProjects - 1))
-      setLikeStatus(null)
-      setTriggerAction(null)
-      setIsAnimating(false)
-
-      api.start({ x: 0, rotate: 0, scale: 1 })
-    }, 500)
-  }, [triggerAction, api, setIndexShowProject, totalProjects, setTriggerAction])
+        api.start({ x: 0, rotate: 0, scale: 1 })
+      }, 500)
+    }
+    handleTrigger()
+  }, [triggerAction, api, setIndexShowProject, totalProjects, setTriggerAction, buyTokenFunction])
 
   return (
     <>
