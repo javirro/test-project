@@ -49,3 +49,20 @@
   line-height: 24px;
   letter-spacing: 0.15px;
 }
+
+
+.shimmer {
+  display: flex;
+  padding: 16px;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  background: linear-gradient(
+    to right,
+    #f7c84f 0%,
+    #f7c84f 50%,
+    #f7c84f 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}

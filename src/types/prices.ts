@@ -10,7 +10,7 @@ export interface TokenDataFromBondingCurve {
   tokenMintAddress: string
 }
 
-export interface ProjectListWithMarketCap extends TokenDataFromBondingCurve {
+export interface ProjectMarketCap extends TokenDataFromBondingCurve {
   image: string
   tokenName: string
   tokenSymbol: string

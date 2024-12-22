@@ -1,10 +1,14 @@
 import style from './explore.module.css'
 import CardFrame from './components/cardFrame/CardFrame'
 import ExploreNewCrypto from './components/exploreNewCrypto/ExploreNewCrypto'
-const ExplorePage = async () => {
+import { Suspense } from 'react'
+import CardFrameSkeleton from './components/cardFrame/CardFrameSkeleton'
+const ExplorePage = () => {
   return (
     <main className={style.main}>
-      <CardFrame />
+      <Suspense fallback={<CardFrameSkeleton />}>
+        <CardFrame />
+      </Suspense>
       <ExploreNewCrypto />
     </main>
   )

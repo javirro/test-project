@@ -2,29 +2,12 @@ import style from './cardFrame.module.css'
 import ArrowRightButtonIcon from '@/images/buttons/components/arrowRightButton'
 import CardLeaderBoard from '../cardLeaderBoard/CardLeaderBoard'
 import Link from 'next/link'
+import { getFullProjectsListWithMarketcap } from '@/dataFetching/prices/getFullProjectsListWithMarketcap'
+import { ProjectMarketCap } from '@/types/prices'
 
-const mockCards = [
-  {
-    position: 1,
-    image: 'https://via.placeholder.com/150',
-    name: 'Pepe',
-    marketCap: '3,567B',
-  },
-  {
-    position: 2,
-    image: 'https://via.placeholder.com/150',
-    name: 'Pepe',
-    marketCap: '3,567B',
-  },
-  {
-    position: 3,
-    image: 'https://via.placeholder.com/150',
-    name: 'Pepe',
-    marketCap: '3,567B',
-  },
-]
-
-function CardFrame() {
+async function CardFrame() {
+  const projectsDataWithMarketCap = await getFullProjectsListWithMarketcap()
+  const top3Projects: ProjectMarketCap[] = projectsDataWithMarketCap.slice(0, 3)
   return (
     <section className={style.main}>
       <Link href="/explore/top100" className={style.headerContainer}>
@@ -34,8 +17,8 @@ function CardFrame() {
         </div>
         <ArrowRightButtonIcon color="#000000" height="24" width="24" />
       </Link>
-      {mockCards.map((card) => (
-        <CardLeaderBoard key={card.position} position={card.position} image={card.image} name={card.name} marketCap={card.marketCap} />
+      {top3Projects.map((p, index) => (
+        <CardLeaderBoard key={p.tokenName} position={index} project={p} />
       ))}
     </section>
   )

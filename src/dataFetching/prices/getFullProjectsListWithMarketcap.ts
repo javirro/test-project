@@ -1,7 +1,7 @@
-import { ProjectListWithMarketCap } from '@/types/prices'
+import { ProjectMarketCap } from '@/types/prices'
 import { priceEndpoints } from '../endpoints'
 
-export const getFullProjectsListWithMarketcap = async (): Promise<ProjectListWithMarketCap[]> => {
+export const getFullProjectsListWithMarketcap = async (): Promise<ProjectMarketCap[]> => {
   const url = priceEndpoints.getFullListWithMarketcap
   const response = await fetch(url, {
     method: 'GET',
