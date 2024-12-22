@@ -16,7 +16,7 @@ function CardLeaderBoard({ position, project}: cardLeaderBoardProps) {
       <p className={style.position}>#{realPosition}</p>
       <img className={style.image} src={imageToUse} alt="projectImg" />
       <p className={style.name}>{tokenName}</p>
-      <p className={style.marketCap}>Mkt. Cap: {marketCap} $</p>
+      <p className={style.marketCap}>Mkt. Cap: {marketCap?.toFixed(8)} $</p>
     </div>
   )
 }
