@@ -3,8 +3,9 @@ import { userEndpoints } from '../endpoints'
 import cookiesUserUtils from '@/utils/clientCookiesUtils'
 
 export const createOrLogin = async (telegramUser: TelegramUser): Promise<{ user: User; token: string }> => {
-  const { id, username, language_code, photo_url } = telegramUser
+  const { id, username, language_code, photo_url, first_name, last_name } = telegramUser
   const url = userEndpoints.createUser
+  const realUsername = username && username !== '' ? username : `${first_name?.toLowerCase()}_${last_name?.toLowerCase()}`
   const options = {
     method: 'POST',
     headers: {
@@ -12,7 +13,7 @@ export const createOrLogin = async (telegramUser: TelegramUser): Promise<{ user:
     },
     body: JSON.stringify({
       telegramId: id,
-      username,
+      username: realUsername,
       languageCode: language_code,
       photoUrl: photo_url,
     }),
