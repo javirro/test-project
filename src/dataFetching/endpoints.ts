@@ -20,6 +20,7 @@ export const priceEndpoints = {
   getSolanaPrice: `${BASE_URL}/solana`, //GET
   getSolanaAndTokenPriceByMintAddress: (mintAddress: string) => `${BASE_URL}/price-preview/${mintAddress}`, //GET
   getFullListWithMarketcap: `${BASE_URL}/marketcap/projects`, //GET
+  getProjectMarketCap : (tokenAddress: string) => `${BASE_URL}/marketcap/projects/${tokenAddress}`, //GET
 }
 
 export const transactionsEndpoints = {

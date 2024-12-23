@@ -1,4 +1,4 @@
-import { ProjectMarketCap } from '@/types/prices'
+import { ProjectMarketCap, TokenDataFromBondingCurve } from '@/types/prices'
 import { priceEndpoints } from '../endpoints'
 
 export const getFullProjectsListWithMarketcap = async (): Promise<ProjectMarketCap[]> => {
@@ -14,4 +14,21 @@ export const getFullProjectsListWithMarketcap = async (): Promise<ProjectMarketC
   }
   const { projectsDataWithMarketCap } = await response.json()
   return projectsDataWithMarketCap
+}
+
+export const getProjectMarketcap = async (tokenAddress: string): Promise<{ position: number; marketCapData: TokenDataFromBondingCurve }> => {
+  const url = priceEndpoints.getProjectMarketCap(tokenAddress)
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  if (!response.ok) {
+    throw new Error(`Error fetching project market cap: ${response.statusText}`)
+  }
+  const result = await response.json()
+  const position: number = result?.position
+  const marketCapData: TokenDataFromBondingCurve = result?.project
+  return { marketCapData, position }
 }

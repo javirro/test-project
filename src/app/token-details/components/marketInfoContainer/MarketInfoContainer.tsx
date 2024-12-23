@@ -2,14 +2,14 @@ import { TOTAL_SUPPLY_TEXT } from '@/contracts/lamportSolConverter'
 import style from './marketInfoContainer.module.css'
 import { Project } from '@/types/project'
 
-function MarketInfoContainer({ project }: { project: Project }) {
+function MarketInfoContainer({ project, marketcap }: { project: Project, marketcap: number }) {
   const { description } = project
   return (
     <section className={style.main}>
       <div className={style.secondary}>
         <div className={style.firstContainer}>
           <div>
-            <p className={style.textQuantity}>25.5K</p>
+            <p className={style.textQuantity}>$ {marketcap?.toFixed(5)}</p>
             <p className={style.textQuantityInfo}>Market Cap</p>
           </div>
           <div>

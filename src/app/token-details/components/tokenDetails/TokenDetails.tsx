@@ -4,7 +4,8 @@ import style from './tokenDetails.module.css'
 import Likes from './Likes'
 import { Project } from '@/types/project'
 
-function TokenDetails({ project }: { project: Project }) {
+
+async function TokenDetails({ project, position, price }: { project: Project, position: number, price: number }) {
   const { tokenMintAddress, tokenName } = project
 
   return (
@@ -14,10 +15,10 @@ function TokenDetails({ project }: { project: Project }) {
         <div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <p className={style.nameText}>{tokenName}</p>
-            <span className={style.rankPosition}>#1</span>
+            <span className={style.rankPosition}>#{position}</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <p className={style.priceText}>$0,0054</p>
+            <p className={style.priceText}>${price?.toFixed(6)}</p>
             <PerformancePercentage textColor="#fcfcfc" backgroundColor="#31D158" percentage="+ 8,8%" fontSize="12px" />
           </div>
         </div>

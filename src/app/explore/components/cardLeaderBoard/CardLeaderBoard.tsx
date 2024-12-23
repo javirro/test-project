@@ -7,6 +7,7 @@ interface cardLeaderBoardProps {
 
 }
 
+
 function CardLeaderBoard({ position, project}: cardLeaderBoardProps) {
   const { image, tokenName, marketCap } = project
   const imageToUse = image ? image : 'https://via.placeholder.com/150'
