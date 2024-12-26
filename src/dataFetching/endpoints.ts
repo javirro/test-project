@@ -27,6 +27,7 @@ export const transactionsEndpoints = {
   getTransactionsByUserAddress: (address: string) => `${BASE_URL}/transactions/${address}`, //GET
   getLastAddressesList: (username: string) => `${BASE_URL}/transactions/last-addresses/${username}`, //GET
   buyTokens: `${BASE_URL}/transactions/buy`, //POST
+  sellTokens: `${BASE_URL}/transactions/sell`, //POST
   sendTokens: `${BASE_URL}/transactions/send/tokens`, //POST
   sendSolana: `${BASE_URL}/transactions/send/solana`, //POST
 }

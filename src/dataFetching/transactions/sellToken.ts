@@ -2,8 +2,8 @@ import { User } from '@/types/user'
 import { transactionsEndpoints } from '../endpoints'
 import { Transaction } from '@/types/transactions'
 
-export const buyToken = async (user: User, token: string, tokenMintAddress: string, tokenId: string): Promise<Transaction> => {
-  const url = transactionsEndpoints.buyTokens
+export const sellToken = async (user: User, token: string, tokenMintAddress: string, tokenId: string, amount: string): Promise<Transaction> => {
+  const url = transactionsEndpoints.sellTokens
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -15,11 +15,12 @@ export const buyToken = async (user: User, token: string, tokenMintAddress: stri
       tokenAddress: tokenMintAddress,
       tokenId,
       username: user.username,
+      amount,
     }),
   })
   if (response.status !== 200) {
-    throw new Error('Error buying token')
+    throw new Error('Error selling token')
   }
-  const { txData }: { txData: Transaction } = await response.json()
+  const { txData } = await response.json()
   return txData
 }
