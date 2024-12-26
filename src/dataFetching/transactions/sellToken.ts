@@ -2,7 +2,7 @@ import { User } from '@/types/user'
 import { transactionsEndpoints } from '../endpoints'
 import { Transaction } from '@/types/transactions'
 
-export const sellToken = async (user: User, token: string, tokenMintAddress: string, tokenId: string, amount: string): Promise<Transaction> => {
+export const sellToken = async (user: User, token: string, tokenMintAddress: string, amount: string): Promise<Transaction> => {
   const url = transactionsEndpoints.sellTokens
   const response = await fetch(url, {
     method: 'POST',
@@ -13,7 +13,6 @@ export const sellToken = async (user: User, token: string, tokenMintAddress: str
     },
     body: JSON.stringify({
       tokenAddress: tokenMintAddress,
-      tokenId,
       username: user.username,
       amount,
     }),

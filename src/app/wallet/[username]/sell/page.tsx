@@ -1,8 +1,6 @@
 import style from './page.module.css'
 import SearchableAsset from '../send/components/searchableAsset/SearchableAsset'
 import ResumeContentWrapper from './resume/resumeContentWrapper/ResumeContentWrapper'
-import Link from 'next/link'
-import TransactionConfirmation from './confirmation/TransactionConfirmation/transactionConfirmation/TransactionConfirmation'
 import { formatAssetsInfo } from '@/utils/fakeAssetsList'
 import { Suspense } from 'react'
 import { cookies } from 'next/headers'
@@ -12,14 +10,13 @@ import { notFound } from 'next/navigation'
 import { User, UserBalanceWithProjectInfo } from '@/types/user'
 import SekeletonLoaderSend from '../send/components/skeletonLoader/SekeletonLoaderSend'
 import { getUsersUsernames } from '@/dataFetching/users/getUsersUsername'
-import { revalidatePath } from 'next/cache'
-import { setCookie } from 'cookies-next'
 import { getUserBalancesProjectList } from '@/dataFetching/users/getUserBalancesProjectList'
 import { Price } from '@/types/prices'
 import AmountInformation from '../send/amount/amountInformation/AmountInformation'
 import Keyboard from '../send/amount/keyboard/Keyboard'
 import NextButton from '../send/amount/nextButton/NextButton'
 import SelectAmount from './amount/selectAmount/SelectAmount'
+import SellConfirmation from './confirmation/SellConfirmation'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -57,10 +54,7 @@ const SellBodyComponent = async ({ user, token, sellStep, username }: { sellStep
 
   const formateddBalancesList = formatAssetsInfo(balancesList as UserBalanceWithProjectInfo[])
 
-  const handleBackToWallet = () => {
-    revalidatePath(`/wallet/${username}`)
-    setCookie('sellStep', '1')
-  }
+
   return (
     <>
       {sellStep === '1' && (
@@ -78,15 +72,7 @@ const SellBodyComponent = async ({ user, token, sellStep, username }: { sellStep
       )}
       {sellStep === '3' && <ResumeContentWrapper  solPrice={solanaPrice}/>}
       {sellStep === '4' && (
-        <main className={style.confirmationMain}>
-          <p className={style.confirmationText}>Just sold!</p>
-          <TransactionConfirmation solPrice={solanaPrice}/>
-          <div className={style.confirmationNextButtonDiv}>
-            <Link href={`/wallet/${username}`} className={style.confirmationNextButton} onClick={handleBackToWallet}>
-              Back to wallet
-            </Link>
-          </div>
-        </main>
+        <SellConfirmation username={username} solanaPrice={solanaPrice} />
       )}
     </>
   )

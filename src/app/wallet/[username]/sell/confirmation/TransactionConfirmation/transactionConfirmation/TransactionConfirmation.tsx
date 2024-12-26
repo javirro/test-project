@@ -22,7 +22,7 @@ function TransactionConfirmation({ solPrice }: { solPrice: number }) {
       <div className={style.mainInfo}>
         <img className={style.mainImage} src={projectImg} alt="Project-img" />
         <div>
-          <p className={style.mainText}> 258,256.21 PEP</p>
+          <p className={style.mainText}> {amount} {tokenSymbol}</p>
           <div className={style.mainCurrency}>
             <img src={getTokenImg('sol')} alt="Solana image" />
             <p className={style.mainCurrencyText}>2,456 SOL</p>

@@ -9,6 +9,8 @@ import { sendSolana, sendTokens } from '@/dataFetching/transactions/send'
 import cookiesUserUtils from '@/utils/clientCookiesUtils'
 import { useSendStore } from '@/app/store/sendStore'
 import { revalidateActivity } from '@/dataFetching/revalidatePath/revaliteCreateUser'
+import { useSellStore } from '@/app/store/sellStore'
+import { sellToken } from '@/dataFetching/transactions/sellToken'
 
 interface swipeBarProps {
   startTransition: TransitionStartFunction
@@ -22,6 +24,7 @@ const SwipeBar = ({ startTransition }: swipeBarProps) => {
   const user = cookiesUserUtils.getUserDataFromCookie()
   const token = cookiesUserUtils.getTokenFromCookie()
   const { amount, destination, tokenAddress, tokenSymbol } = useSendStore()
+  const { amount: amountSell,  tokenAddress: tokenAddressSell } = useSellStore()
   if (!user || !token) notFound()
 
   const motionValue = useMotionValue(0)
@@ -46,7 +49,11 @@ const SwipeBar = ({ startTransition }: swipeBarProps) => {
             revalidateActivity(user.username)
             router.refresh()
           } else {
+            const txData = await sellToken(user, token, tokenAddressSell, amountSell)
+            console.log('txData', txData)
             setCookie('sellStep', '4')
+            revalidateActivity(user.username)
+            router.refresh()
           }
           router.refresh()
         } catch (error) {
