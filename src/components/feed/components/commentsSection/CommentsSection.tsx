@@ -1,8 +1,8 @@
 'use client'
 
-import Comment from '@/app/token-details/components/commentsContainer/components/Comment'
 import style from './commentsSection.module.css'
 import { useGetProjectComments, useGetProjectCommentsAmount } from '@/hooks/useGetProjectLikesComments'
+import ClientComment from '@/app/token-details/components/commentsContainer/components/ClientComment'
 
 interface CommentsSectionProps {
   tokenMintAddress: string
@@ -20,7 +20,7 @@ function CommentsSection({ tokenMintAddress }: CommentsSectionProps) {
       {!isLoading && comments && (
         <div className={style.commentsDiv}>
           {comments?.map((comment, index) => (
-            <Comment key={index} commentInfo={comment} />
+            <ClientComment key={index} commentInfo={comment} />
           ))}
         </div>
       )}

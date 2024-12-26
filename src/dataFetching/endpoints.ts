@@ -20,7 +20,7 @@ export const priceEndpoints = {
   getSolanaPrice: `${BASE_URL}/solana`, //GET
   getSolanaAndTokenPriceByMintAddress: (mintAddress: string) => `${BASE_URL}/price-preview/${mintAddress}`, //GET
   getFullListWithMarketcap: `${BASE_URL}/marketcap/projects`, //GET
-  getProjectMarketCap : (tokenAddress: string) => `${BASE_URL}/marketcap/projects/${tokenAddress}`, //GET
+  getProjectMarketCap: (tokenAddress: string) => `${BASE_URL}/marketcap/projects/${tokenAddress}`, //GET
 }
 
 export const transactionsEndpoints = {
@@ -45,4 +45,11 @@ export const userEndpoints = {
 
 export const balancesEndpoints = {
   getBalancesWithProjectsInfo: (username: string) => `${BASE_URL}/users/balances/projects/${username}`, //GET
+}
+
+export const followersEndpoints = {
+  handleFollow: `${BASE_URL}/follow`, //PUT
+  getFollowers: (username: string) => `${BASE_URL}/followers/${username}`, //GET
+  getFollowed: (username: string) => `${BASE_URL}/followed/${username}`, //GET
+  checkIfFollowing: (username: string, followedUsername: string) => `${BASE_URL}/follow/${username}/${followedUsername}`, //GET
 }
