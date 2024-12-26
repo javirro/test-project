@@ -1,0 +1,106 @@
+.main {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.sortSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+}
+
+.sortText {
+  flex: 1 0 0;
+  color: #707579;
+
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px; /* 152.941% */
+  letter-spacing: 0.1px;
+}
+
+.buttonSort {
+  border: none;
+  background-color: transparent;
+}
+
+.followingSection {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.followingUser {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.followingImage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+}
+
+.followingInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: -1px;
+  flex: 1 0 0;
+}
+
+.followingUsername {
+  color: #000000;
+  align-self: stretch;
+
+  font-family: Borna;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px; /* 147.368% */
+  letter-spacing: 0.15px;
+}
+
+.followingAmount {
+  align-self: stretch;
+  color: #707579;
+
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px; /* 152.941% */
+  letter-spacing: 0.1px;
+}
+
+.unfollowButton {
+  display: flex;
+  height: 42px;
+  padding: 12px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: none;
+  background-color: transparent;
+  color: #997312;
+
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px; /* 146.667% */
+  letter-spacing: 0.15px;
+}
