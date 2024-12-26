@@ -36,6 +36,13 @@
   flex: 1 0 0;
 }
 
+.image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #000000;
+}
+
 .secondSection {
   display: flex;
   justify-content: flex-end;

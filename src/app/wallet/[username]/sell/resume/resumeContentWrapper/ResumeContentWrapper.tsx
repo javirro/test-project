@@ -6,7 +6,7 @@ import { useTransition } from 'react'
 import Loading from '../loading/Loading'
 import style from './resumeContentWrapper.module.css'
 
-function ResumeContentWrapper() {
+function ResumeContentWrapper({ solPrice }: { solPrice: number }) {
   const [pending, startTransition] = useTransition()
 
   return (
@@ -15,7 +15,7 @@ function ResumeContentWrapper() {
         <Loading />
       ) : (
         <>
-          <TransactionInformation />
+          <TransactionInformation solPrice={solPrice} />
           <SwipeBar startTransition={startTransition} />
         </>
       )}

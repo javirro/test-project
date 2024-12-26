@@ -76,11 +76,11 @@ const SellBodyComponent = async ({ user, token, sellStep, username }: { sellStep
           <Keyboard />
         </main>
       )}
-      {sellStep === '3' && <ResumeContentWrapper />}
+      {sellStep === '3' && <ResumeContentWrapper  solPrice={solanaPrice}/>}
       {sellStep === '4' && (
         <main className={style.confirmationMain}>
           <p className={style.confirmationText}>Just sold!</p>
-          <TransactionConfirmation />
+          <TransactionConfirmation solPrice={solanaPrice}/>
           <div className={style.confirmationNextButtonDiv}>
             <Link href={`/wallet/${username}`} className={style.confirmationNextButton} onClick={handleBackToWallet}>
               Back to wallet

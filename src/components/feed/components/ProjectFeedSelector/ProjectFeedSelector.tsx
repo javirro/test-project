@@ -12,7 +12,9 @@ const ProjectFeedSelector = ({ projects }: { projects: Project[] }) => {
   const getNextIndex = (currentIndex: number, total: number) => (currentIndex + 1) % total
 
   const currentProject = projects[indexShowProject]
-  const nextProject = projects[getNextIndex(indexShowProject, projects.length)]
+  const nextIndex = getNextIndex(indexShowProject, projects.length)
+  const nextProject = projects[nextIndex]
+
 
   return (
     <TanstackQueryProvider>
