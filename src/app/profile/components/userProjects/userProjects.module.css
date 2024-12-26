@@ -1,0 +1,116 @@
+.main {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+  margin-bottom: 50px;
+}
+
+.buttonsDiv {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.buttonActive {
+  color: #000000;
+
+  font-family: Borna;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+  border: none;
+  background-color: transparent;
+}
+
+.buttonInactive {
+  color: #000000;
+
+  font-family: Borna;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+  opacity: 0.4;
+  border: none;
+  background-color: transparent;
+}
+
+.projectCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 16px;
+  border: 3px solid #000000;
+  background: var(--Custom-card_bg_color, #fff);
+  width: 100%;
+  padding: 10px;
+}
+
+.projectImage {
+  height: 165px;
+  align-self: stretch;
+  border-radius: 8px;
+}
+
+.projectInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: -1px;
+  align-self: stretch;
+}
+
+.projectUpperSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+
+  color: #000000;
+
+  font-family: Borna;
+  font-size: 19px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.15px;
+}
+
+.projectBottomSection {
+  color: #707579;
+
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+  align-self: stretch;
+}
+
+.projectGain {
+  color: var(--Custom-tertiary_code_highlight, #3a9f20);
+  text-align: right;
+
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 26px;
+  letter-spacing: 0.1px;
+}
+
+.divCard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 16px;
+}

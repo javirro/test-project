@@ -27,6 +27,7 @@ function TapBarWrapper() {
       {pathname.startsWith('/wallet') && pathname.endsWith('/receive') && <TapBarWallet />}
       {pathname.startsWith('/explore') && <DynamicTapbarNoSSR />}
       {pathname.startsWith('/explore/top100/feed') && <DynamicTapbarNoSSR />}
+      {pathname.startsWith('/profile') && <DynamicTapbarNoSSR />}
       {/* {pathname.startsWith('/wallet') && pathname.endsWith('/address') && <TapBarSendActions />} */}
     </div>
   )

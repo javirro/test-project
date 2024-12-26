@@ -25,7 +25,7 @@ function NavBarWrapper() {
       <nav style={{ width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '1000' }}>
         {pathname === '/create-project' && <ProfileNavBar />}
         {pathname.startsWith('/token-details') && <ProjectPublicNavBar />}
-        {pathname.endsWith('/profile') && <ProfileNavBar />}
+        {pathname.startsWith('/profile') && <ProfileNavBar />}
         {pathname.endsWith('/explore') && <ProfileNavBar />}
         {pathname.endsWith('/explore/top100') && <ProfileNavBar />}
         {pathname.endsWith('/explore/top100/feed') && <ProfileNavBar />}
