@@ -25,12 +25,12 @@ const AssetItemActivity = ({ tx }: { tx: TxAssetActivity }) => {
         ) : null}
         {type === 'BUY' ? (
           <button className={style.badgeButton} style={{ backgroundColor: '#3A9F20' }}>
-            <img src={getTokenImg('sol')} alt="" style={{ width: '12px', height: '12px' }} />
+            <img src={getTokenImg('sol')} alt="solana" style={{  width: '24px', height: '24px' }} />
           </button>
         ) : null}
         {type === 'SELL' ? (
           <button className={style.badgeButton} style={{ backgroundColor: '#3A9F20' }}>
-            <img src={projectImage} alt="" style={{ width: '12px', height: '12px' }} />
+            <img src={getTokenImg('sol')} alt="solana" style={{ width: '24px', height: '24px' }} />
           </button>
         ) : null}
       </div>
@@ -40,7 +40,7 @@ const AssetItemActivity = ({ tx }: { tx: TxAssetActivity }) => {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <p className={style.amountInUsd}>
-          {amount.toFixed(7)} {symbol}
+          {amount?.toFixed(7)} {symbol}
         </p>
       </div>
     </div>

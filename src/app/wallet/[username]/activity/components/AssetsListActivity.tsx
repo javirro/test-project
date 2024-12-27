@@ -12,7 +12,7 @@ function AssetsListActivity({ transactions }: AssetsListActivityProps) {
   const oneWeekAgoTimestamp = Math.floor(newDate.setDate(newDate.getDate() - 7) / 1000)
   const transactionsFormatted = transactions.map((tx) => {
     return {
-      amount: tx.tokenMintAddress === 'SOL' ? (tx.solanaAmount as number) : tx.tokenAmount,
+      amount: tx.tokenMintAddress === 'SOL' ? (tx.solanaAmount as number) : +tx.tokenAmount,
       symbol: tx.tokenSymbol ?? 'SOL',
       name: tx.tokenName ?? 'Solana',
       type: tx.transactionType,
@@ -23,6 +23,7 @@ function AssetsListActivity({ transactions }: AssetsListActivityProps) {
   })
   const todayTxs = transactionsFormatted.filter((tx) => tx.timestamp > oneDayAgoTimestamp)
   const lastWeekTxs = transactionsFormatted.filter((tx) => tx.timestamp > oneWeekAgoTimestamp && tx.timestamp < oneDayAgoTimestamp)
+
   return (
     <>
       {todayTxs?.length > 0 && <p className={style.text}>Last 24 hours</p>}
@@ -30,7 +31,7 @@ function AssetsListActivity({ transactions }: AssetsListActivityProps) {
         <AssetItemActivity key={index} tx={asset} />
       ))}
       {lastWeekTxs.length > 0 && <p className={style.text}>Last week</p>}
-      {lastWeekTxs.map((asset, index) => (
+      {lastWeekTxs?.map((asset, index) => (
         <AssetItemActivity key={index} tx={asset} />
       ))}
     </>
