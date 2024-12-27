@@ -70,7 +70,7 @@ function TapBar() {
             <Link href={`/wallet/${user?.username}`} className={styles.iconWrapper} onClick={() => handleButtonClick(2)}>
               <WalletButtonIcon width="35px" color={isWallet ? '#DAB223' : '#707579'} />
             </Link>
-            <Link href="/profile" className={styles.iconWrapper} onClick={() => handleButtonClick(3)}>
+            <Link href={`/profile/${user?.username}`} className={styles.iconWrapper} onClick={() => handleButtonClick(3)}>
               <div className={styles.profile}></div>
             </Link>
           </div>

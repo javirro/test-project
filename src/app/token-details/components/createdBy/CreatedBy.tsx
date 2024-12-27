@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import style from './createdBy.module.css'
 
 interface CreatedByProps {
@@ -20,7 +21,7 @@ async function CreatedBy({ createdOn, creatorUsername, creatorImage }: CreatedBy
         <div className={style.userInfoSection}>
           <p className={style.name}>{`@${creatorUsername}`}</p>
         </div>
-        <button className={style.viewProfileButton}>View profile</button>
+        <Link href={`/profile/${creatorUsername}`} className={style.viewProfileButton}>View profile</Link>
       </div>
       <p className={style.createdOn}>Created on {createdDate}</p>
     </section>
