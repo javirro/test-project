@@ -40,7 +40,7 @@ const AssetItemActivity = ({ tx }: { tx: TxAssetActivity }) => {
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
         <p className={style.amountInUsd}>
-          {amount} {symbol}
+          {amount.toFixed(7)} {symbol}
         </p>
       </div>
     </div>

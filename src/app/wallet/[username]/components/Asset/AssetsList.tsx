@@ -15,10 +15,10 @@ function AssetsList({ assets, username, solBalance, solPrice }: AssetsListProps)
     ...assets,
   ]
 
-  const filteredAssetBalanceZero = addSolanaToAssets?.filter((asset) => asset?.amount > 0)
+
   return (
     <>
-      {filteredAssetBalanceZero.map((asset, index) => (
+      {addSolanaToAssets.map((asset, index) => (
         <AssetItem key={index} asset={asset} username={username} />
       ))}
       <div style={{ height: '10vh' }}></div>

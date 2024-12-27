@@ -35,5 +35,7 @@ export const formatAssetsInfo = (assets: UserBalanceWithProjectInfo[]): Asset[] 
       image: asset.image,
     }
   })
-  return formattedAssets
+  const filterAssestWithoutNameOrSymbol = formattedAssets?.filter((asset) => asset.name && asset.symbol)
+  const filterZeroBalance = filterAssestWithoutNameOrSymbol?.filter((asset) => asset.amount > 0)
+  return filterZeroBalance
 }
