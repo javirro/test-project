@@ -32,7 +32,6 @@ const Receive = async ({ params }: PageProps) => {
       <img style={{ width: '20vh' }} src={qrWithBase64} alt="qr code for solana wallet" />
       <p className={style.mainText}>Your Solana Address</p>
       <p className={style.secondaryText}>Use this address to receive tokens and collectibles on Solana</p>
-      {/* Receive section: {username} */}
     </section>
   )
 }
