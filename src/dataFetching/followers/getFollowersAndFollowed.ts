@@ -15,6 +15,21 @@ export const getFollowers = async (username: string): Promise<string[]> => {
   return followers
 }
 
+export const getFollowersOrFollowedCount = async (username: string, followers: boolean): Promise<number> => {
+  const url = followers ? followersEndpoints.getFollowersCount(username) : followersEndpoints.getFollowedCount(username)
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+  if (!response.ok) {
+    throw new Error(`Error fetching followers count: ${response.statusText}`)
+  }
+  const { count }: { count: number } = await response.json()
+  return count
+}
+
 export const getFollowed = async (username: string): Promise<string[]> => {
   const url = followersEndpoints.getFollowed(username)
   const response = await fetch(url, {

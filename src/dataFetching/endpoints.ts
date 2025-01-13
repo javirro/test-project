@@ -51,6 +51,8 @@ export const balancesEndpoints = {
 export const followersEndpoints = {
   handleFollow: `${BASE_URL}/follow`, //PUT
   getFollowers: (username: string) => `${BASE_URL}/followers/${username}`, //GET
+  getFollowersCount: (username: string) => `${BASE_URL}/followers/count/${username}`, //GET
   getFollowed: (username: string) => `${BASE_URL}/followed/${username}`, //GET
+  getFollowedCount: (username: string) => `${BASE_URL}/followed/count/${username}`, //GET
   checkIfFollowing: (username: string, followedUsername: string) => `${BASE_URL}/follow/${username}/${followedUsername}`, //GET
 }
