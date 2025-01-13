@@ -35,6 +35,7 @@ export const transactionsEndpoints = {
 export const userEndpoints = {
   getUsernames: `${BASE_URL}/users/usernames`, //GET
   getUserImage: (username: string) => `${BASE_URL}/users/image/${username}`, //GET
+  getUserCreationDate: (username: string) => `${BASE_URL}/users/creationdate/${username}`, //GET
   getUserWalletQrCode: (username: string) => `${BASE_URL}/users/walletqr/${username}`, //GET
   getUserProjectsWatchlistByUsername: (username: string) => `${BASE_URL}/users/watchlist/${username}`, //GET
   getUserSolanaBuyAmountByUsername: (username: string) => `${BASE_URL}/users/solana/buyamount/${username}`, //GET
@@ -51,6 +52,8 @@ export const balancesEndpoints = {
 export const followersEndpoints = {
   handleFollow: `${BASE_URL}/follow`, //PUT
   getFollowers: (username: string) => `${BASE_URL}/followers/${username}`, //GET
+  getFollowersCount: (username: string) => `${BASE_URL}/followers/count/${username}`, //GET
   getFollowed: (username: string) => `${BASE_URL}/followed/${username}`, //GET
+  getFollowedCount: (username: string) => `${BASE_URL}/followed/count/${username}`, //GET
   checkIfFollowing: (username: string, followedUsername: string) => `${BASE_URL}/follow/${username}/${followedUsername}`, //GET
 }
