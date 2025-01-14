@@ -37,6 +37,7 @@ export const userEndpoints = {
   getUserImage: (username: string) => `${BASE_URL}/users/image/${username}`, //GET
   getUserCreationDate: (username: string) => `${BASE_URL}/users/creationdate/${username}`, //GET
   getUserWalletQrCode: (username: string) => `${BASE_URL}/users/walletqr/${username}`, //GET
+  getProjectsCreatedByUser: (username: string) => `${BASE_URL}/projects/createdby/${username}`, //GET
   getUserProjectsWatchlistByUsername: (username: string) => `${BASE_URL}/users/watchlist/${username}`, //GET
   getUserSolanaBuyAmountByUsername: (username: string) => `${BASE_URL}/users/solana/buyamount/${username}`, //GET
   // getUserSolanaBuyAmountByUsername: (username: string) => `${BASE_URL}/users/solana/buyamount/johndoe`, //GET
