@@ -1,9 +1,9 @@
 'use client'
 
-import SortBy from './SortBy'
+import SortBy from '../../../following/components/following/SortBy'
 import { useState, useEffect, useRef } from 'react'
 
-import style from './following.module.css'
+import style from './followers.module.css'
 
 const mockData = [
   {
@@ -26,14 +26,9 @@ const mockData = [
     username: '@mercyCh',
     followers: '13',
   },
-  {
-    image: '/project_image.png',
-    username: '@mercyCh',
-    followers: '13',
-  },
 ]
 
-function Following() {
+function Followers() {
   const [showDropdown, setShowDropdown] = useState<boolean>(false)
   const [isAnimating, setIsAnimating] = useState<'animateIn' | 'animateOut' | ''>('')
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -85,7 +80,7 @@ function Following() {
                 <p className={style.followingUsername}>{user.username}</p>
                 <p className={style.followingAmount}>{user.followers} followers</p>
               </div>
-              <button className={style.unfollowButton}>Unfollow</button>
+              <button className={style.followButton}>Follow</button>
             </div>
           ))}
         </div>
@@ -99,4 +94,4 @@ function Following() {
   )
 }
 
-export default Following
+export default Followers

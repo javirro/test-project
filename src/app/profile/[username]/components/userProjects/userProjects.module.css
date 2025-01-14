@@ -114,3 +114,75 @@
   gap: 16px;
   padding: 16px;
 }
+
+.divFavorites {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  align-self: stretch;
+}
+
+.divfavoritesCard {
+  display: flex;
+  padding: 8px 0px;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.divfavoritesCardImage {
+  display: flex;
+  height: 64px;
+  border-radius: 8px;
+  border: 2px solid #000000;
+  align-items: center;
+  gap: 10px;
+
+  box-shadow: 2px 3px 0px 1px #000;
+}
+
+.divfavoritesCardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1 0 0;
+}
+
+.divfavoritesCardName {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  align-self: stretch;
+  overflow: hidden;
+  color: #000000;
+  text-overflow: ellipsis;
+
+  /* Roboto/Text/Semibold */
+  font-family: Borna;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 26px; /* 152.941% */
+  letter-spacing: 0.1px;
+}
+
+.divfavoritesCardType {
+  align-self: stretch;
+  color: #707579;
+
+  /* Roboto/Subheadline 2/Regular */
+  font-family: Borna;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 146.667% */
+  letter-spacing: 0.15px;
+}
+
+.divfavoritesCardButton {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+}
