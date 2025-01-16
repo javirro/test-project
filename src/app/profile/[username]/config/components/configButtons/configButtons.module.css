@@ -1,0 +1,51 @@
+.content {
+  display: flex;
+  padding: var(--group-vertical-padding-ios, 2px) 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+  border-radius: 12px;
+  background: #ffffff;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.buttonContent {
+  display: flex;
+  padding: 0px 16px;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+  background-color: transparent;
+  border: none;
+  height: 50px;
+  width: 100%;
+}
+
+.buttonImage {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  padding: 2.412px 3.5px 0.217px 3.5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonText {
+  display: flex;
+  padding: 12px 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+  flex: 1 0 0;
+  color: #000000;
+
+  font-family: Borna;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.15px;
+}
