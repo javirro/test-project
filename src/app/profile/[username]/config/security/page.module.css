@@ -1,0 +1,11 @@
+.main {
+  display: flex;
+  padding: 0px 16px;
+  flex-direction: column;
+  align-items: center;
+  align-self: stretch;
+  margin-top: 80px;
+  background-color: #efeff4;
+  height: 100rem;
+}
+

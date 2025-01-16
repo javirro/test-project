@@ -20,16 +20,24 @@ function NavBarWrapper() {
     (pathname.endsWith('/send') && sendStep < 4) ||
     (pathname.endsWith('/sell') && sellStep < 4)
 
+  const showProjectPublicNavBar =
+    (pathname.startsWith('/token-details') && !pathname.endsWith('/overview')) || pathname.endsWith('/comments') || pathname.endsWith('/about')
+
+  const showBackToVideoNavBar = pathname.endsWith('/overview') || pathname.endsWith('/comments') || pathname.endsWith('/about')
+
+  const showProfileNavBar =
+    pathname === '/create-project' ||
+    pathname.startsWith('/profile') ||
+    pathname.endsWith('/explore') ||
+    pathname.endsWith('/explore/top100') ||
+    pathname.endsWith('/explore/top100/feed')
+
   return (
     <TanstackQueryProvider>
       <nav style={{ width: '100%', position: 'fixed', top: '0', left: '0', zIndex: '1000' }}>
-        {pathname === '/create-project' && <ProfileNavBar />}
-        {pathname.startsWith('/token-details') && <ProjectPublicNavBar />}
-        {pathname.startsWith('/profile') && <ProfileNavBar />}
-        {pathname.endsWith('/explore') && <ProfileNavBar />}
-        {pathname.endsWith('/explore/top100') && <ProfileNavBar />}
-        {pathname.endsWith('/explore/top100/feed') && <ProfileNavBar />}
-        {/* {pathname === '/' && <SegmentedCustomWrapper />} */}
+        {showProfileNavBar && <ProfileNavBar />}
+        {showProjectPublicNavBar && <ProjectPublicNavBar />}
+        {showBackToVideoNavBar && <ProjectPublicNavBar text="Back to video" />}
         {showActionNavBar && <ActionNavBar />}
       </nav>
     </TanstackQueryProvider>
