@@ -1,5 +1,5 @@
-import { ProjectComments } from '@/types/project'
-import { projectEndpoints } from '../endpoints'
+import { ProjectComments, ProjectWatchList } from '@/types/project'
+import { projectEndpoints, userEndpoints } from '../endpoints'
 
 export const getLikeAmount = async (tokenAddress: string): Promise<number> => {
   const url = projectEndpoints.getProjectLikesByTokenAddress(tokenAddress)
@@ -46,4 +46,15 @@ export const getProjectLikeByUser = async (tokenAddress: string, username: strin
   }
   const { like } = await response.json()
   return like
+}
+
+export const getProjectsinWatchlist = async (username: string): Promise<ProjectWatchList[]> => {
+  const url = userEndpoints.getUserProjectsWatchlistByUsername(username)
+  const response = await fetch(url)
+  if (response.ok) {
+    const { projects } = await response.json()
+    return projects
+  } else {
+    throw new Error('Error fetching projects in watchlist for user:' + username)
+  }
 }

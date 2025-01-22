@@ -25,6 +25,7 @@ export type Project = {
 
 export type ProjectForm = Omit<Project, 'id' | 'creationDate' | 'marketCap' | 'likes' | 'comments'| 'tokenMintAddress' | 'tokenId' | 'totalSupply' | 'bondingCurveAddress'>
 
+export type ProjectWatchList = Pick<Project, 'id' | 'tokenMintAddress' | 'tokenName' | 'tokenSymbol' | 'creatorUsername' | 'description' | 'image' | 'video' | 'marketCap' | 'nsfw'> & { username: string }
 
 export type ProjectComments = {
   commentId: number

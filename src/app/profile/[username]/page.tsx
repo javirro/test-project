@@ -3,6 +3,7 @@ import ProfileHeader from './components/profileHeader/ProfileHeader'
 import ProfileInfo from './components/profileInfo/ProfileInfo'
 import UserProjects from './components/userProjects/UserProjects'
 import style from './page.module.css'
+import { Suspense } from 'react'
 
 interface PageProps {
   params: Promise<{ username: string }>
@@ -21,8 +22,12 @@ async function page({ params }: PageProps) {
   return (
     <main className={style.main}>
       <ProfileHeader />
-      <ProfileInfo username={username}/>
-      <UserProjects />
+      <Suspense fallback={null}>
+        <ProfileInfo username={username} />
+      </Suspense>
+      <Suspense fallback={null}>
+        <UserProjects username={username} />
+      </Suspense>
     </main>
   )
 }

@@ -6,6 +6,7 @@ import style from './profileHeader.module.css'
 function ProfileHeader() {
   const { user } = useUser()
   const imgToUse = user?.image ? user.image : '/Image.png'
+  if (!user?.username) return null
   return (
     <section className={style.main}>
       <img className={style.banner} src="/header_banner.svg" alt="header banner" />

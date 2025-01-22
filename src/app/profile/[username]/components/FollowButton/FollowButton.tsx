@@ -8,6 +8,7 @@ const FollowButton = ({ username }: { username: string }) => {
   const { user, token } = useUser()
   const personWhoStartFollowing = user?.username
   const isMyProfile = personWhoStartFollowing?.toLowerCase() === username.toLowerCase()
+  if(!personWhoStartFollowing) return null
   return isMyProfile ? null : (
     <button className={style.button} onClick={() => handleFollow(personWhoStartFollowing, username, token, user?.telegramId)}>
       Follow
