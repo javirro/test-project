@@ -4,6 +4,7 @@ import ProfileFollowingBox, { ProfileBoxDataFallback } from './ProfileFollowingB
 import ProfileProjectsBox from './ProfileProjectsBox'
 import { Suspense } from 'react'
 import { getUserCreationDate } from '@/dataFetching/users/getUserImage'
+import FollowButton from '../FollowButton/FollowButton'
 
 function ProfileInfo({ username }: { username: string }) {
   return (
@@ -16,7 +17,7 @@ function ProfileInfo({ username }: { username: string }) {
           </div>
           <ProfileCreationDate username={username} />
         </div>
-        <button className={style.button}>Follow</button>
+        <FollowButton username={username}/>
       </div>
       <div className={style.userInfoSection}>
         <Suspense fallback={<ProfileBoxDataFallback text="Followers" />}>

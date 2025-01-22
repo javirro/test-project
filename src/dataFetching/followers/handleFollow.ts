@@ -1,6 +1,10 @@
+'use server'
+
 import { followersEndpoints } from '../endpoints'
 
-export const handleFollow = async (username: string, followed: string, token: string, telegramId: number): Promise<void> => {
+export const handleFollow = async (username: string|undefined, followed: string, token: string, telegramId: number|undefined): Promise<void> => {
+  if (!token || !username) return
+
   const url = followersEndpoints.handleFollow
   const options = {
     method: 'PUT',
