@@ -5,6 +5,8 @@ import Script from 'next/script'
 import TapBarWrapper from '@/components/navigation/tapBar/TapBarWrapper'
 import NavBarWrapper from '@/components/navigation/navBar/NavBarWrapper'
 
+import Navbar from '@/components/navbars/NavBar'
+
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -28,6 +30,7 @@ export default function RootLayout({
       </head>
       <body className={`${roboto.className} ${styles.page}`}>
         <NavBarWrapper />
+        <Navbar />
         {children}
         <TapBarWrapper />
       </body>
